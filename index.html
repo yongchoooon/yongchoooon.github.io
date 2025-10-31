@@ -249,45 +249,6 @@
       margin-right: 4px;
     }
 
-    .visitor-counter {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-    }
-
-    .visitor-counter__label {
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-
-    .visitor-counter__value {
-      font-size: 1.02rem;
-    }
-
-    .footer-meta {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .visitor-counter--footer {
-      font-size: 0.82rem;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(31, 41, 55, 0.06);
-      border: 1px solid rgba(31, 41, 55, 0.14);
-      color: var(--muted);
-    }
-
-    body.dark .visitor-counter--footer {
-      background: rgba(148, 163, 184, 0.12);
-      border-color: rgba(148, 163, 184, 0.25);
-      color: rgba(226, 232, 240, 0.8);
-    }
-
     main {
       padding: 64px 0 80px;
     }
@@ -972,13 +933,7 @@
   </main>
 
   <footer>
-    <div class="footer-meta">
-      <span>&copy; <span id="year"></span> Seo Yongdeuk. All rights reserved.</span>
-      <span class="visitor-counter visitor-counter--footer" aria-live="polite">
-        <span class="visitor-counter__label">오늘</span>
-        <span class="visitor-counter__value" id="today-visits" data-loading="true">--</span>
-      </span>
-    </div>
+    &copy; <span id="year"></span> Seo Yongdeuk. All rights reserved.
   </footer>
 
   <script>
@@ -1035,7 +990,6 @@
 
     const heroPhoto = document.querySelector('.hero__photo');
     const thumbsPop = heroPhoto ? heroPhoto.querySelector('.thumbs-pop') : null;
-    const todayVisitsEl = document.getElementById('today-visits');
 
     function showThumbs(event) {
       if (!heroPhoto || !thumbsPop) return;
@@ -1066,52 +1020,6 @@
           showThumbs(event);
         }
       });
-    }
-
-    if (todayVisitsEl) {
-      const namespace = 'yongchoooon-portfolio';
-      const todayKey = new Date().toISOString().split('T')[0];
-      const storageKey = `visit-counted-${todayKey}`;
-      const hasSessionStorage = (() => {
-        try {
-          const testKey = '__visit-test__';
-          window.sessionStorage.setItem(testKey, '1');
-          window.sessionStorage.removeItem(testKey);
-          return true;
-        } catch (error) {
-          return false;
-        }
-      })();
-
-      const alreadyCounted = hasSessionStorage && window.sessionStorage.getItem(storageKey);
-      const endpoint = alreadyCounted
-        ? `https://api.countapi.xyz/get/${namespace}/${todayKey}`
-        : `https://api.countapi.xyz/hit/${namespace}/${todayKey}`;
-
-      fetch(endpoint)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Failed to fetch visit count');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          const value = Number(data?.value);
-          if (Number.isFinite(value)) {
-            todayVisitsEl.textContent = value.toLocaleString('ko-KR');
-            todayVisitsEl.dataset.loading = 'false';
-            if (!alreadyCounted && hasSessionStorage) {
-              window.sessionStorage.setItem(storageKey, '1');
-            }
-          } else {
-            throw new Error('Invalid visit count');
-          }
-        })
-        .catch(() => {
-          todayVisitsEl.textContent = '연결 오류';
-          todayVisitsEl.dataset.loading = 'error';
-          todayVisitsEl.title = '방문자 수를 가져오지 못했습니다.';
-        });
     }
 
     const TOTAL_PAGES = 10;

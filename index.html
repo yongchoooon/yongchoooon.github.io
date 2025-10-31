@@ -20,6 +20,8 @@
       --accent: #ff6b3b;
       --accent-soft: rgba(255, 107, 59, 0.12);
       --accent-dark: #d85124;
+      --tag-muted-bg: rgba(102, 94, 88, 0.08);
+      --tag-muted-text: #6d6965;
     }
 
     * {
@@ -40,6 +42,10 @@
       text-decoration: none;
     }
 
+    button {
+      font-family: inherit;
+    }
+
     .banner {
       background: #0f0f0f;
       color: #f7f6f3;
@@ -51,24 +57,39 @@
     }
 
     .container {
-      width: min(1100px, 92vw);
+      width: min(1200px, 90vw);
       margin: 0 auto;
     }
 
     header {
       background: var(--bg-soft);
       border-bottom: 1px solid var(--border);
-      padding: 60px 0 40px;
+      padding: 60px 0 42px;
     }
 
     .hero {
       display: grid;
+      grid-template-columns: minmax(160px, 240px) 1fr;
       gap: 32px;
+      align-items: center;
+    }
+
+    .hero__photo {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 12px 28px rgba(17, 17, 17, 0.08);
+      max-width: 220px;
+    }
+
+    .hero__photo img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .hero__heading {
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 12px;
     }
 
@@ -90,18 +111,19 @@
 
     h1 {
       margin: 0;
-      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      font-size: clamp(2.35rem, 4vw, 3.1rem);
       font-weight: 700;
       letter-spacing: -0.04em;
     }
 
     .hero__lead {
-      max-width: 720px;
+      max-width: 680px;
       font-size: 1.05rem;
       color: var(--muted);
     }
 
     .contact-row {
+      margin-top: 6px;
       display: flex;
       flex-wrap: wrap;
       gap: 18px;
@@ -123,7 +145,7 @@
     }
 
     main {
-      padding: 60px 0 80px;
+      padding: 64px 0 80px;
     }
 
     .overview {
@@ -154,10 +176,25 @@
       font-size: 1.02rem;
     }
 
-    .overview__grid {
+    .overview__layout {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: 7fr 3fr;
+      gap: 26px;
+    }
+
+    .overview__left,
+    .overview__right {
+      display: grid;
       gap: 22px;
+      min-height: 720px;
+    }
+
+    .overview__left {
+      grid-template-rows: 2fr 1fr 5fr 2fr;
+    }
+
+    .overview__right {
+      grid-template-rows: 4.5fr 5.5fr;
     }
 
     .card {
@@ -168,6 +205,11 @@
       display: grid;
       gap: 14px;
       box-shadow: 0 12px 28px rgba(17, 17, 17, 0.05);
+      height: 100%;
+    }
+
+    .card--scroll {
+      overflow-y: auto;
     }
 
     .card h3 {
@@ -215,10 +257,31 @@
     .tag {
       padding: 6px 10px;
       border-radius: 12px;
-      background: var(--accent-soft);
-      color: var(--accent-dark);
       font-weight: 600;
       font-size: 0.9rem;
+    }
+
+    .tag--primary {
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+    }
+
+    .tag--secondary {
+      background: var(--tag-muted-bg);
+      color: var(--tag-muted-text);
+      border: 1px solid rgba(109, 105, 101, 0.25);
+    }
+
+    .skill-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .skill-group h4 {
+      margin: 0;
+      font-size: 1.02rem;
+      letter-spacing: -0.01em;
+      color: #2b2a29;
     }
 
     .pdf-section {
@@ -230,10 +293,12 @@
     }
 
     .pdf-section header {
-      padding: 0;
+      padding: 0 0 20px;
       background: none;
       border-bottom: 1px solid var(--border);
       margin-bottom: 24px;
+      display: grid;
+      gap: 10px;
     }
 
     .pdf-section h2 {
@@ -243,7 +308,7 @@
     }
 
     .pdf-section p {
-      margin: 8px 0 0;
+      margin: 0;
       color: var(--muted);
     }
 
@@ -251,7 +316,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 24px;
+      margin-top: 6px;
     }
 
     .btn {
@@ -266,6 +331,7 @@
       border: 1px solid transparent;
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
     }
 
     .btn-primary {
@@ -280,16 +346,51 @@
       color: #141414;
     }
 
-    .btn:hover {
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn:hover:not(:disabled) {
       transform: translateY(-2px);
+    }
+
+    .pdf-stage {
+      display: grid;
+      gap: 20px;
     }
 
     .pdf-viewer {
       width: 100%;
-      height: min(1300px, 92vh);
       border: 1px solid var(--border);
       border-radius: 16px;
-      background: #111;
+      background: #0f0f0f;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 16 / 9;
+    }
+
+    .pdf-viewer img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #0f0f0f;
+    }
+
+    .pdf-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .page-indicator {
+      font-weight: 600;
+      color: var(--muted);
     }
 
     footer {
@@ -299,12 +400,38 @@
       font-size: 0.9rem;
     }
 
+    @media (max-width: 980px) {
+      .overview__layout {
+        grid-template-columns: 1fr;
+      }
+
+      .overview__left,
+      .overview__right {
+        grid-template-rows: none;
+        min-height: auto;
+      }
+    }
+
     @media (max-width: 720px) {
       header {
         padding: 48px 0 36px;
       }
 
-      .overview__lead, .card {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero__photo {
+        margin: 0 auto;
+      }
+
+      .contact-row {
+        justify-content: center;
+      }
+
+      .overview__lead,
+      .card {
         padding: 24px;
       }
 
@@ -313,28 +440,28 @@
       }
 
       .pdf-viewer {
-        height: 80vh;
-      }
-
-      .contact-row a {
-        font-size: 0.95rem;
+        aspect-ratio: auto;
+        height: 70vh;
       }
     }
   </style>
 </head>
 <body>
-  <div class="banner">이력사항</div>
+  <div class="banner">Seo Yongdeuk Portfolio</div>
   <header>
     <div class="container hero">
+      <div class="hero__photo">
+        <img src="imgs/profile.jpg" alt="서용득 프로필 사진">
+      </div>
       <div class="hero__heading">
         <div class="hero__eyebrow"><span></span>Seo Yongdeuk Portfolio</div>
         <h1>AI로 가능성을 확장하는 Engineer, 서용득입니다.</h1>
         <p class="hero__lead">산업AI연구실 연구원으로서 산업 현장의 문제를 데이터와 모델링으로 해결하고 있습니다. 생성형 AI와 LLM을 활용해 Few-shot 학습 데이터 증강부터 상표 검색 에이전트까지 연구와 실무를 연결합니다.</p>
-      </div>
-      <div class="contact-row">
-        <a href="tel:+821030468377" data-label="M.">010-3046-8377</a>
-        <a href="mailto:sod7050@gmail.com" data-label="E.">sod7050@gmail.com</a>
-        <a href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener" data-label="W.">github.com/yongchoooon</a>
+        <div class="contact-row">
+          <a href="tel:+821030468377" data-label="M.">010-3046-8377</a>
+          <a href="mailto:sod7050@gmail.com" data-label="E.">sod7050@gmail.com</a>
+          <a href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener" data-label="W.">github.com/yongchoooon</a>
+        </div>
       </div>
     </div>
   </header>
@@ -346,79 +473,100 @@
           <h2>이력 한눈에 보기</h2>
           <p>국립부경대학교에서 기술데이터공학을 전공한 뒤 산업데이터공학 석사과정으로 진학해 연구와 실무 경험을 동시에 쌓고 있습니다. 산업AI연구실 연구원과 토모큐브 인턴십을 통해 현장의 데이터를 다뤄왔으며, Segment Anything 기반 라벨링 자동화부터 Diffusion·LLM을 결합한 데이터 증강까지 다양한 프로젝트를 주도했습니다. 두 건의 특허를 출원했고, 해커톤과 학회에서 수상하며 실용성과 연구적 성과를 입증했습니다.</p>
         </div>
-        <div class="overview__grid">
-          <article class="card">
-            <h3>Graduation</h3>
-            <ul>
-              <li>2017.03 – 2024.02&nbsp;| 국립부경대학교 시스템경영안전공학부 기술데이터공학 전공 (공학사)</li>
-              <li>2024.03 – 현재&nbsp;| 국립부경대학교 산업및데이터공학과 산업데이터공학융합 전공 (석사과정)</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Experience</h3>
-            <ul>
-              <li>2022.04 – 현재&nbsp;| 국립부경대학교 산업AI연구실 연구원</li>
-              <li>2023.08 – 2023.12&nbsp;| (주)토모큐브 AI팀 Intern</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Project Highlights</h3>
-            <ul>
-              <li>Segment Anything 기반 Auto-Annotator 개발 및 사내 배포 (2023.08 – 2023.12)</li>
-              <li>DALDA: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재 (2024.04 – 2024.08)</li>
-              <li>KIMCHI: 한국적 Diffusion 모델 개발 (2024.11 – 2024.12)</li>
-              <li>STELLAR: Scene Text Editing 모델 개발 (2025.03 – 2025.08)</li>
-              <li>T-RADAR: 상표 검색 &amp; 등록 시뮬레이션 시스템 (2025.09 – 진행 중)</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Patent</h3>
-            <ul>
-              <li>2023&nbsp;| 화재 이미지 생성 시스템 및 방법 (출원·공개, 1020250021779)</li>
-              <li>2024&nbsp;| LLM 프롬프트 기반 환산 모델 데이터 증강 장치 (출원, 1020240137347)</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Awards</h3>
-            <ul>
-              <li>제1회 LLM 활용 서비스 개발 해커톤 우수상 (2024.08)</li>
-              <li>한국CDE학회 동계학술대회 우수발표상 (2025.02)</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Skill</h3>
-            <div class="meta">프로젝트 리드 3회 이상 경험</div>
-            <div class="tag-grid">
-              <span class="tag">Python</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">PyTorch</span>
-              <span class="tag">OpenCV</span>
-              <span class="tag">OpenAI</span>
-              <span class="tag">Diffusers</span>
-              <span class="tag">PaddleOCR</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">MySQL</span>
-              <span class="tag">MongoDB</span>
-              <span class="tag">PGVector</span>
-              <span class="tag">PostgreSQL</span>
-              <span class="tag">Docker</span>
-              <span class="tag">Git</span>
-              <span class="tag">Slack</span>
-            </div>
-          </article>
+        <div class="overview__layout">
+          <div class="overview__left">
+            <article class="card">
+              <h3>Graduation</h3>
+              <ul>
+                <li>2017.03 – 2024.02&nbsp;| 국립부경대학교 시스템경영안전공학부 기술데이터공학 전공 (공학사)</li>
+                <li>2024.03 – 현재&nbsp;| 국립부경대학교 산업및데이터공학과 산업데이터공학융합 전공 (석사과정)</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Experience</h3>
+              <ul>
+                <li>2022.04 – 현재&nbsp;| 국립부경대학교 산업AI연구실 연구원</li>
+                <li>2023.08 – 2023.12&nbsp;| (주)토모큐브 AI팀 Intern</li>
+              </ul>
+            </article>
+            <article class="card card--scroll">
+              <h3>Project Highlights</h3>
+              <ul>
+                <li>Segment Anything 기반 Auto-Annotator 개발 및 사내 배포 (2023.08 – 2023.12)</li>
+                <li>DALDA: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재 (2024.04 – 2024.08)</li>
+                <li>KIMCHI: 한국적 Diffusion 모델 개발 (2024.11 – 2024.12)</li>
+                <li>STELLAR: Scene Text Editing 모델 개발 (2025.03 – 2025.08)</li>
+                <li>T-RADAR: 상표 검색 &amp; 등록 시뮬레이션 시스템 (2025.09 – 진행 중)</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Awards</h3>
+              <ul>
+                <li>제1회 LLM 활용 서비스 개발 해커톤 우수상 (2024.08)</li>
+                <li>한국CDE학회 동계학술대회 우수발표상 (2025.02)</li>
+              </ul>
+            </article>
+          </div>
+          <div class="overview__right">
+            <article class="card">
+              <h3>Patent</h3>
+              <ul>
+                <li>2023&nbsp;| 화재 이미지 생성 시스템 및 방법 (출원·공개, 1020250021779)</li>
+                <li>2024&nbsp;| LLM 프롬프트 기반 환산 모델 데이터 증강 장치 (출원, 1020240137347)</li>
+              </ul>
+            </article>
+            <article class="card card--scroll">
+              <h3>Skill</h3>
+              <div class="skill-group">
+                <h4>프로젝트 리드 3회 이상 경험</h4>
+                <div class="tag-grid">
+                  <span class="tag tag--primary">Python</span>
+                  <span class="tag tag--primary">PyTorch</span>
+                  <span class="tag tag--primary">OpenCV</span>
+                  <span class="tag tag--primary">OpenAI</span>
+                  <span class="tag tag--primary">Diffusers</span>
+                  <span class="tag tag--primary">FastAPI</span>
+                  <span class="tag tag--primary">MySQL</span>
+                  <span class="tag tag--primary">Git</span>
+                  <span class="tag tag--primary">Docker</span>
+                  <span class="tag tag--primary">Slack</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h4>프로젝트 경험 보유</h4>
+                <div class="tag-grid">
+                  <span class="tag tag--secondary">JavaScript</span>
+                  <span class="tag tag--secondary">PaddleOCR</span>
+                  <span class="tag tag--secondary">MongoDB</span>
+                  <span class="tag tag--secondary">PostgreSQL</span>
+                  <span class="tag tag--secondary">PGVector</span>
+                  <span class="tag tag--secondary">LangGraph</span>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
       <section class="pdf-section" aria-labelledby="pdf-title">
         <header>
           <h2 id="pdf-title">포트폴리오 PDF 슬라이드</h2>
-          <p>아래 뷰어에서 전체 슬라이드를 크게 확인하거나 필요 시 다운로드하세요.</p>
+          <p>슬라이드를 한 장씩 확인하고 필요하면 다운로드하세요.</p>
           <div class="pdf-actions">
             <a class="btn btn-primary" href="Portfolio-YongdeukSeo.pdf" download>PDF 다운로드</a>
             <a class="btn btn-secondary" href="Portfolio-YongdeukSeo.pdf" target="_blank" rel="noreferrer noopener">새 탭에서 열기</a>
           </div>
         </header>
-        <iframe class="pdf-viewer" src="Portfolio-YongdeukSeo.pdf#toolbar=0" title="Portfolio PDF"></iframe>
+        <div class="pdf-stage">
+          <div class="pdf-viewer">
+            <img id="pdf-slide" src="imgs/slides/portfolio-page-01.png" alt="포트폴리오 1페이지">
+          </div>
+          <div class="pdf-nav">
+            <button class="btn btn-secondary" id="prev-page" type="button">이전 페이지</button>
+            <span class="page-indicator"><span id="current-page">1</span> / <span id="total-pages">10</span></span>
+            <button class="btn btn-secondary" id="next-page" type="button">다음 페이지</button>
+          </div>
+        </div>
       </section>
     </div>
   </main>
@@ -429,6 +577,42 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const TOTAL_PAGES = 10;
+    const imagePrefix = 'imgs/slides/portfolio-page-';
+    const imageEl = document.getElementById('pdf-slide');
+    const currentPageEl = document.getElementById('current-page');
+    const totalPagesEl = document.getElementById('total-pages');
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+    let currentPage = 1;
+
+    totalPagesEl.textContent = TOTAL_PAGES;
+
+    function updateViewer() {
+      const pageStr = String(currentPage).padStart(2, '0');
+      imageEl.src = `${imagePrefix}${pageStr}.png`;
+      imageEl.alt = `포트폴리오 ${currentPage}페이지`;
+      currentPageEl.textContent = currentPage;
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === TOTAL_PAGES;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage -= 1;
+        updateViewer();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < TOTAL_PAGES) {
+        currentPage += 1;
+        updateViewer();
+      }
+    });
+
+    updateViewer();
   </script>
 </body>
 </html>

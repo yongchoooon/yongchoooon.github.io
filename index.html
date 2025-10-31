@@ -224,18 +224,18 @@
 
     .overview {
       display: grid;
-      gap: 38px;
-      margin-bottom: 70px;
+      gap: 32px;
+      margin-bottom: 60px;
     }
 
     .overview__lead {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 32px;
+      padding: 26px;
       display: grid;
-      gap: 14px;
-      box-shadow: 0 12px 30px rgba(17, 17, 17, 0.04);
+      gap: 12px;
+      box-shadow: 0 10px 26px rgba(17, 17, 17, 0.04);
     }
 
     .overview__lead h2 {
@@ -253,13 +253,13 @@
     .overview__layout {
       display: grid;
       grid-template-columns: 7fr 3fr;
-      gap: 26px;
+      gap: 20px;
     }
 
     .overview__left,
     .overview__right {
       display: grid;
-      gap: 22px;
+      gap: 18px;
       min-height: 0;
     }
 
@@ -273,17 +273,19 @@
 
     .card {
       background: var(--card);
-      border-radius: 20px;
+      border-radius: 18px;
       border: 1px solid var(--border);
-      padding: 28px;
+      padding: 22px;
       display: grid;
-      gap: 14px;
-      box-shadow: 0 12px 28px rgba(17, 17, 17, 0.05);
+      gap: 12px;
+      box-shadow: 0 10px 24px rgba(17, 17, 17, 0.05);
       height: auto;
     }
 
     .card--scroll {
       overflow-y: auto;
+      max-height: 260px;
+      padding-right: 18px;
     }
 
     .card h3 {
@@ -315,11 +317,11 @@
       margin: 0;
       padding-left: 18px;
       color: var(--text);
-      font-size: 0.97rem;
+      font-size: 0.95rem;
     }
 
     ul li + li {
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .tag-grid {
@@ -474,7 +476,7 @@
       font-size: 0.9rem;
     }
 
-    @media (max-width: 980px) {
+    @media (max-width: 490px) {
       .overview__layout {
         grid-template-columns: 1fr;
       }
@@ -748,7 +750,7 @@
     function updateViewer() {
       if (!imageEl || !currentPageEl || !prevBtn || !nextBtn) return;
       const pageStr = String(currentPage).padStart(2, '0');
-      imageEl.src = `${imagePrefix}${pageStr}.png`;
+      imageEl.src = `${imagePrefix}${pageStr}.png?v=${currentPage}`;
       imageEl.alt = `포트폴리오 ${currentPage}페이지`;
       currentPageEl.textContent = String(currentPage);
       prevBtn.disabled = currentPage === 1;

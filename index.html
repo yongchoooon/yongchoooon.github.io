@@ -23,6 +23,7 @@
       --tag-muted-bg: rgba(102, 94, 88, 0.08);
       --tag-muted-text: #6d6965;
       color-scheme: light;
+      font-size: 17px;
     }
 
     body.dark {
@@ -75,7 +76,7 @@
     }
 
     .container {
-      width: min(1200px, 90vw);
+      width: min(1440px, 98vw);
       margin: 0 auto;
     }
 
@@ -123,19 +124,42 @@
 
     .thumbs-pop {
       position: absolute;
-      bottom: 14px;
-      right: 14px;
-      font-size: 2.4rem;
+      top: 50%;
+      left: 50%;
+      font-size: 2.6rem;
       opacity: 0;
-      transform: scale(0.5) translateY(20%);
-      transition: opacity 0.25s ease, transform 0.25s ease;
       pointer-events: none;
+      transform: translate(-50%, -30%) scale(0.5);
+      transform-origin: center;
       filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.25));
+      will-change: transform, opacity;
     }
 
-    .hero__photo.show-thumbs .thumbs-pop {
-      opacity: 1;
-      transform: scale(1) translateY(0);
+    .thumbs-pop.is-active {
+      animation: thumbs-burst 0.9s ease-out forwards;
+    }
+
+    @keyframes thumbs-burst {
+      0% {
+        transform: translate(-50%, -30%) scale(0.4) rotate(0deg);
+        opacity: 0;
+      }
+      25% {
+        transform: translate(-50%, -70%) scale(1.05) rotate(-12deg);
+        opacity: 1;
+      }
+      55% {
+        transform: translate(-46%, -105%) scale(1) rotate(10deg);
+        opacity: 1;
+      }
+      80% {
+        transform: translate(-54%, -130%) scale(1) rotate(-6deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate(-50%, -160%) scale(1) rotate(0deg);
+        opacity: 0;
+      }
     }
 
     .theme-toggle {
@@ -190,10 +214,17 @@
       letter-spacing: -0.04em;
     }
 
-    .hero__lead {
-      max-width: 680px;
-      font-size: 1.05rem;
+    .hero__lead-list {
+      margin: 0;
+      padding-left: 22px;
+      display: grid;
+      gap: 10px;
       color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero__lead-list li {
+      line-height: 1.65;
     }
 
     .contact-row {
@@ -244,31 +275,52 @@
       letter-spacing: -0.03em;
     }
 
-    .overview__lead p {
+    .overview__list {
       margin: 0;
+      padding-left: 22px;
+      display: grid;
+      gap: 10px;
       color: var(--muted);
       font-size: 1.02rem;
+      line-height: 1.65;
     }
 
     .overview__layout {
       display: grid;
-      grid-template-columns: 7fr 3fr;
+      grid-template-columns: 6.7fr 3.3fr;
       gap: 20px;
+      align-items: stretch;
     }
 
     .overview__left,
     .overview__right {
-      display: grid;
       gap: 18px;
       min-height: 0;
     }
 
     .overview__left {
-      grid-template-rows: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 5fr) minmax(0, 2fr);
+      display: grid;
+      grid-auto-rows: minmax(0, auto);
+      align-content: start;
     }
 
     .overview__right {
-      grid-template-rows: minmax(0, 4.5fr) minmax(0, 5.5fr);
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 18px;
+      height: 100%;
+    }
+
+    .overview__right > .card {
+      height: 100%;
+    }
+
+    .overview__left {
+      grid-template-rows: repeat(4, auto);
+    }
+
+    .overview__right {
+      grid-template-rows: repeat(2, auto);
     }
 
     .card {
@@ -280,12 +332,90 @@
       gap: 12px;
       box-shadow: 0 10px 24px rgba(17, 17, 17, 0.05);
       height: auto;
+      align-content: start;
     }
 
     .card--scroll {
-      overflow-y: auto;
-      max-height: 260px;
-      padding-right: 18px;
+      overflow: visible;
+      max-height: none;
+      padding-right: 0;
+    }
+
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .timeline li {
+      display: grid;
+      grid-template-columns: auto auto auto 1fr;
+      column-gap: 12px;
+      position: relative;
+      padding-left: 16px;
+      align-items: start;
+    }
+
+    .timeline li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      top: 0.25em;
+      color: var(--accent-dark);
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .timeline__date {
+      display: inline-block;
+      min-width: 16ch;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .timeline--compact {
+      gap: 4px;
+    }
+
+    .timeline--compact li {
+      grid-template-columns: auto auto 1fr;
+    }
+
+    .timeline--compact .timeline__date {
+      min-width: 6ch;
+    }
+
+    .timeline__divider {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .timeline__text {
+      color: var(--text);
+    }
+
+    .timeline__action {
+      border: none;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border-radius: 999px;
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .timeline__action:hover,
+    .timeline__action:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+      outline: none;
     }
 
     .card h3 {
@@ -476,7 +606,7 @@
       font-size: 0.9rem;
     }
 
-    @media (max-width: 490px) {
+    @media (max-width: 980px) {
       .overview__layout {
         grid-template-columns: 1fr;
       }
@@ -536,12 +666,15 @@
     <div class="container hero">
       <div class="hero__photo" role="button" tabindex="0" aria-label="프로필 사진을 눌러 인사하기">
         <img src="imgs/profile.jpg" alt="서용득 프로필 사진">
-        <div class="thumbs-pop" aria-hidden="true">👍</div>
+        <div class="thumbs-pop" aria-hidden="true">👍🏻</div>
       </div>
       <div class="hero__heading">
         <div class="hero__eyebrow"><span></span>Seo Yongdeuk Portfolio</div>
         <h1>AI로 가능성을 확장하는 Engineer, 서용득입니다.</h1>
-        <p class="hero__lead">산업AI연구실 연구원으로서 산업 현장의 문제를 데이터와 모델링으로 해결하고 있습니다. 생성형 AI와 LLM을 활용해 Few-shot 학습 데이터 증강부터 상표 검색 에이전트까지 연구와 실무를 연결합니다.</p>
+        <ul class="hero__lead-list">
+          <li>산업AI연구실 연구원으로서 산업 현장의 문제를 데이터와 모델링으로 해결하고 있습니다.</li>
+          <li><strong>생성형 AI</strong>와 <strong>LLM</strong>을 활용해 Few-shot 학습 데이터 증강부터 상표 검색 에이전트를 잇는 연구와 실무를 연결합니다.</li>
+        </ul>
         <div class="contact-row">
           <a href="tel:+821030468377" data-label="M.">010-3046-8377</a>
           <a href="mailto:sod7050@gmail.com" data-label="E.">sod7050@gmail.com</a>
@@ -556,54 +689,117 @@
       <section class="overview">
         <div class="overview__lead">
           <h2>이력 한눈에 보기</h2>
-          <p>국립부경대학교에서 기술데이터공학을 전공한 뒤 산업데이터공학 석사과정으로 진학해 연구와 실무 경험을 동시에 쌓고 있습니다. 산업AI연구실 연구원과 토모큐브 인턴십을 통해 현장의 데이터를 다뤄왔으며, Segment Anything 기반 라벨링 자동화부터 Diffusion·LLM을 결합한 데이터 증강까지 다양한 프로젝트를 주도했습니다. 두 건의 특허를 출원했고, 해커톤과 학회에서 수상하며 실용성과 연구적 성과를 입증했습니다.</p>
+          <ul class="overview__list">
+            <li>국립부경대학교 기술데이터공학 전공 후 산업데이터공학 석사과정으로 진학해 연구와 실무 경험을 균형 있게 쌓고 있습니다.</li>
+            <li>산업AI연구실 연구원과 토모큐브 인턴십을 통해 현장의 데이터를 다루며 Segment Anything 기반 라벨링 자동화에서 <strong>Diffusion·LLM</strong> 데이터 증강까지 다양한 프로젝트를 주도했습니다.</li>
+            <li>두 건의 특허 출원과 해커톤·학회 수상으로 실용성과 연구 성과를 검증했습니다.</li>
+          </ul>
         </div>
         <div class="overview__layout">
           <div class="overview__left">
-            <article class="card">
+            <article class="card card--grad">
               <h3>Graduation</h3>
-              <ul>
-                <li>2017.03 – 2024.02&nbsp;| 국립부경대학교 시스템경영안전공학부 기술데이터공학 전공 (공학사)</li>
-                <li>2024.03 – 현재&nbsp;| 국립부경대학교 산업및데이터공학과 산업데이터공학융합 전공 (석사과정)</li>
+              <ul class="timeline">
+                <li>
+                  <span class="timeline__date">2017.03 – 2024.02</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">국립부경대학교 시스템경영안전공학부 기술데이터공학 전공 (공학사)</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2024.03 – 현재</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">국립부경대학교 산업및데이터공학과 산업데이터공학융합 전공 (석사과정)</span>
+                </li>
               </ul>
             </article>
-            <article class="card">
+            <article class="card card--experience">
               <h3>Experience</h3>
-              <ul>
-                <li>2022.04 – 현재&nbsp;| 국립부경대학교 산업AI연구실 연구원</li>
-                <li>2023.08 – 2023.12&nbsp;| (주)토모큐브 AI팀 Intern</li>
+              <ul class="timeline">
+                <li>
+                  <span class="timeline__date">2022.04 – 현재</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">국립부경대학교 산업AI연구실 연구원</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2023.08 – 2023.12</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">(주)토모큐브 AI팀 Intern</span>
+                </li>
               </ul>
             </article>
-            <article class="card card--scroll">
+            <article class="card card--projects card--scroll">
               <h3>Project Highlights</h3>
-              <ul>
-                <li>Segment Anything 기반 Auto-Annotator 개발 및 사내 배포 (2023.08 – 2023.12)</li>
-                <li>DALDA: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재 (2024.04 – 2024.08)</li>
-                <li>KIMCHI: 한국적 Diffusion 모델 개발 (2024.11 – 2024.12)</li>
-                <li>STELLAR: Scene Text Editing 모델 개발 (2025.03 – 2025.08)</li>
-                <li>T-RADAR: 상표 검색 &amp; 등록 시뮬레이션 시스템 (2025.09 – 진행 중)</li>
+              <ul class="timeline">
+                <li>
+                  <span class="timeline__date">2023.08 – 2023.12</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="6" aria-label="포트폴리오 6페이지( Segment Anything 기반 Auto-Annotator 개발 및 사내 배포 )로 이동">↗</button>
+                  <span class="timeline__text">Segment Anything 기반 Auto-Annotator 개발 및 사내 배포</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2024.04 – 2024.08</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="3" aria-label="포트폴리오 3페이지( DALDA: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재 )로 이동">↗</button>
+                  <span class="timeline__text"><strong>DALDA</strong>: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2024.11 – 2024.12</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="4" aria-label="포트폴리오 4페이지( KIMCHI: 한국적 Diffusion 모델 개발 )로 이동">↗</button>
+                  <span class="timeline__text"><strong>KIMCHI</strong>: 한국적 Diffusion 모델 개발</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2025.03 – 2025.08</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="5" aria-label="포트폴리오 5페이지( STELLAR: Scene Text Editing 모델 개발 )로 이동">↗</button>
+                  <span class="timeline__text"><strong>STELLAR</strong>: Scene Text Editing 모델 개발</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2025.09 – 진행 중</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="7" aria-label="포트폴리오 7페이지( T-RADAR: 상표 검색 &amp; 등록 시뮬레이션 시스템 )로 이동">↗</button>
+                  <span class="timeline__text"><strong>T-RADAR</strong>: 상표 검색 &amp; 등록 시뮬레이션 시스템</span>
+                </li>
               </ul>
             </article>
-            <article class="card">
+            <article class="card card--awards">
               <h3>Awards</h3>
-              <ul>
-                <li>제1회 LLM 활용 서비스 개발 해커톤 우수상 (2024.08)</li>
-                <li>한국CDE학회 동계학술대회 우수발표상 (2025.02)</li>
+              <ul class="timeline">
+                <li>
+                  <span class="timeline__date">2024.08</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="9" aria-label="포트폴리오 9페이지( Gymnius )로 이동">↗</button>
+                  <span class="timeline__text"><strong>Gymnius</strong>: 제1회 LLM 활용 서비스 개발 해커톤 우수상</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2025.02</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="4" aria-label="포트폴리오 4페이지( KIMCHI )로 이동">↗</button>
+                  <span class="timeline__text">한국CDE학회 동계학술대회 우수발표상</span>
+                </li>
               </ul>
             </article>
           </div>
           <div class="overview__right">
-            <article class="card">
+            <article class="card card--patent">
               <h3>Patent</h3>
-              <ul>
-                <li>2023&nbsp;| 화재 이미지 생성 시스템 및 방법 (출원·공개, 1020250021779)</li>
-                <li>2024&nbsp;| LLM 프롬프트 기반 환산 모델 데이터 증강 장치 (출원, 1020240137347)</li>
+              <ul class="timeline timeline--compact">
+                <li>
+                  <span class="timeline__date">2023</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">화재 이미지 생성 시스템 및 방법 <br>(출원·공개, 1020250021779)</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2024</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">LLM 프롬프트 기반 환산 모델 데이터 증강 장치 <br>(출원, 1020240137347)</span>
+                </li>
               </ul>
             </article>
-            <article class="card card--scroll">
+            <article class="card card--skill card--scroll">
               <h3>Skill</h3>
               <div class="skill-group">
-                <h4>프로젝트 리드 3회 이상 경험</h4>
+                <h4>3회 이상 프로젝트 경험</h4>
                 <div class="tag-grid">
                   <span class="tag tag--primary">Python</span>
                   <span class="tag tag--primary">PyTorch</span>
@@ -618,7 +814,7 @@
                 </div>
               </div>
               <div class="skill-group">
-                <h4>프로젝트 경험 보유</h4>
+                <h4>1회 이상 프로젝트 경험 보유</h4>
                 <div class="tag-grid">
                   <span class="tag tag--secondary">JavaScript</span>
                   <span class="tag tag--secondary">PaddleOCR</span>
@@ -713,23 +909,35 @@
     }
 
     const heroPhoto = document.querySelector('.hero__photo');
-    let thumbsTimeout;
+    const thumbsPop = heroPhoto ? heroPhoto.querySelector('.thumbs-pop') : null;
 
-    function showThumbs() {
-      if (!heroPhoto) return;
-      heroPhoto.classList.add('show-thumbs');
-      clearTimeout(thumbsTimeout);
-      thumbsTimeout = window.setTimeout(() => {
-        heroPhoto.classList.remove('show-thumbs');
-      }, 900);
+    function showThumbs(event) {
+      if (!heroPhoto || !thumbsPop) return;
+      const rect = heroPhoto.getBoundingClientRect();
+      const hasPointer = event && typeof event.clientX === 'number' && typeof event.clientY === 'number';
+      const x = hasPointer ? event.clientX - rect.left : rect.width / 2;
+      const y = hasPointer ? event.clientY - rect.top : rect.height / 2;
+      thumbsPop.style.left = `${x}px`;
+      thumbsPop.style.top = `${y}px`;
+      thumbsPop.classList.remove('is-active');
+      void thumbsPop.offsetWidth;
+      thumbsPop.classList.add('is-active');
+    }
+
+    if (thumbsPop) {
+      thumbsPop.addEventListener('animationend', () => {
+        thumbsPop.classList.remove('is-active');
+      });
     }
 
     if (heroPhoto) {
-      heroPhoto.addEventListener('click', showThumbs);
+      heroPhoto.addEventListener('click', (event) => {
+        showThumbs(event);
+      });
       heroPhoto.addEventListener('keydown', (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          showThumbs();
+          showThumbs(event);
         }
       });
     }
@@ -757,6 +965,18 @@
       nextBtn.disabled = currentPage === TOTAL_PAGES;
     }
 
+    function navigateToPage(pageNumber) {
+      if (!Number.isFinite(pageNumber)) return;
+      const clamped = Math.min(Math.max(Math.round(pageNumber), 1), TOTAL_PAGES);
+      if (clamped !== currentPage) {
+        currentPage = clamped;
+      }
+      updateViewer();
+      if (pdfSection) {
+        pdfSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
     if (prevBtn && nextBtn) {
       prevBtn.addEventListener('click', () => {
         if (currentPage > 1) {
@@ -772,6 +992,14 @@
         }
       });
     }
+
+    const pdfSection = document.querySelector('.pdf-section');
+    document.querySelectorAll('.timeline__jump').forEach((button) => {
+      button.addEventListener('click', () => {
+        const target = Number(button.dataset.page);
+        navigateToPage(target);
+      });
+    });
 
     updateViewer();
   </script>

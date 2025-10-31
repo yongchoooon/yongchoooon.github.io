@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Convert a portfolio PDF into per-page JPEG slides.
+"""Convert a portfolio PDF into per-page PNG slides.
 
 This script is a thin wrapper around the Poppler `pdftoppm` utility so that
-updating `imgs/slides/*.jpg` stays consistent every time the portfolio PDF changes.
+updating `imgs/slides/*.png` stays consistent every time the portfolio PDF changes.
 """
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ from pathlib import Path
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Convert a PDF into JPEG slide images using pdftoppm."
+        description="Convert a PDF into PNG slide images using pdftoppm."
     )
     parser.add_argument(
         "pdf",
@@ -57,7 +57,7 @@ def convert_pdf(pdf_path: Path, output_dir: Path, prefix: str, dpi: int) -> None
 
     command = [
         "pdftoppm",
-        "-jpeg",
+        "-png",
         "-rx",
         str(dpi),
         "-ry",
@@ -77,7 +77,7 @@ def main() -> None:
     ensure_tool("pdftoppm")
     convert_pdf(args.pdf, args.output_dir, args.prefix, args.dpi)
     print(
-        f"Generated JPEG slides in {args.output_dir.resolve()} using prefix '{args.prefix}'."
+        f"Generated PNG slides in {args.output_dir.resolve()} using prefix '{args.prefix}'."
     )
 
 

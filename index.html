@@ -394,6 +394,10 @@
 
     .timeline__text {
       color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .timeline__action {
@@ -409,6 +413,75 @@
       font-size: 1rem;
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .timeline__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px 4px 8px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(56, 189, 248, 0.14);
+      color: #0b3d8c;
+      border: 1px solid rgba(11, 61, 140, 0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    body.dark .timeline__link {
+      background: rgba(56, 189, 248, 0.16);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    body.dark .timeline__link:hover {
+      box-shadow: 0 8px 18px rgba(2, 132, 199, 0.3);
+    }
+
+    body.dark .timeline__link:focus-visible {
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.5);
+    }
+
+    .timeline__link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(11, 61, 140, 0.15);
+    }
+
+    .timeline__link:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 3px rgba(11, 61, 140, 0.35);
+      outline: none;
+    }
+
+    .timeline__link-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #0b3d8c;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    body.dark .timeline__link-icon {
+      background: #1d4ed8;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     .timeline__action:hover,
@@ -733,32 +806,39 @@
                 <li>
                   <span class="timeline__date">2023.08 – 2023.12</span>
                   <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="6" aria-label="포트폴리오 6페이지( Segment Anything 기반 Auto-Annotator 개발 및 사내 배포 )로 이동">↗</button>
-                  <span class="timeline__text">Segment Anything 기반 Auto-Annotator 개발 및 사내 배포</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="3" aria-label="포트폴리오 6페이지( Segment Anything 기반 Auto-Annotator 개발 및 사내 배포 )로 이동">↗</button>
+                  <span class="timeline__text">Segment Anything Model 기반 Auto-Annotator 개발 및 사내 배포</span>
                 </li>
                 <li>
                   <span class="timeline__date">2024.04 – 2024.08</span>
                   <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="3" aria-label="포트폴리오 3페이지( DALDA: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재 )로 이동">↗</button>
-                  <span class="timeline__text"><strong>DALDA</strong>: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="4" aria-label="포트폴리오 3페이지( DALDA: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재 )로 이동">↗</button>
+                  <span class="timeline__text">
+                    <strong>DALDA</strong>: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 ECCVW 논문 게재
+                    <a class="timeline__link" href="https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11" target="_blank" rel="noreferrer noopener">
+                      <span class="timeline__link-icon" aria-hidden="true">S</span>
+                      Springer
+                      <span class="sr-only">에서 논문 보기 (새 창)</span>
+                    </a>
+                  </span>
                 </li>
                 <li>
                   <span class="timeline__date">2024.11 – 2024.12</span>
                   <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="4" aria-label="포트폴리오 4페이지( KIMCHI: 한국적 Diffusion 모델 개발 )로 이동">↗</button>
-                  <span class="timeline__text"><strong>KIMCHI</strong>: 한국적 Diffusion 모델 개발</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="5" aria-label="포트폴리오 4페이지( KIMCHI: 한국적 Diffusion 모델 개발 )로 이동">↗</button>
+                  <span class="timeline__text"><strong>KIMCHI</strong>: 한국적 Diffusion 모델 개발 및 한국CDE학회 논문 게재</span>
                 </li>
                 <li>
                   <span class="timeline__date">2025.03 – 2025.08</span>
                   <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="5" aria-label="포트폴리오 5페이지( STELLAR: Scene Text Editing 모델 개발 )로 이동">↗</button>
-                  <span class="timeline__text"><strong>STELLAR</strong>: Scene Text Editing 모델 개발</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="6" aria-label="포트폴리오 5페이지( STELLAR: Scene Text Editing 모델 개발 )로 이동">↗</button>
+                  <span class="timeline__text"><strong>STELLAR</strong>: Scene Text Editing 모델 개발 및 논문 작성 (심사 중)</span>
                 </li>
                 <li>
                   <span class="timeline__date">2025.09 – 진행 중</span>
                   <span class="timeline__divider">|</span>
                   <button class="timeline__action timeline__jump" type="button" data-page="7" aria-label="포트폴리오 7페이지( T-RADAR: 상표 검색 &amp; 등록 시뮬레이션 시스템 )로 이동">↗</button>
-                  <span class="timeline__text"><strong>T-RADAR</strong>: 상표 검색 &amp; 등록 시뮬레이션 시스템</span>
+                  <span class="timeline__text"><strong>T-RADAR</strong>: 상표 검색 &amp; 등록 시뮬레이션 시스템 개발</span>
                 </li>
               </ul>
             </article>
@@ -774,7 +854,7 @@
                 <li>
                   <span class="timeline__date">2025.02</span>
                   <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="4" aria-label="포트폴리오 4페이지( KIMCHI )로 이동">↗</button>
+                  <button class="timeline__action timeline__jump" type="button" data-page="5" aria-label="포트폴리오 4페이지( KIMCHI )로 이동">↗</button>
                   <span class="timeline__text">한국CDE학회 동계학술대회 우수발표상</span>
                 </li>
               </ul>

@@ -249,6 +249,45 @@
       margin-right: 4px;
     }
 
+    .visitor-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+
+    .visitor-counter__label {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .visitor-counter__value {
+      font-size: 1.02rem;
+    }
+
+    .footer-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .visitor-counter--footer {
+      font-size: 0.82rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.06);
+      border: 1px solid rgba(31, 41, 55, 0.14);
+      color: var(--muted);
+    }
+
+    body.dark .visitor-counter--footer {
+      background: rgba(148, 163, 184, 0.12);
+      border-color: rgba(148, 163, 184, 0.25);
+      color: rgba(226, 232, 240, 0.8);
+    }
+
     main {
       padding: 64px 0 80px;
     }
@@ -741,19 +780,19 @@
         <img src="imgs/profile.jpg" alt="서용득 프로필 사진">
         <div class="thumbs-pop" aria-hidden="true">👍🏻</div>
       </div>
-      <div class="hero__heading">
-        <div class="hero__eyebrow"><span></span>Seo Yongdeuk Portfolio</div>
-        <h1>AI로 가능성을 확장하는 Engineer, 서용득입니다.</h1>
-        <ul class="hero__lead-list">
-          <li>산업AI연구실 연구원으로서 산업 현장의 문제를 데이터와 모델링으로 해결하고 있습니다.</li>
-          <li><strong>생성형 AI</strong>와 <strong>LLM</strong>을 활용해 Few-shot 학습 데이터 증강부터 상표 검색 에이전트를 잇는 연구와 실무를 연결합니다.</li>
-        </ul>
-        <div class="contact-row">
-          <a href="tel:+821030468377" data-label="M.">010-3046-8377</a>
-          <a href="mailto:sod7050@gmail.com" data-label="E.">sod7050@gmail.com</a>
-          <a href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener" data-label="W.">github.com/yongchoooon</a>
+        <div class="hero__heading">
+          <div class="hero__eyebrow"><span></span>Seo Yongdeuk Portfolio</div>
+          <h1>AI로 가능성을 확장하는 Engineer, 서용득입니다.</h1>
+          <ul class="hero__lead-list">
+            <li>산업AI연구실 연구원으로서 산업 현장의 문제를 데이터와 모델링으로 해결하고 있습니다.</li>
+            <li><strong>생성형 AI</strong>와 <strong>LLM</strong>을 활용해 Few-shot 학습 데이터 증강부터 상표 검색 에이전트를 잇는 연구와 실무를 연결합니다.</li>
+          </ul>
+          <div class="contact-row">
+            <a href="tel:+821030468377" data-label="M.">010-3046-8377</a>
+            <a href="mailto:sod7050@gmail.com" data-label="E.">sod7050@gmail.com</a>
+            <a href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener" data-label="W.">github.com/yongchoooon</a>
+          </div>
         </div>
-      </div>
     </div>
   </header>
 
@@ -933,7 +972,13 @@
   </main>
 
   <footer>
-    &copy; <span id="year"></span> Seo Yongdeuk. All rights reserved.
+    <div class="footer-meta">
+      <span>&copy; <span id="year"></span> Seo Yongdeuk. All rights reserved.</span>
+      <span class="visitor-counter visitor-counter--footer" aria-live="polite">
+        <span class="visitor-counter__label">오늘</span>
+        <span class="visitor-counter__value" id="today-visits" data-loading="true">--</span>
+      </span>
+    </div>
   </footer>
 
   <script>
@@ -990,6 +1035,7 @@
 
     const heroPhoto = document.querySelector('.hero__photo');
     const thumbsPop = heroPhoto ? heroPhoto.querySelector('.thumbs-pop') : null;
+    const todayVisitsEl = document.getElementById('today-visits');
 
     function showThumbs(event) {
       if (!heroPhoto || !thumbsPop) return;
@@ -1020,6 +1066,52 @@
           showThumbs(event);
         }
       });
+    }
+
+    if (todayVisitsEl) {
+      const namespace = 'yongchoooon-portfolio';
+      const todayKey = new Date().toISOString().split('T')[0];
+      const storageKey = `visit-counted-${todayKey}`;
+      const hasSessionStorage = (() => {
+        try {
+          const testKey = '__visit-test__';
+          window.sessionStorage.setItem(testKey, '1');
+          window.sessionStorage.removeItem(testKey);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      })();
+
+      const alreadyCounted = hasSessionStorage && window.sessionStorage.getItem(storageKey);
+      const endpoint = alreadyCounted
+        ? `https://api.countapi.xyz/get/${namespace}/${todayKey}`
+        : `https://api.countapi.xyz/hit/${namespace}/${todayKey}`;
+
+      fetch(endpoint)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch visit count');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const value = Number(data?.value);
+          if (Number.isFinite(value)) {
+            todayVisitsEl.textContent = value.toLocaleString('ko-KR');
+            todayVisitsEl.dataset.loading = 'false';
+            if (!alreadyCounted && hasSessionStorage) {
+              window.sessionStorage.setItem(storageKey, '1');
+            }
+          } else {
+            throw new Error('Invalid visit count');
+          }
+        })
+        .catch(() => {
+          todayVisitsEl.textContent = '연결 오류';
+          todayVisitsEl.dataset.loading = 'error';
+          todayVisitsEl.title = '방문자 수를 가져오지 못했습니다.';
+        });
     }
 
     const TOTAL_PAGES = 10;

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>서용득 | Portfolio</title>
+  <meta name="description" content="산업 AI 연구원 서용득의 포트폴리오와 프로젝트, 특허, 수상 내역을 살펴보세요.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: rgba(15, 23, 42, 0.7);
+      --bg-card: rgba(15, 23, 42, 0.85);
+      --border: rgba(148, 163, 184, 0.12);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.18);
+      --text: #e2e8f0;
+      --muted: rgba(226, 232, 240, 0.74);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #020617 0%, #0f172a 35%, #020617 100%);
+      color: var(--text);
+      font-family: 'Noto Sans KR', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.7;
+      letter-spacing: -0.01em;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 90vw);
+      margin: 0 auto;
+    }
+
+    header {
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 160px;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.35), transparent 45%),
+                  radial-gradient(circle at left, rgba(45, 212, 191, 0.18), transparent 40%);
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% -30%, rgba(248, 250, 252, 0.12), transparent 55%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 40px;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      background: rgba(15, 23, 42, 0.45);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .hero__badge span {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 18px 0 16px;
+      font-size: clamp(2.65rem, 4vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+    }
+
+    .hero__lead {
+      max-width: 640px;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      font-weight: 600;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #38bdf8, #22d3ee);
+      color: #0b1120;
+      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.28);
+    }
+
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.55);
+      border-color: rgba(148, 163, 184, 0.25);
+      color: var(--text);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(56, 189, 248, 0.18);
+      border-color: rgba(148, 163, 184, 0.4);
+    }
+
+    .contact-grid {
+      margin-top: 32px;
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    }
+
+    .contact-card {
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      display: grid;
+      gap: 4px;
+    }
+
+    .contact-card__label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(148, 163, 184, 0.7);
+    }
+
+    main {
+      margin-top: -90px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section {
+      padding: 0 0 90px;
+    }
+
+    .section__title {
+      margin-bottom: 28px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section__title span {
+      display: inline-flex;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .card {
+      padding: 28px;
+      border-radius: 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 18px 40px rgba(15, 23, 42, 0.22);
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 0.92rem;
+      color: rgba(226, 232, 240, 0.65);
+      margin-bottom: 14px;
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta::before {
+      content: "";
+      display: block;
+      width: 32px;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.45);
+    }
+
+    ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      color: rgba(226, 232, 240, 0.82);
+    }
+
+    ul li + li {
+      margin-top: 6px;
+    }
+
+    .skill-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.14);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      font-size: 0.88rem;
+    }
+
+    .spotlight {
+      display: grid;
+      gap: 24px;
+    }
+
+    .spotlight .card {
+      padding: 32px;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.6));
+    }
+
+    .spotlight h4 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .spotlight .meta::before {
+      background: rgba(45, 212, 191, 0.45);
+    }
+
+    .pdf-section {
+      padding: 90px 0;
+    }
+
+    .pdf-card {
+      border-radius: 26px;
+      padding: 32px;
+      background: rgba(15, 23, 42, 0.82);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.4);
+    }
+
+    .pdf-card header {
+      padding: 0;
+      background: none;
+    }
+
+    .pdf-card header::after {
+      display: none;
+    }
+
+    .pdf-card h2 {
+      margin: 0 0 8px;
+      font-size: 1.6rem;
+    }
+
+    .pdf-card p {
+      color: var(--muted);
+      margin: 0 0 22px;
+    }
+
+    .pdf-viewer {
+      width: 100%;
+      height: min(85vh, 900px);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 18px;
+      background: #0b1120;
+    }
+
+    footer {
+      padding: 70px 0 50px;
+      text-align: center;
+      color: rgba(148, 163, 184, 0.65);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        padding: 90px 0 130px;
+      }
+
+      .hero__lead {
+        font-size: 1rem;
+      }
+
+      main {
+        margin-top: -60px;
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      .pdf-viewer {
+        height: 70vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero container">
+      <div class="hero__badge"><span></span> Seo Yongdeuk Portfolio</div>
+      <h1>AI로 가능성을 확장하는 Engineer,
+        <br>서용득입니다.</h1>
+      <p class="hero__lead">산업AI연구실 연구원으로서 산업 현장의 문제를 데이터와 모델링으로 해결하며, 생성형 AI와 대규모 언어 모델을 실제 서비스에 연결하는 경험을 쌓아왔습니다. Few-shot 학습 환경의 한계를 보완하는 데이터 증강 프레임워크부터 상표 검색 Agent까지, 아이디어를 연구와 프로덕트로 이어갑니다.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#resume">이력 살펴보기</a>
+        <a class="btn btn-secondary" href="Portfolio-YongdeukSeo.pdf" download>PDF 다운로드</a>
+        <a class="btn btn-secondary" href="Portfolio-YongdeukSeo.pdf" target="_blank">새 탭에서 보기</a>
+      </div>
+      <div class="contact-grid">
+        <a class="contact-card" href="tel:+821030468377">
+          <span class="contact-card__label">Phone</span>
+          <span>010-3046-8377</span>
+        </a>
+        <a class="contact-card" href="mailto:sod7050@gmail.com">
+          <span class="contact-card__label">Email</span>
+          <span>sod7050@gmail.com</span>
+        </a>
+        <a class="contact-card" href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener">
+          <span class="contact-card__label">GitHub</span>
+          <span>github.com/yongchoooon</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="resume" class="container">
+    <section class="section">
+      <h2 class="section__title"><span></span>교육 &amp; 경력</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3>Education</h3>
+          <div class="meta">
+            <span>국립부경대학교</span>
+          </div>
+          <ul>
+            <li>2017.03 – 2024.02&nbsp;| 시스템경영안전공학부 기술데이터공학 전공 (공학사)</li>
+            <li>2024.03 – 현재&nbsp;| 산업및데이터공학과 산업데이터공학융합 전공 (석사과정)</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Experience</h3>
+          <div class="meta">
+            <span>실무 &amp; 연구</span>
+          </div>
+          <ul>
+            <li>2022.04 – 현재&nbsp;| 국립부경대학교 산업AI연구실 연구원</li>
+            <li>2023.08 – 2023.12&nbsp;| (주)토모큐브 AI팀 인턴</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title"><span></span>주요 프로젝트</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>DALDA</h3>
+          <div class="meta">
+            <span>2024.04 – 2024.08</span>
+            <span>LLM &amp; Diffusion 데이터 증강 프레임워크</span>
+          </div>
+          <ul>
+            <li>Few-shot 학습에서 합성 데이터 품질을 지키기 위해 GPT-4 기반 프롬프트와 Stable Diffusion을 조합한 증강 파이프라인 설계.</li>
+            <li>클래스 의미 확장을 위한 텍스트 생성, IP-Adapter/CLIP을 활용한 시각적 정합성 검증, LoRA를 활용한 세밀 조정으로 데이터 다양성과 일관성 균형 확보.</li>
+            <li>ECCV Workshops 2저자 게재.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>KIMCHI</h3>
+          <div class="meta">
+            <span>2024.11 – 2024.12</span>
+            <span>한국적 Diffusion 모델</span>
+          </div>
+          <ul>
+            <li>한국어 문화·역사를 반영하는 생성형 모델을 구축하고 LLaVA, LLaMA, LoRA 기반 멀티모달 파이프라인 구성.</li>
+            <li>한국CDE학회 동계학술대회 우수발표상 수상.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>STELLAR</h3>
+          <div class="meta">
+            <span>2025.03 – 2025.08</span>
+            <span>Scene Text Editing</span>
+          </div>
+          <ul>
+            <li>다국어 및 실제 환경 Scene Text Editing 모델 개발, Stable Diffusion · ControlNet · PaddleOCR 결합으로 조작성 향상.</li>
+            <li>AAAI Main Conference 심사 중.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>T-RADAR</h3>
+          <div class="meta">
+            <span>2025.09 – 진행 중</span>
+            <span>AI Agent 기반 상표 등록 시뮬레이션</span>
+          </div>
+          <ul>
+            <li>LangGraph, DINO, MetaCLIP2, BM25를 결합한 유사 상표 이미지 검색 및 에이전트 설계.</li>
+            <li>PGVector + PostgreSQL, FastAPI, Docker로 배포 가능한 시스템 아키텍처 구성.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Segment Anything Auto-Annotator</h3>
+          <div class="meta">
+            <span>2023.08 – 2023.12</span>
+            <span>Tomocube 사내 도입</span>
+          </div>
+          <ul>
+            <li>Segment Anything, OpenCV 기반 Auto-Annotator를 개발하고 FastAPI + MySQL + Docker로 배포.</li>
+            <li>사내 라벨링 시간을 대폭 단축한 자동화 파이프라인 구축.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>DALDA · KIMCHI · STELLAR · T-RADAR</h3>
+          <div class="meta">
+            <span>Main 3회 이상 프로젝트 리드 경험</span>
+          </div>
+          <ul>
+            <li>데이터 증강, 멀티모달 생성, 상표 검색 등 다양한 도메인에서 문제 정의부터 배포까지 경험.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title"><span></span>Project Spotlight</h2>
+      <div class="spotlight">
+        <article class="card">
+          <h4>DALDA: 데이터 증강 프레임워크</h4>
+          <div class="meta">
+            <span>Role&nbsp;70%</span>
+            <span>Stable Diffusion · GPT-4 · CLIP · IP-Adapter</span>
+          </div>
+          <ul>
+            <li>Few-shot 데이터 증강 시 다양성과 타겟 분포 사이의 trade-off를 해결하기 위해 텍스트·이미지 프롬프트를 이중으로 제어.</li>
+            <li>증강 이미지에 대해 CLIP 기반 의미 검증과 LoRA 세밀 조정으로 성능 저하를 방지.</li>
+            <li>ECCV Workshops 게재로 연구 성과 검증.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>Gymnius: Whisper &amp; LLM 운동 코치</h4>
+          <div class="meta">
+            <span>2024.08</span>
+            <span>Hackathon · Backend Lead</span>
+          </div>
+          <ul>
+            <li>Whisper API로 음성 → 텍스트 변환 후 Upstage Solar API 기반 LLM으로 운동 기록 데이터 파싱 및 추천.</li>
+            <li>FastAPI, MySQL 백엔드를 설계해 음성 입력부터 추천까지 자동화 파이프라인 구현.</li>
+            <li>제1회 LLM 활용 서비스 개발 해커톤 우수상 수상.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title"><span></span>Skill Stack</h2>
+      <div class="skill-grid">
+        <article class="card">
+          <h3>Language</h3>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">JavaScript</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Machine Learning</h3>
+          <div class="pill-row">
+            <span class="pill">PyTorch</span>
+            <span class="pill">OpenCV</span>
+            <span class="pill">OpenAI</span>
+            <span class="pill">Diffusers</span>
+            <span class="pill">PaddleOCR</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Web &amp; Backend</h3>
+          <div class="pill-row">
+            <span class="pill">FastAPI</span>
+            <span class="pill">Docker</span>
+            <span class="pill">LangGraph</span>
+            <span class="pill">SQLAlchemy</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Data &amp; Ops</h3>
+          <div class="pill-row">
+            <span class="pill">MySQL</span>
+            <span class="pill">PostgreSQL</span>
+            <span class="pill">PGVector</span>
+            <span class="pill">MongoDB</span>
+            <span class="pill">Git</span>
+            <span class="pill">Slack</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title"><span></span>Patent &amp; Awards</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3>Patents</h3>
+          <ul>
+            <li>2023&nbsp;| 인공지능 학습을 위한 화재이미지 생성 시스템 및 방법 (공개번호 1020250021779)</li>
+            <li>2024&nbsp;| 대규모 언어 모델의 프롬프트를 적용한 환산 모델을 통한 데이터 증강 방법 및 장치 (출원번호 1020240137347)</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Awards</h3>
+          <ul>
+            <li>제1회 LLM 활용 서비스 개발 해커톤 우수상 (Gymnius 프로젝트)</li>
+            <li>한국CDE학회 동계학술대회 우수발표상</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="pdf-section">
+    <div class="container pdf-card">
+      <header>
+        <h2>원본 PDF 보기</h2>
+        <p>포트폴리오 원본을 아래에서 바로 읽어보거나 다운로드해 보세요.</p>
+      </header>
+      <iframe class="pdf-viewer" src="Portfolio-YongdeukSeo.pdf#toolbar=0&navpanes=0&scrollbar=0"></iframe>
+    </div>
+  </section>
+
+  <footer>
+    &copy; <span id="year"></span> Seo Yongdeuk. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

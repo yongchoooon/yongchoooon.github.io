@@ -423,16 +423,69 @@
       border-radius: 999px;
       font-size: 0.85rem;
       font-weight: 600;
-      background: rgba(56, 189, 248, 0.14);
-      color: #0b3d8c;
-      border: 1px solid rgba(11, 61, 140, 0.12);
+      border: 1px solid transparent;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
-    body.dark .timeline__link {
+    .timeline__link--springer {
+      background: rgba(56, 189, 248, 0.14);
+      color: #0b3d8c;
+      border-color: rgba(11, 61, 140, 0.12);
+    }
+
+    body.dark .timeline__link--springer {
       background: rgba(56, 189, 248, 0.16);
       color: #38bdf8;
       border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .timeline__link--arxiv {
+      background: rgba(179, 27, 28, 0.12);
+      color: #b31b1c;
+      border-color: rgba(179, 27, 28, 0.25);
+    }
+
+    body.dark .timeline__link--arxiv {
+      background: rgba(179, 27, 28, 0.2);
+      color: #f87171;
+      border-color: rgba(248, 113, 113, 0.45);
+    }
+
+    .timeline__link-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #0b3d8c;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    body.dark .timeline__link-icon {
+      background: #1d4ed8;
+    }
+
+    .timeline__link--springer .timeline__link-icon {
+      background: #0b3d8c;
+      color: #ffffff;
+    }
+
+    body.dark .timeline__link--springer .timeline__link-icon {
+      background: #38bdf8;
+      color: #04142d;
+    }
+
+    .timeline__link--arxiv .timeline__link-icon {
+      background: #b31b1c;
+    }
+
+    body.dark .timeline__link--arxiv .timeline__link-icon {
+      background: #f87171;
+      color: #111827;
     }
 
     body.dark .timeline__link:hover {
@@ -458,7 +511,7 @@
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: #0b3d8c;
+      background: currentColor;
       color: #ffffff;
       display: inline-flex;
       align-items: center;
@@ -466,10 +519,6 @@
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: -0.03em;
-    }
-
-    body.dark .timeline__link-icon {
-      background: #1d4ed8;
     }
 
     .sr-only {
@@ -816,7 +865,7 @@
                   <button class="timeline__action timeline__jump" type="button" data-page="4" aria-label="포트폴리오 3페이지( DALDA: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재 )로 이동">↗</button>
                   <span class="timeline__text">
                     <strong>DALDA</strong>: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 ECCVW 논문 게재
-                    <a class="timeline__link" href="https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11" target="_blank" rel="noreferrer noopener">
+                    <a class="timeline__link timeline__link--springer" href="https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11" target="_blank" rel="noreferrer noopener">
                       <span class="timeline__link-icon" aria-hidden="true">S</span>
                       Springer
                       <span class="sr-only">에서 논문 보기 (새 창)</span>
@@ -833,7 +882,14 @@
                   <span class="timeline__date">2025.03 – 2025.08</span>
                   <span class="timeline__divider">|</span>
                   <button class="timeline__action timeline__jump" type="button" data-page="6" aria-label="포트폴리오 5페이지( STELLAR: Scene Text Editing 모델 개발 )로 이동">↗</button>
-                  <span class="timeline__text"><strong>STELLAR</strong>: 저자원 언어 Scene Text Editing 모델 개발 및 논문 작성 (심사 중)</span>
+                  <span class="timeline__text">
+                    <strong>STELLAR</strong>: 저자원 언어 Scene Text Editing 모델 개발 및 AAAIW 논문 게재
+                    <a class="timeline__link timeline__link--arxiv" href="https://arxiv.org/abs/2511.09977" target="_blank" rel="noreferrer noopener">
+                      <span class="timeline__link-icon" aria-hidden="true">A</span>
+                      arXiv
+                      <span class="sr-only">에서 논문 보기 (새 창)</span>
+                    </a>
+                  </span>
                 </li>
                 <li>
                   <span class="timeline__date">2025.09 – 진행 중</span>

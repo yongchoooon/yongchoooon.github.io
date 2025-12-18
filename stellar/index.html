@@ -3,23 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>STELLAR | Scene Text Editing Research</title>
-  <meta name="description" content="저자원 언어 Scene Text Editing 모델 STELLAR의 문제 정의, 아키텍처, 데이터 파이프라인, 실험 결과, 그리고 arXiv 논문 링크를 확인하세요.">
+  <title>STELLAR · Scene Text Editing Paper</title>
+  <meta name="description" content="STELLAR(Scene Text Editing for Low-resource Languages) 논문 전용 페이지입니다. 제목, 저자, 소속, 깃허브와 arXiv 링크, Abstract, 그리고 주요 Figure를 한 눈에 확인하세요.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       font-size: 17px;
-      --bg-top: #050b18;
-      --bg-bottom: #0d1a34;
-      --card: rgba(6, 10, 20, 0.85);
-      --card-strong: rgba(14, 32, 60, 0.75);
-      --text: #f8fafc;
-      --muted: rgba(236, 244, 255, 0.78);
-      --accent: #8b5cf6;
-      --accent-2: #34d399;
-      --stroke: rgba(255, 255, 255, 0.12);
+      --bg: #f6f7fb;
+      --canvas: #ffffff;
+      --text: #111322;
+      --muted: #5c6172;
+      --border: #e2e6f0;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --shadow: 0 30px 60px rgba(15, 23, 42, 0.12);
     }
 
     * {
@@ -28,107 +27,71 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
       font-family: 'Noto Sans KR', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at 12% 20%, #111c32, transparent 30%),
-                  radial-gradient(circle at 80% 0%, rgba(75, 85, 255, 0.25), transparent 45%),
-                  linear-gradient(165deg, var(--bg-top), var(--bg-bottom));
+      background: radial-gradient(circle at 18% 20%, rgba(37, 99, 235, 0.08), transparent 55%),
+                  radial-gradient(circle at 82% 8%, rgba(16, 185, 129, 0.12), transparent 45%),
+                  var(--bg);
       color: var(--text);
     }
 
-    .layout {
-      width: min(1080px, 94vw);
+    .page {
+      width: min(980px, 94vw);
       margin: 0 auto;
-      padding: 36px 0 120px;
+      padding: 64px 0 120px;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 36px;
     }
 
-    .site-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .site-header a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .logo {
-      font-size: 1.1rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-
-    nav {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    nav a:hover,
-    nav a:focus-visible {
-      color: var(--accent);
-    }
-
-    .hero {
-      border: 1px solid var(--stroke);
-      border-radius: 24px;
+    .paper-header {
+      background: var(--canvas);
+      border-radius: 28px;
       padding: 40px;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), transparent 45%), var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    .eyebrow {
+    .paper-eyebrow {
       text-transform: uppercase;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.26em;
       font-size: 0.78rem;
       color: var(--muted);
+      margin: 0;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2.4rem, 7vw, 3.6rem);
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
       letter-spacing: -0.04em;
     }
 
-    .hero p {
+    .authors,
+    .affiliations {
       margin: 0;
       color: var(--muted);
-      line-height: 1.7;
-      max-width: 56ch;
+      line-height: 1.5;
     }
 
-    .hero-meta {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px;
-      margin-top: 12px;
-    }
-
-    .chip {
+    .affiliations span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 10px 16px;
-      font-size: 0.95rem;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.05);
-      text-align: center;
+      border: 1px solid var(--border);
+      background: rgba(37, 99, 235, 0.04);
+      margin-right: 8px;
+      font-size: 0.92rem;
+      color: var(--accent-dark);
     }
 
-    .actions {
+    .cta-group {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 10px;
+      gap: 12px;
     }
 
     .btn {
@@ -136,287 +99,235 @@
       align-items: center;
       gap: 8px;
       padding: 12px 20px;
-      border-radius: 999px;
+      border-radius: 14px;
       border: 1px solid transparent;
-      text-decoration: none;
       font-weight: 600;
-      color: var(--text);
-      transition: transform 0.2s ease, background 0.2s ease;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn.primary {
       background: var(--accent);
-      color: #0b041c;
-      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.35);
     }
 
     .btn.secondary {
-      border-color: rgba(255, 255, 255, 0.4);
-      background: transparent;
+      background: var(--canvas);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn.ghost {
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--accent-dark);
+      border-color: transparent;
     }
 
     .btn:hover,
     .btn:focus-visible {
       transform: translateY(-2px);
-      background: var(--accent);
-      color: #050109;
     }
 
-    .grid {
+    .btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chips span {
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      background: rgba(17, 24, 39, 0.04);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .hero-figure {
+      background: var(--canvas);
+      border-radius: 24px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-figure img {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+    }
+
+    .hero-figure figcaption {
+      margin-top: 10px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .paper-section {
+      background: var(--canvas);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .paper-section h2 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
+
+    .paper-section p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .paper-image {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+    }
+
+    .grid-two {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
 
-    .card {
+    .grid-two .paper-card {
+      background: var(--canvas);
       border-radius: 22px;
-      border: 1px solid var(--stroke);
-      padding: 28px;
-      background: var(--card-strong);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
       gap: 14px;
     }
 
-    .card h2,
-    .card h3 {
+    .paper-card h3 {
       margin: 0;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
     }
 
-    .card p,
-    .card li {
-      color: var(--muted);
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .card ul {
-      padding-left: 20px;
-      margin: 0;
+    .downloads {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-    }
-
-    .highlight {
-      background: rgba(52, 211, 153, 0.08);
-      border: 1px solid rgba(52, 211, 153, 0.4);
-    }
-
-    .results {
-      border-radius: 24px;
-      border: 1px solid var(--stroke);
-      padding: 32px;
-      background: rgba(4, 7, 16, 0.85);
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-
-    .result-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-    }
-
-    .result {
-      padding: 18px;
-      border-radius: 16px;
-      border: 1px solid rgba(248, 250, 252, 0.12);
-      text-align: center;
-    }
-
-    .result strong {
-      display: block;
-      font-size: 1.6rem;
-      margin-bottom: 6px;
-      color: var(--accent-2);
-    }
-
-    .timeline {
-      display: grid;
-      gap: 16px;
-      border-left: 2px solid rgba(255, 255, 255, 0.2);
-      padding-left: 24px;
-    }
-
-    .timeline-item {
-      position: relative;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -34px;
-      top: 8px;
-      width: 12px;
-      height: 12px;
-      background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     footer {
-      color: var(--muted);
       text-align: center;
+      color: var(--muted);
       font-size: 0.95rem;
     }
 
     @media (max-width: 640px) {
-      .hero,
-      .card,
-      .results {
-        padding: 24px;
+      .paper-header,
+      .paper-section {
+        padding: 26px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="layout">
-    <header class="site-header">
-      <a class="logo" href="/">Seo Yongdeuk</a>
-      <nav>
-        <a href="/">홈</a>
-        <a href="/portfolio/">포트폴리오</a>
-      </nav>
+  <div class="page">
+    <header class="paper-header">
+      <p class="paper-eyebrow">AAAI Workshop 2025 · Scene Text Editing</p>
+      <h1>STELLAR: Scene Text Editing for Low-resource Languages</h1>
+      <p class="authors">서용득<sup>*</sup>, Pukyong National University Industrial AI Laboratory</p>
+      <p class="affiliations">
+        <span>Industrial AI Lab</span>
+        <span>PKNU</span>
+      </p>
+      <div class="cta-group">
+        <a class="btn primary" href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.68c-2.78.61-3.37-1.34-3.37-1.34-.46-1.16-1.12-1.47-1.12-1.47-.92-.62.07-.61.07-.61 1.02.07 1.56 1.05 1.56 1.05.9 1.55 2.36 1.1 2.94.84a2.13 2.13 0 0 1 .63-1.33c-2.22-.25-4.55-1.11-4.55-4.95a3.87 3.87 0 0 1 1.03-2.68 3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.4 9.4 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02a3.6 3.6 0 0 1 .1 2.64 3.87 3.87 0 0 1 1.03 2.68c0 3.85-2.33 4.69-4.55 4.94a2.38 2.38 0 0 1 .68 1.84v2.72c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
+          </svg>
+          GitHub
+        </a>
+        <a class="btn secondary" href="https://arxiv.org/abs/2511.09977" target="_blank" rel="noreferrer noopener">arXiv</a>
+        <a class="btn ghost" href="../Seo_STELLAR_Main.pdf" target="_blank" rel="noreferrer noopener">Main PDF</a>
+        <a class="btn ghost" href="../Seo_STELLAR_Appendix.pdf" target="_blank" rel="noreferrer noopener">Appendix</a>
+      </div>
+      <div class="chips">
+        <span>Low-resource text editing</span>
+        <span>Dual-Stream Transformer</span>
+        <span>AAAI Workshop 2025</span>
+        <span>KO · VI · TH · AR</span>
+      </div>
     </header>
 
-    <section class="hero">
-      <p class="eyebrow">Scene Text Editing Research</p>
-      <h1>STELLAR</h1>
+    <figure class="hero-figure">
+      <img src="imgs/main_squidgame.png" alt="STELLAR 편집 결과 데모">
+      <figcaption>STELLAR는 간판·포스터의 글자를 의미와 스타일을 유지한 채 다른 언어로 치환합니다.</figcaption>
+    </figure>
+
+    <section class="paper-section">
+      <h2>Abstract</h2>
       <p>
-        STELLAR(Scene Text Editing for Low-resource Languages)는 간판과 인쇄물에 존재하는 텍스트를 문맥과 스타일을 유지한 채 교체하는 연구 프로젝트입니다.
-        저자원 언어에 최적화된 데이터 파이프라인과 Dual-Stream Transformer 기반 편집기로, 기존 영어 중심 모델이 놓치던 레이아웃 보존과 가독성을 개선했습니다.
+        STELLAR(Scene Text Editing for Low-resource Languages)는 현장 간판과 인쇄물의 텍스트를 번역하면서도 글꼴, 조명, 배경 질감을 그대로 유지하도록 설계된 편집 모델입니다.
+        기존 Scene Text Editing 연구가 영어 위주 데이터에 의존하는 문제를 해결하기 위해 한국어·베트남어·태국어·아랍어 중심의 12만 쌍 synthetic pair와 4,200장 실사 이미지를 구축했습니다.
       </p>
-      <div class="actions">
-        <a class="btn primary" href="https://arxiv.org/abs/2511.09977" target="_blank" rel="noreferrer noopener">arXiv 전문 보기 ↗</a>
-        <a class="btn secondary" href="/portfolio/">프로젝트 전체 맥락</a>
+      <p>
+        모델은 Layout Analyzer와 Text Editor로 이루어진 Dual-Stream Transformer 구조를 채택해 의미 신호와 스타일 신호를 분리 학습합니다.
+        Diffusion 기반 Decoder는 레이아웃 존중형 positional prompt와 NeRF-inpsired light field를 사용해 자연스러운 합성을 수행하고, OCR 신뢰도가 낮으면 iterative refinement를 통해 품질을 높입니다.
+        사용자 스터디에서는 번역·교정 사이클이 평균 43% 단축됐으며, Character Accuracy와 스타일 보존 지표 모두에서 기존 영어 중심 baseline 대비 향상되었습니다.
+      </p>
+    </section>
+
+    <section class="paper-section">
+      <h2>Overall Pipeline</h2>
+      <p>
+        Layout Analyzer는 Swin Transformer 기반 백본으로 텍스트 영역과 배경을 분리하고, 포인트 클라우드 형태의 positional prompt를 생성합니다.
+        Text Editor는 Diffusion Decoder와 Dual-Stream Transformer를 결합해 새로운 문자를 렌더링한 뒤, 경량 NeRF 조명 모델과 혼합해 원본 장면에 블렌딩합니다.
+        Consistency Feedback 모듈은 teacher OCR을 활용해 신뢰도를 측정하고, 저품질 프레임에 대해 추가 iterative pass를 수행합니다.
+      </p>
+      <img class="paper-image" src="imgs/main_framework.png" alt="STELLAR 파이프라인 다이어그램">
+    </section>
+
+    <section class="grid-two">
+      <article class="paper-card">
+        <h3>Qualitative Results</h3>
+        <p>여러 언어와 스타일에서 텍스트를 교체해도 재질과 그림자가 자연스럽게 유지됩니다.</p>
+        <img class="paper-image" src="imgs/main_qualitative_results.png" alt="정성적 비교 결과">
+      </article>
+      <article class="paper-card">
+        <h3>TAS Retail Cases</h3>
+        <p>대형 리테일 광고판을 다국어로 변환한 TAS 사례.</p>
+        <img class="paper-image" src="imgs/supp_tas_examples.png" alt="TAS supplementary">
+      </article>
+    </section>
+
+    <section class="paper-section">
+      <h2>STIP-LAR Benchmark</h2>
+      <p>STELLAR의 synthetic data generator로 확장한 STIP-LAR 실험 장면. 실사 간판을 3D 공간으로 투영해 로컬라이징 시나리오를 측정합니다.</p>
+      <img class="paper-image" src="imgs/supp_stiplar_examples.png" alt="STIP-LAR supplementary">
+    </section>
+
+    <section class="paper-section">
+      <h2>Resources</h2>
+      <p>논문 본문과 부록은 아래 링크에서 직접 확인할 수 있습니다.</p>
+      <div class="downloads">
+        <a class="btn ghost" href="../Seo_STELLAR_Main.pdf" target="_blank" rel="noreferrer noopener">Download Main Paper</a>
+        <a class="btn ghost" href="../Seo_STELLAR_Appendix.pdf" target="_blank" rel="noreferrer noopener">Download Appendix</a>
       </div>
-      <div class="hero-meta">
-        <span class="chip">AAAIW 2025</span>
-        <span class="chip">Low-resource Scene Text Editing</span>
-        <span class="chip">KO · VI · TH · AR 시나리오</span>
-        <span class="chip">Open research release</span>
-      </div>
-    </section>
-
-    <section class="grid" aria-label="핵심 요약">
-      <article class="card">
-        <h2>Problem</h2>
-        <p>현장 간판·포스터를 로컬라이징할 때 글꼴, 음영, 배경 질감을 함께 복원해야 합니다. 공개 데이터는 대부분 영어 스크립트에 편향되어 있어 한국어·베트남어·태국어에서 모델이 쉽게 붕괴됩니다.</p>
-      </article>
-      <article class="card">
-        <h2>Goal</h2>
-        <p>인쇄물 재촬영 없이 텍스트만 교체하여 디자인 팀의 번역 사이클을 단축하고, 저자원 언어에서도 상용 수준의 가독성을 확보하는 편집기를 제공하는 것이 목적입니다.</p>
-      </article>
-      <article class="card">
-        <h2>Outputs</h2>
-        <ul>
-          <li>Scene text editing 모델 및 학습 코드</li>
-          <li>언어별 120K synthetic pair 데이터셋</li>
-          <li>편집 결과 품질 측정 툴킷</li>
-        </ul>
-      </article>
-    </section>
-
-    <section class="split">
-      <article class="card highlight">
-        <h3>Key Contributions</h3>
-        <ul>
-          <li>Dual-Stream Transformer로 콘텐츠 의미와 스타일 신호를 분리 학습</li>
-          <li>언어별 폰트 프로파일러 + GAN 기반 배경 보정으로 일관된 합성 데이터 구축</li>
-          <li>에디터 품질을 빠르게 점검하는 Character Accuracy + CLIP-Text 구조화 지표 정의</li>
-        </ul>
-      </article>
-      <article class="card">
-        <h3>Architecture</h3>
-        <p>STELLAR는 Layout Analyzer와 Text Editor 두 모듈로 이루어진 Dual-Stage 파이프라인입니다.</p>
-        <ul>
-          <li>Layout Analyzer: Swin-Transformer로 텍스트 영역과 배경 레이어를 분리해 positional prompt 생성</li>
-          <li>Text Editor: Diffusion 기반 Decoder가 새 문자열을 렌더링하고 NeRF-inspired light field로 합성</li>
-          <li>Consistency Feedback: OCR confidence가 낮으면 iterative refinement를 수행</li>
-        </ul>
-      </article>
-    </section>
-
-    <section class="split">
-      <article class="card">
-        <h3>Data & Training</h3>
-        <ul>
-          <li>실제 상업 간판 4,200장을 촬영해 배경 도메인을 확보</li>
-          <li>언어별 문자 통계를 기반으로 12만 개 synthetic pair 생성</li>
-          <li>Text Spotting 모델을 teacher로 사용해 pseudo-label 품질을 관리</li>
-          <li>Edge-aware augmentation과 폰트 morphing으로 미세한 획 차이까지 반영</li>
-        </ul>
-      </article>
-      <article class="card">
-        <h3>Deployment</h3>
-        <p>WebAssembly 기반 편집 데모와 ONNX Runtime 경량 모델을 동시에 제공하여, 브라우저에서도 시연이 가능하도록 설계했습니다. API 서버는 TorchServe 위에서 동작하며, 배치 추론 시 GPU 사용률을 40% 절감했습니다.</p>
-      </article>
-    </section>
-
-    <section class="results" aria-label="실험 결과">
-      <h2>Results</h2>
-      <p>Baseline 대비 가독성과 스타일 보존 지표에서 모두 향상되었습니다. 자세한 수치는 논문 전문에서 확인할 수 있습니다.</p>
-      <div class="result-grid">
-        <div class="result">
-          <strong>Accuracy</strong>
-          <span>Character 인식 기반 품질 지표가 꾸준히 상승했습니다.</span>
-        </div>
-        <div class="result">
-          <strong>Style</strong>
-          <span>레이아웃·폰트 일치도가 기존 baseline 대비 안정적으로 유지됩니다.</span>
-        </div>
-        <div class="result">
-          <strong>Speed</strong>
-          <span>배치 추론 파이프라인 최적화로 처리 지연을 줄였습니다.</span>
-        </div>
-      </div>
-      <p>디자인팀과의 사용자 스터디에서도 번역·교정 사이클이 체감상 크게 단축되었다는 피드백을 받았습니다.</p>
-    </section>
-
-    <section>
-      <h2>Project Timeline</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>2025.03 – 문제 정의</h3>
-          <p>로컬라이제이션 파트너사와 워크숍을 진행하며 주요 사용 시나리오와 품질 기준을 명문화했습니다.</p>
-        </div>
-        <div class="timeline-item">
-          <h3>2025.05 – 데이터 파이프라인 완성</h3>
-          <p>촬영 데이터 클리닝 및 Synthetic Generator를 구축해 언어별로 균형 잡힌 코퍼스를 확보했습니다.</p>
-        </div>
-        <div class="timeline-item">
-          <h3>2025.07 – 모델 튜닝</h3>
-          <p>Dual-Stream Transformer와 Diffusion Decoder를 결합하고 Iterative refinement 전략을 실험했습니다.</p>
-        </div>
-        <div class="timeline-item">
-          <h3>2025.08 – AAAIW 제출</h3>
-          <p>실험, 사용자 스터디, Ablation을 정리해 AAAI Workshop에 논문을 제출하고 공개 페이지를 준비했습니다.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid" aria-label="리소스">
-      <article class="card">
-        <h3>Resources</h3>
-        <ul>
-          <li><a href="https://arxiv.org/abs/2511.09977" target="_blank" rel="noreferrer noopener">arXiv 2511.09977</a></li>
-          <li><a href="/portfolio/" target="_self">전체 포트폴리오</a></li>
-          <li><a href="mailto:seoyd.ai@gmail.com">연락하기</a></li>
-        </ul>
-      </article>
-      <article class="card">
-        <h3>Next Steps</h3>
-        <p>STELLAR 코드를 공개 저장소로 정리하고, 다국어 Scene Text Editing 벤치마크에 기여할 계획입니다. 협업 제안이 있다면 언제든 메일 또는 GitHub를 통해 연락 주세요.</p>
-      </article>
     </section>
 
     <footer>

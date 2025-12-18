@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>서용득 | Portfolio</title>
+  <meta name="description" content="서용득 연구원의 학력, 연구 경력, 프로젝트, 특허, 수상 이력을 확인하고 포트폴리오 PDF를 바로 열어보세요.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f2f1ee;
+      --bg-soft: #f7f6f3;
+      --card: #ffffff;
+      --border: #ded9d2;
+      --border-strong: #c9c3bb;
+      --text: #1f1f1f;
+      --muted: #5a5754;
+      --accent: #ff6b3b;
+      --accent-soft: rgba(255, 107, 59, 0.12);
+      --accent-dark: #d85124;
+      --tag-muted-bg: rgba(102, 94, 88, 0.08);
+      --tag-muted-text: #6d6965;
+      color-scheme: light;
+      font-size: 17px;
+    }
+
+    body.dark {
+      --bg: linear-gradient(180deg, #0b1120 0%, #0f172a 65%, #020617 100%);
+      --bg-soft: #0e172c;
+      --card: rgba(16, 27, 52, 0.92);
+      --border: rgba(148, 163, 184, 0.18);
+      --border-strong: rgba(148, 163, 184, 0.35);
+      --text: #e2e8f0;
+      --muted: rgba(226, 232, 240, 0.72);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.18);
+      --accent-dark: #0ea5e9;
+      --tag-muted-bg: rgba(148, 163, 184, 0.16);
+      --tag-muted-text: rgba(226, 232, 240, 0.8);
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      letter-spacing: -0.01em;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .banner {
+      background: #0f0f0f;
+      color: #f7f6f3;
+      padding: 18px 0;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    .container {
+      width: min(1440px, 98vw);
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--bg-soft);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 0 42px;
+    }
+
+    .header-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      gap: 12px;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .header-nav a {
+      color: var(--muted);
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+    }
+
+    .header-nav a:hover,
+    .header-nav a:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(160px, 240px) 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero__photo {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 12px 28px rgba(17, 17, 17, 0.08);
+      max-width: 220px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .hero__photo:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .hero__photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .thumbs-pop {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 2.6rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -30%) scale(0.5);
+      transform-origin: center;
+      filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.25));
+      will-change: transform, opacity;
+    }
+
+    .thumbs-pop.is-active {
+      animation: thumbs-burst 0.9s ease-out forwards;
+    }
+
+    @keyframes thumbs-burst {
+      0% {
+        transform: translate(-50%, -30%) scale(0.4) rotate(0deg);
+        opacity: 0;
+      }
+      25% {
+        transform: translate(-50%, -70%) scale(1.05) rotate(-12deg);
+        opacity: 1;
+      }
+      55% {
+        transform: translate(-46%, -105%) scale(1) rotate(10deg);
+        opacity: 1;
+      }
+      80% {
+        transform: translate(-54%, -130%) scale(1) rotate(-6deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate(-50%, -160%) scale(1) rotate(0deg);
+        opacity: 0;
+      }
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: var(--card);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .theme-toggle span {
+      font-size: 1.1rem;
+    }
+
+    .hero__heading {
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .hero__eyebrow span {
+      width: 34px;
+      height: 1px;
+      background: var(--border-strong);
+      display: inline-block;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.15rem, 3.4vw, 2.85rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .hero__lead-list {
+      margin: 0;
+      padding-left: 22px;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero__lead-list li {
+      line-height: 1.65;
+    }
+
+    .contact-row {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-weight: 600;
+    }
+
+    .contact-row a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-dark);
+    }
+
+    .contact-row a::before {
+      content: attr(data-label);
+      font-weight: 700;
+      color: #111;
+      margin-right: 4px;
+    }
+
+    main {
+      padding: 64px 0 80px;
+    }
+
+    .overview {
+      display: grid;
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .overview__lead {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px;
+      display: grid;
+      gap: 12px;
+      box-shadow: 0 10px 26px rgba(17, 17, 17, 0.04);
+    }
+
+    .overview__lead h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      letter-spacing: -0.03em;
+    }
+
+    .overview__list {
+      margin: 0;
+      padding-left: 22px;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.65;
+    }
+
+    .overview__layout {
+      display: grid;
+      grid-template-columns: 6.7fr 3.3fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .overview__left,
+    .overview__right {
+      gap: 18px;
+      min-height: 0;
+    }
+
+    .overview__left {
+      display: grid;
+      grid-auto-rows: minmax(0, auto);
+      align-content: start;
+    }
+
+    .overview__right {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 18px;
+      height: 100%;
+    }
+
+    .overview__right > .card {
+      height: 100%;
+    }
+
+    .overview__left {
+      grid-template-rows: repeat(4, auto);
+    }
+
+    .overview__right {
+      grid-template-rows: repeat(2, auto);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 22px;
+      display: grid;
+      gap: 12px;
+      box-shadow: 0 10px 24px rgba(17, 17, 17, 0.05);
+      height: auto;
+      align-content: start;
+    }
+
+    .card--scroll {
+      overflow: visible;
+      max-height: none;
+      padding-right: 0;
+    }
+
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .timeline li {
+      display: grid;
+      grid-template-columns: auto auto auto 1fr;
+      column-gap: 12px;
+      position: relative;
+      padding-left: 16px;
+      align-items: start;
+    }
+
+    .timeline li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      top: 0.25em;
+      color: var(--accent-dark);
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .timeline__date {
+      display: inline-block;
+      min-width: 16ch;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .timeline--compact {
+      gap: 4px;
+    }
+
+    .timeline--compact li {
+      grid-template-columns: auto auto 1fr;
+    }
+
+    .timeline--compact .timeline__date {
+      min-width: 6ch;
+    }
+
+    .timeline__divider {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .timeline__text {
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .timeline__action {
+      border: none;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border-radius: 999px;
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .timeline__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px 4px 8px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .timeline__link--springer {
+      background: rgba(56, 189, 248, 0.14);
+      color: #0b3d8c;
+      border-color: rgba(11, 61, 140, 0.12);
+    }
+
+    body.dark .timeline__link--springer {
+      background: rgba(56, 189, 248, 0.16);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .timeline__link--arxiv {
+      background: rgba(179, 27, 28, 0.12);
+      color: #b31b1c;
+      border-color: rgba(179, 27, 28, 0.25);
+    }
+
+    body.dark .timeline__link--arxiv {
+      background: rgba(179, 27, 28, 0.2);
+      color: #f87171;
+      border-color: rgba(248, 113, 113, 0.45);
+    }
+
+    .timeline__link-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #0b3d8c;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    body.dark .timeline__link-icon {
+      background: #1d4ed8;
+    }
+
+    .timeline__link--springer .timeline__link-icon {
+      background: #0b3d8c;
+      color: #ffffff;
+    }
+
+    body.dark .timeline__link--springer .timeline__link-icon {
+      background: #38bdf8;
+      color: #04142d;
+    }
+
+    .timeline__link--arxiv .timeline__link-icon {
+      background: #b31b1c;
+    }
+
+    body.dark .timeline__link--arxiv .timeline__link-icon {
+      background: #f87171;
+      color: #111827;
+    }
+
+    body.dark .timeline__link:hover {
+      box-shadow: 0 8px 18px rgba(2, 132, 199, 0.3);
+    }
+
+    body.dark .timeline__link:focus-visible {
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.5);
+    }
+
+    .timeline__link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(11, 61, 140, 0.15);
+    }
+
+    .timeline__link:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 3px rgba(11, 61, 140, 0.35);
+      outline: none;
+    }
+
+    .timeline__link-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: currentColor;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .timeline__action:hover,
+    .timeline__action:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+      outline: none;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .card h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 32px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .meta {
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    ul li + li {
+      margin-top: 4px;
+    }
+
+    .tag-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .tag--primary {
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+    }
+
+    .tag--secondary {
+      background: var(--tag-muted-bg);
+      color: var(--tag-muted-text);
+      border: 1px solid rgba(109, 105, 101, 0.25);
+    }
+
+    .skill-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .skill-group h4 {
+      margin: 0;
+      font-size: 1.02rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .pdf-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 20px 45px rgba(17, 17, 17, 0.07);
+    }
+
+    .pdf-section header {
+      padding: 0 0 20px;
+      background: none;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .pdf-section h2 {
+      margin: 0;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+    }
+
+    .pdf-section p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .pdf-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff7f3;
+      box-shadow: 0 10px 22px rgba(255, 107, 59, 0.28);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      border-color: var(--border-strong);
+      color: #141414;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .pdf-stage {
+      display: grid;
+      gap: 20px;
+    }
+
+    .pdf-viewer {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #0f0f0f;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 16 / 9;
+    }
+
+    .pdf-viewer img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #0f0f0f;
+    }
+
+    .pdf-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .page-indicator {
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 0 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      .overview__layout {
+        grid-template-columns: 1fr;
+      }
+
+      .overview__left,
+      .overview__right {
+        grid-template-rows: none;
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        padding: 48px 0 36px;
+      }
+
+      .header-toolbar {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 20px;
+      }
+
+      .header-nav {
+        justify-content: center;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero__photo {
+        margin: 0 auto;
+      }
+
+      .contact-row {
+        justify-content: center;
+      }
+
+      .overview__lead,
+      .card {
+        padding: 24px;
+      }
+
+      .pdf-section {
+        padding: 26px;
+      }
+
+      .pdf-viewer {
+        aspect-ratio: auto;
+        height: 70vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">Seo Yongdeuk Portfolio</div>
+  <header>
+    <div class="container header-toolbar">
+      <nav class="header-nav" aria-label="주요 링크">
+        <a href="/">홈</a>
+        <a href="/portfolio/">포트폴리오</a>
+        <a href="/stellar/">STELLAR</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드로 전환"><span aria-hidden="true">🌙</span> Mode</button>
+    </div>
+    <div class="container hero">
+      <div class="hero__photo" role="button" tabindex="0" aria-label="프로필 사진을 눌러 인사하기">
+        <img src="imgs/profile.jpg" alt="서용득 프로필 사진">
+        <div class="thumbs-pop" aria-hidden="true">👍🏻</div>
+      </div>
+        <div class="hero__heading">
+          <div class="hero__eyebrow"><span></span>Seo Yongdeuk Portfolio</div>
+          <h1>AI로 가능성을 확장하는 Engineer, 서용득입니다.</h1>
+          <ul class="hero__lead-list">
+            <li>복잡한 문제를 분석하고 해결하는 과정에서 성취감을 느낍니다.</li>
+            <li>Computer Vision, Generative AI 등 다양한 인공지능 기술에 관심을 가지고 이를 활용해 다양한 문제 해결 경험을 쌓아왔습니다.</li>
+            <li>연구적 탐구와 실무적 개발 경험을 바탕으로 AI 기술을 실제 서비스와 산업 현장에 적용할 수 있습니다.</li>
+          </ul>
+          <div class="contact-row">
+            <a href="tel:+821030468377" data-label="M.">010-3046-8377</a>
+            <a href="mailto:sod7050@gmail.com" data-label="E.">sod7050@gmail.com</a>
+            <a href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener" data-label="W.">github.com/yongchoooon</a>
+          </div>
+        </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="overview">
+        <div class="overview__lead">
+          <h2>이력 한눈에 보기</h2>
+          <ul class="overview__list">
+            <li>국립부경대학교 기술데이터공학 전공 후 산업데이터공학 석사과정으로 진학해 연구와 실무 경험을 균형 있게 쌓고 있습니다.</li>
+            <li>산업AI연구실 연구원과 토모큐브 인턴십을 통해 현장의 데이터를 다루며 <strong>Segment Anything 기반 라벨링 자동화</strong>에서 <strong>Diffusion·LLM 데이터 증강</strong>까지 다양한 프로젝트를 주도했습니다.</li>
+            <li>두 건의 특허 출원과 해커톤·학회 수상으로 실용성과 연구 성과를 검증했습니다.</li>
+          </ul>
+        </div>
+        <div class="overview__layout">
+          <div class="overview__left">
+            <article class="card card--grad">
+              <h3>Graduation</h3>
+              <ul class="timeline">
+                <li>
+                  <span class="timeline__date">2017.03 – 2024.02</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">국립부경대학교 시스템경영안전공학부 기술데이터공학 전공 (공학사)</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2024.03 – 현재</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">국립부경대학교 산업및데이터공학과 산업데이터공학융합 전공 (석사과정)</span>
+                </li>
+              </ul>
+            </article>
+            <article class="card card--experience">
+              <h3>Experience</h3>
+              <ul class="timeline">
+                <li>
+                  <span class="timeline__date">2022.04 – 현재</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">국립부경대학교 산업AI연구실 연구원</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2023.08 – 2023.12</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">(주)토모큐브 AI팀 Intern</span>
+                </li>
+              </ul>
+            </article>
+            <article class="card card--projects card--scroll">
+              <h3>Project Highlights</h3>
+              <ul class="timeline">
+                <li>
+                  <span class="timeline__date">2023.08 – 2023.12</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="3" aria-label="포트폴리오 6페이지( Segment Anything 기반 Auto-Annotator 개발 및 사내 배포 )로 이동">↗</button>
+                  <span class="timeline__text">Segment Anything Model 기반 Auto-Annotator 개발 및 사내 배포</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2024.04 – 2024.08</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="4" aria-label="포트폴리오 3페이지( DALDA: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재 )로 이동">↗</button>
+                  <span class="timeline__text">
+                    <strong>DALDA</strong>: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 ECCVW 논문 게재
+                    <a class="timeline__link timeline__link--springer" href="https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11" target="_blank" rel="noreferrer noopener">
+                      <span class="timeline__link-icon" aria-hidden="true">S</span>
+                      Springer
+                      <span class="sr-only">에서 논문 보기 (새 창)</span>
+                    </a>
+                  </span>
+                </li>
+                <li>
+                  <span class="timeline__date">2024.11 – 2024.12</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="5" aria-label="포트폴리오 4페이지( KIMCHI: 한국적 Diffusion 모델 개발 )로 이동">↗</button>
+                  <span class="timeline__text"><strong>KIMCHI</strong>: 한국적 Diffusion 모델 개발 및 한국CDE학회 논문 게재</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2025.03 – 2025.08</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="6" aria-label="포트폴리오 5페이지( STELLAR: Scene Text Editing 모델 개발 )로 이동">↗</button>
+                  <span class="timeline__text">
+                    <strong>STELLAR</strong>: 저자원 언어 Scene Text Editing 모델 개발 및 AAAIW 논문 게재
+                    <a class="timeline__link timeline__link--arxiv" href="https://arxiv.org/abs/2511.09977" target="_blank" rel="noreferrer noopener">
+                      <span class="timeline__link-icon" aria-hidden="true">A</span>
+                      arXiv
+                      <span class="sr-only">에서 논문 보기 (새 창)</span>
+                    </a>
+                  </span>
+                </li>
+                <li>
+                  <span class="timeline__date">2025.09 – 진행 중</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="7" aria-label="포트폴리오 7페이지( T-RADAR: 상표 검색 &amp; 등록 시뮬레이션 시스템 )로 이동">↗</button>
+                  <span class="timeline__text"><strong>T-RADAR</strong>: 유사 상표 멀티모달 검색 &amp; AI Agent 기반 등록 시뮬레이션 시스템 개발</span>
+                </li>
+              </ul>
+            </article>
+            <article class="card card--awards">
+              <h3>Awards</h3>
+              <ul class="timeline">
+                <li>
+                  <span class="timeline__date">2024.08</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="9" aria-label="포트폴리오 9페이지( Gymnius )로 이동">↗</button>
+                  <span class="timeline__text"><strong>Gymnius</strong>: 제1회 LLM 활용 서비스 개발 해커톤 우수상</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2025.02</span>
+                  <span class="timeline__divider">|</span>
+                  <button class="timeline__action timeline__jump" type="button" data-page="5" aria-label="포트폴리오 4페이지( KIMCHI )로 이동">↗</button>
+                  <span class="timeline__text">한국CDE학회 동계학술대회 우수발표상</span>
+                </li>
+              </ul>
+            </article>
+          </div>
+          <div class="overview__right">
+            <article class="card card--patent">
+              <h3>Patent</h3>
+              <ul class="timeline timeline--compact">
+                <li>
+                  <span class="timeline__date">2023</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">화재 이미지 생성 시스템 및 방법 <br>(출원·공개, 1020250021779)</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2024</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">LLM 프롬프트 기반 환산 모델 데이터 증강 장치 <br>(출원, 1020240137347)</span>
+                </li>
+                <li>
+                  <span class="timeline__date">2025</span>
+                  <span class="timeline__divider">|</span>
+                  <span class="timeline__text">상표 검색 및 등록 가능성 판단을 위한 AI Agent 기반 복합 유사도 산정 시스템 및 방법 <br>(출원, 1020250165072)</span>
+                </li>
+              </ul>
+            </article>
+            <article class="card card--skill card--scroll">
+              <h3>Skill</h3>
+              <div class="skill-group">
+                <h4>3회 이상 프로젝트 경험</h4>
+                <div class="tag-grid">
+                  <span class="tag tag--primary">Python</span>
+                  <span class="tag tag--primary">PyTorch</span>
+                  <span class="tag tag--primary">OpenCV</span>
+                  <span class="tag tag--primary">OpenAI</span>
+                  <span class="tag tag--primary">Diffusers</span>
+                  <span class="tag tag--primary">FastAPI</span>
+                  <span class="tag tag--primary">MySQL</span>
+                  <span class="tag tag--primary">Git</span>
+                  <span class="tag tag--primary">Docker</span>
+                  <span class="tag tag--primary">Slack</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h4>1회 이상 프로젝트 경험 보유</h4>
+                <div class="tag-grid">
+                  <span class="tag tag--secondary">JavaScript</span>
+                  <span class="tag tag--secondary">PaddleOCR</span>
+                  <span class="tag tag--secondary">MongoDB</span>
+                  <span class="tag tag--secondary">PostgreSQL</span>
+                  <span class="tag tag--secondary">PGVector</span>
+                  <span class="tag tag--secondary">LangGraph</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="pdf-section" aria-labelledby="pdf-title">
+        <header>
+          <h2 id="pdf-title">포트폴리오 PDF 슬라이드</h2>
+          <div class="pdf-actions">
+            <a class="btn btn-primary" href="Portfolio-YongdeukSeo.pdf" download>PDF 다운로드</a>
+            <a class="btn btn-secondary" href="Portfolio-YongdeukSeo.pdf" target="_blank" rel="noreferrer noopener">새 탭에서 열기</a>
+          </div>
+        </header>
+        <div class="pdf-stage">
+          <div class="pdf-viewer">
+            <img id="pdf-slide" src="imgs/slides/portfolio-page-01.png" alt="포트폴리오 1페이지">
+          </div>
+          <div class="pdf-nav">
+            <button class="btn btn-secondary" id="prev-page" type="button">이전 페이지</button>
+            <span class="page-indicator"><span id="current-page">1</span> / <span id="total-pages">10</span></span>
+            <button class="btn btn-secondary" id="next-page" type="button">다음 페이지</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Seo Yongdeuk. All rights reserved.
+  </footer>
+
+  <script>
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleIcon = themeToggleBtn ? themeToggleBtn.querySelector('span') : null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function applyTheme(theme, persist = true) {
+      document.body.classList.toggle('dark', theme === 'dark');
+      if (themeToggleBtn && themeToggleIcon) {
+        themeToggleIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        themeToggleBtn.setAttribute(
+          'aria-label',
+          theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환'
+        );
+      }
+      if (persist) {
+        localStorage.setItem('theme', theme);
+      }
+    }
+
+    const storedTheme = localStorage.getItem('theme');
+    let activeTheme = storedTheme === 'dark' || storedTheme === 'light'
+      ? storedTheme
+      : (prefersDark.matches ? 'dark' : 'light');
+
+    applyTheme(activeTheme, false);
+
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', () => {
+        activeTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+        applyTheme(activeTheme);
+      });
+    }
+
+    const handlePrefersChange = (event) => {
+      const hasStoredTheme = localStorage.getItem('theme');
+      if (hasStoredTheme === null) {
+        activeTheme = event.matches ? 'dark' : 'light';
+        applyTheme(activeTheme, false);
+      }
+    };
+
+    if (typeof prefersDark.addEventListener === 'function') {
+      prefersDark.addEventListener('change', handlePrefersChange);
+    } else if (typeof prefersDark.addListener === 'function') {
+      prefersDark.addListener(handlePrefersChange);
+    }
+
+    const heroPhoto = document.querySelector('.hero__photo');
+    const thumbsPop = heroPhoto ? heroPhoto.querySelector('.thumbs-pop') : null;
+
+    function showThumbs(event) {
+      if (!heroPhoto || !thumbsPop) return;
+      const rect = heroPhoto.getBoundingClientRect();
+      const hasPointer = event && typeof event.clientX === 'number' && typeof event.clientY === 'number';
+      const x = hasPointer ? event.clientX - rect.left : rect.width / 2;
+      const y = hasPointer ? event.clientY - rect.top : rect.height / 2;
+      thumbsPop.style.left = `${x}px`;
+      thumbsPop.style.top = `${y}px`;
+      thumbsPop.classList.remove('is-active');
+      void thumbsPop.offsetWidth;
+      thumbsPop.classList.add('is-active');
+    }
+
+    if (thumbsPop) {
+      thumbsPop.addEventListener('animationend', () => {
+        thumbsPop.classList.remove('is-active');
+      });
+    }
+
+    if (heroPhoto) {
+      heroPhoto.addEventListener('click', (event) => {
+        showThumbs(event);
+      });
+      heroPhoto.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          showThumbs(event);
+        }
+      });
+    }
+
+    const TOTAL_PAGES = 10;
+    const imagePrefix = 'imgs/slides/portfolio-page-';
+    const imageEl = document.getElementById('pdf-slide');
+    const currentPageEl = document.getElementById('current-page');
+    const totalPagesEl = document.getElementById('total-pages');
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+    let currentPage = 1;
+
+    if (totalPagesEl) {
+      totalPagesEl.textContent = TOTAL_PAGES;
+    }
+
+    function updateViewer() {
+      if (!imageEl || !currentPageEl || !prevBtn || !nextBtn) return;
+      const pageStr = String(currentPage).padStart(2, '0');
+      imageEl.src = `${imagePrefix}${pageStr}.png?v=${currentPage}`;
+      imageEl.alt = `포트폴리오 ${currentPage}페이지`;
+      currentPageEl.textContent = String(currentPage);
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === TOTAL_PAGES;
+    }
+
+    function navigateToPage(pageNumber) {
+      if (!Number.isFinite(pageNumber)) return;
+      const clamped = Math.min(Math.max(Math.round(pageNumber), 1), TOTAL_PAGES);
+      if (clamped !== currentPage) {
+        currentPage = clamped;
+      }
+      updateViewer();
+      if (pdfSection) {
+        pdfSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage -= 1;
+          updateViewer();
+        }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (currentPage < TOTAL_PAGES) {
+          currentPage += 1;
+          updateViewer();
+        }
+      });
+    }
+
+    const pdfSection = document.querySelector('.pdf-section');
+    document.querySelectorAll('.timeline__jump').forEach((button) => {
+      button.addEventListener('click', () => {
+        const target = Number(button.dataset.page);
+        navigateToPage(target);
+      });
+    });
+
+    updateViewer();
+  </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 """Convert a portfolio PDF into per-page PNG slides.
 
 This script is a thin wrapper around the Poppler `pdftoppm` utility so that
-updating `imgs/slides/*.png` stays consistent every time the portfolio PDF changes.
+updating `portfolio/imgs/slides/*.png` stays consistent every time the portfolio PDF changes.
 """
 from __future__ import annotations
 
@@ -25,8 +25,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("imgs/slides"),
-        help="Directory to write slide images (default: imgs/slides)",
+        default=Path("portfolio/imgs/slides"),
+        help="Directory to write slide images (default: portfolio/imgs/slides)",
     )
     parser.add_argument(
         "--prefix",

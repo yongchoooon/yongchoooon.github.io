@@ -157,6 +157,44 @@ body {
   margin: 0 auto;
 }
 
+@media (max-width: 768px) {
+  .wide-container {
+    width: 94vw;
+    padding: 0 0.5rem;
+  }
+
+  .section .column.is-two-thirds,
+  .section .column.is-three-quarters,
+  .section .column.is-three-fifths,
+  .section .column.is-two-fifths,
+  .section .column.is-half,
+  .section .column.is-four-fifths,
+  .section .column.is-full,
+  .section .column.is-three-quarters,
+  .section .column.is-one-half,
+  .section .column.is-one-third,
+  .section .column.is-three-quarters,
+  .section .column.is-two-thirds,
+  .section .column.is-three-quarters,
+  .section .column.is-one-quarter,
+  .section .column.is-three-quarters,
+  .section .column.is-three-quarters.has-text-centered,
+  .section .column.is-three-quarters.has-text-centered {
+    flex: none;
+    width: 100%;
+  }
+
+  .section .columns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .publication-title,
+  .section .title.is-3 {
+    text-align: center;
+  }
+}
+
 .lightbox-trigger {
   background: none;
   border: none;

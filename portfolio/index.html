@@ -88,30 +88,10 @@
 
     .header-toolbar {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       padding-bottom: 16px;
       gap: 12px;
-    }
-
-    .header-nav {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .header-nav a {
-      color: var(--muted);
-      border-bottom: 1px solid transparent;
-      padding-bottom: 2px;
-    }
-
-    .header-nav a:hover,
-    .header-nav a:focus-visible {
-      border-color: var(--accent);
-      color: var(--accent);
     }
 
     .hero {
@@ -767,13 +747,6 @@
 
       .header-toolbar {
         justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        padding-bottom: 20px;
-      }
-
-      .header-nav {
-        justify-content: center;
       }
 
       .hero {
@@ -809,11 +782,6 @@
   <div class="banner">Seo Yongdeuk Portfolio</div>
   <header>
     <div class="container header-toolbar">
-      <nav class="header-nav" aria-label="주요 링크">
-        <a href="/">홈</a>
-        <a href="/portfolio/">포트폴리오</a>
-        <a href="/stellar/">STELLAR</a>
-      </nav>
       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드로 전환"><span aria-hidden="true">🌙</span> Mode</button>
     </div>
     <div class="container hero">

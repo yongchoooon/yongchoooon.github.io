@@ -1,341 +1,255 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>STELLAR · Scene Text Editing Paper</title>
-  <meta name="description" content="STELLAR(Scene Text Editing for Low-resource Languages) 논문 전용 페이지입니다. 제목, 저자, 소속, 깃허브와 arXiv 링크, Abstract, 그리고 주요 Figure를 한 눈에 확인하세요.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      font-size: 17px;
-      --bg: #f6f7fb;
-      --canvas: #ffffff;
-      --text: #111322;
-      --muted: #5c6172;
-      --border: #e2e6f0;
-      --accent: #2563eb;
-      --accent-dark: #1d4ed8;
-      --shadow: 0 30px 60px rgba(15, 23, 42, 0.12);
-    }
+  <meta name="description" content="STELLAR is a scene text editor for low-resource languages and real-world data, introducing the STIPLAR dataset, a dual-branch diffusion framework, and the TAS style metric.">
+  <meta name="keywords" content="STELLAR, Scene Text Editor, STIPLAR, TAS Metric, Low-resource Languages, Scene Text Editing, Real-world Data">
+  <title>STELLAR: Scene Text Editor for Low-Resource Languages and Real-World Data</title>
 
-    * {
-      box-sizing: border-box;
-    }
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
 
-    body {
-      margin: 0;
-      font-family: 'Noto Sans KR', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at 18% 20%, rgba(37, 99, 235, 0.08), transparent 55%),
-                  radial-gradient(circle at 82% 8%, rgba(16, 185, 129, 0.12), transparent 45%),
-                  var(--bg);
-      color: var(--text);
-    }
-
-    .page {
-      width: min(980px, 94vw);
-      margin: 0 auto;
-      padding: 64px 0 120px;
-      display: flex;
-      flex-direction: column;
-      gap: 36px;
-    }
-
-    .paper-header {
-      background: var(--canvas);
-      border-radius: 28px;
-      padding: 40px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .paper-eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.26em;
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.4rem, 6vw, 3.4rem);
-      letter-spacing: -0.04em;
-    }
-
-    .authors,
-    .affiliations {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .affiliations span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(37, 99, 235, 0.04);
-      margin-right: 8px;
-      font-size: 0.92rem;
-      color: var(--accent-dark);
-    }
-
-    .cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn.primary {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.35);
-    }
-
-    .btn.secondary {
-      background: var(--canvas);
-      border-color: var(--border);
-      color: var(--text);
-    }
-
-    .btn.ghost {
-      background: rgba(37, 99, 235, 0.08);
-      color: var(--accent-dark);
-      border-color: transparent;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      transform: translateY(-2px);
-    }
-
-    .btn svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .chips span {
-      border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 0.9rem;
-      background: rgba(17, 24, 39, 0.04);
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    figure {
-      margin: 0;
-    }
-
-    .hero-figure {
-      background: var(--canvas);
-      border-radius: 24px;
-      padding: 20px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-figure img {
-      width: 100%;
-      display: block;
-      border-radius: 18px;
-    }
-
-    .hero-figure figcaption {
-      margin-top: 10px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .paper-section {
-      background: var(--canvas);
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      padding: 32px;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .paper-section h2 {
-      margin: 0;
-      font-size: 1.6rem;
-    }
-
-    .paper-section p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .paper-image {
-      width: 100%;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-    }
-
-    .grid-two {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .grid-two .paper-card {
-      background: var(--canvas);
-      border-radius: 22px;
-      border: 1px solid var(--border);
-      padding: 24px;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .paper-card h3 {
-      margin: 0;
-      font-size: 1.25rem;
-    }
-
-    .downloads {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 640px) {
-      .paper-header,
-      .paper-section {
-        padding: 26px;
-      }
-    }
-  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-  <div class="page">
-    <header class="paper-header">
-      <p class="paper-eyebrow">AAAI Workshop 2025 · Scene Text Editing</p>
-      <h1>STELLAR: Scene Text Editing for Low-resource Languages</h1>
-      <p class="authors">서용득<sup>*</sup>, Pukyong National University Industrial AI Laboratory</p>
-      <p class="affiliations">
-        <span>Industrial AI Lab</span>
-        <span>PKNU</span>
-      </p>
-      <div class="cta-group">
-        <a class="btn primary" href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.68c-2.78.61-3.37-1.34-3.37-1.34-.46-1.16-1.12-1.47-1.12-1.47-.92-.62.07-.61.07-.61 1.02.07 1.56 1.05 1.56 1.05.9 1.55 2.36 1.1 2.94.84a2.13 2.13 0 0 1 .63-1.33c-2.22-.25-4.55-1.11-4.55-4.95a3.87 3.87 0 0 1 1.03-2.68 3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.4 9.4 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02a3.6 3.6 0 0 1 .1 2.64 3.87 3.87 0 0 1 1.03 2.68c0 3.85-2.33 4.69-4.55 4.94a2.38 2.38 0 0 1 .68 1.84v2.72c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
-          </svg>
-          GitHub
-        </a>
-        <a class="btn secondary" href="https://arxiv.org/abs/2511.09977" target="_blank" rel="noreferrer noopener">arXiv</a>
-        <a class="btn ghost" href="../Seo_STELLAR_Main.pdf" target="_blank" rel="noreferrer noopener">Main PDF</a>
-        <a class="btn ghost" href="../Seo_STELLAR_Appendix.pdf" target="_blank" rel="noreferrer noopener">Appendix</a>
-      </div>
-      <div class="chips">
-        <span>Low-resource text editing</span>
-        <span>Dual-Stream Transformer</span>
-        <span>AAAI Workshop 2025</span>
-        <span>KO · VI · TH · AR</span>
-      </div>
-    </header>
 
-    <figure class="hero-figure">
-      <img src="imgs/main_squidgame.png" alt="STELLAR 편집 결과 데모">
-      <figcaption>STELLAR는 간판·포스터의 글자를 의미와 스타일을 유지한 채 다른 언어로 치환합니다.</figcaption>
-    </figure>
-
-    <section class="paper-section">
-      <h2>Abstract</h2>
-      <p>
-        STELLAR(Scene Text Editing for Low-resource Languages)는 현장 간판과 인쇄물의 텍스트를 번역하면서도 글꼴, 조명, 배경 질감을 그대로 유지하도록 설계된 편집 모델입니다.
-        기존 Scene Text Editing 연구가 영어 위주 데이터에 의존하는 문제를 해결하기 위해 한국어·베트남어·태국어·아랍어 중심의 12만 쌍 synthetic pair와 4,200장 실사 이미지를 구축했습니다.
-      </p>
-      <p>
-        모델은 Layout Analyzer와 Text Editor로 이루어진 Dual-Stream Transformer 구조를 채택해 의미 신호와 스타일 신호를 분리 학습합니다.
-        Diffusion 기반 Decoder는 레이아웃 존중형 positional prompt와 NeRF-inpsired light field를 사용해 자연스러운 합성을 수행하고, OCR 신뢰도가 낮으면 iterative refinement를 통해 품질을 높입니다.
-        사용자 스터디에서는 번역·교정 사이클이 평균 43% 단축됐으며, Character Accuracy와 스타일 보존 지표 모두에서 기존 영어 중심 baseline 대비 향상되었습니다.
-      </p>
-    </section>
-
-    <section class="paper-section">
-      <h2>Overall Pipeline</h2>
-      <p>
-        Layout Analyzer는 Swin Transformer 기반 백본으로 텍스트 영역과 배경을 분리하고, 포인트 클라우드 형태의 positional prompt를 생성합니다.
-        Text Editor는 Diffusion Decoder와 Dual-Stream Transformer를 결합해 새로운 문자를 렌더링한 뒤, 경량 NeRF 조명 모델과 혼합해 원본 장면에 블렌딩합니다.
-        Consistency Feedback 모듈은 teacher OCR을 활용해 신뢰도를 측정하고, 저품질 프레임에 대해 추가 iterative pass를 수행합니다.
-      </p>
-      <img class="paper-image" src="imgs/main_framework.png" alt="STELLAR 파이프라인 다이어그램">
-    </section>
-
-    <section class="grid-two">
-      <article class="paper-card">
-        <h3>Qualitative Results</h3>
-        <p>여러 언어와 스타일에서 텍스트를 교체해도 재질과 그림자가 자연스럽게 유지됩니다.</p>
-        <img class="paper-image" src="imgs/main_qualitative_results.png" alt="정성적 비교 결과">
-      </article>
-      <article class="paper-card">
-        <h3>TAS Retail Cases</h3>
-        <p>대형 리테일 광고판을 다국어로 변환한 TAS 사례.</p>
-        <img class="paper-image" src="imgs/supp_tas_examples.png" alt="TAS supplementary">
-      </article>
-    </section>
-
-    <section class="paper-section">
-      <h2>STIP-LAR Benchmark</h2>
-      <p>STELLAR의 synthetic data generator로 확장한 STIP-LAR 실험 장면. 실사 간판을 3D 공간으로 투영해 로컬라이징 시나리오를 측정합니다.</p>
-      <img class="paper-image" src="imgs/supp_stiplar_examples.png" alt="STIP-LAR supplementary">
-    </section>
-
-    <section class="paper-section">
-      <h2>Resources</h2>
-      <p>논문 본문과 부록은 아래 링크에서 직접 확인할 수 있습니다.</p>
-      <div class="downloads">
-        <a class="btn ghost" href="../Seo_STELLAR_Main.pdf" target="_blank" rel="noreferrer noopener">Download Main Paper</a>
-        <a class="btn ghost" href="../Seo_STELLAR_Appendix.pdf" target="_blank" rel="noreferrer noopener">Download Appendix</a>
-      </div>
-    </section>
-
-    <footer>
-      © <span id="year"></span> Seo Yongdeuk · STELLAR Research Page
-    </footer>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
   </div>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="../index.html" aria-label="Home">
+        <span class="icon">
+          <i class="fas fa-home"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<section class="section">
+    <div class="container wide-container">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span class="stellar-gradient">STELLAR</span>: Scene Text Editor for Low-Resource Languages and Real-World Data</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="../portfolio/">Yongdeuk Seo</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.co.kr/citations?user=METPtcAAAAAJ&hl=ko&oi=ao">Hyun-seok Min</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.co.kr/citations?user=kQ1PV1EAAAAJ&hl=ko&oi=ao">Sungchul Choi</a><sup>1</sup></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Pukyong National University,</span>
+            <span class="author-block"><sup>2</sup>Tomocube Inc.</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://aibsdworkshop.github.io/" target="_blank" rel="noreferrer noopener" style="color: #e11d48;">AAAI Workshops AIBSD 2026 Oral</a></span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2511.09977" target="_blank" rel="noreferrer noopener" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/yongchoooon/STIPLAR" target="_blank" rel="noreferrer noopener" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>Hugging Face</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container wide-container">
+    <div class="has-text-centered">
+      <img src="./static/images/stellar_teaser.png" alt="STELLAR teaser" style="border-radius: 18px; width: 80%; max-width: 840px;" />
+    </div>
+  </div>
+</section>
+
+<section class="section abstract-band">
+  <div class="abstract-wrapper">
+    <div class="container wide-container">
+      <div class="columns is-centered has-text-centered abstract-section">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>Scene Text Editing (STE) is the task of modifying text content in an image while preserving its visual style, such as font, color, and background. While recent diffusion-based approaches have shown improvements in visual quality, key limitations remain: lack of support for low-resource languages, domain gap between synthetic and real data, and the absence of appropriate metrics for evaluating text style preservation. To address these challenges, we propose STELLAR (Scene Text Editor for Low-resource LAnguages and Real-world data). STELLAR enables reliable multilingual editing through a language-adaptive glyph encoder and a multi-stage training strategy that first pre-trains on synthetic data and then fine-tunes on real images. We also construct a new dataset, STIPLAR(Scene Text Image Pairs of Lowresource lAnguages and Real-world data), for training and evaluation. Furthermore, we propose Text Appearance Similarity (TAS), a novel metric that assesses style preservation by independently measuring font, color, and background similarity, enabling robust evaluation even without ground truth. Experimental results demonstrate that STELLAR outperforms state-of-the-art models in visual consistency and recognition accuracy, achieving an average TAS improvement of 2.2% across languages over the baselines.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-framework">
+  <div class="container wide-container">
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <h2 class="title is-3">Framework</h2>
+        <div class="content has-text-justified">
+          <p>STELLAR guides a diffusion generator using two signals: glyph features for accurate text rendering and style features for preserving color, font, and background. The glyph features come from a language-adaptive glyph encoder trained with language-specific OCR recognizers, making it effective for scripts with different structural properties. The model is trained in two stages: synthetic pre-training followed by real-world fine-tuning on STIPLAR.</p>
+        </div>
+        <button type="button" class="lightbox-trigger js-lightbox-trigger" data-lightbox-src="./static/images/stellar_framework.png">
+          <img src="./static/images/stellar_framework.png" alt="STELLAR framework" style="border-radius: 18px; border: 1px solid #e2e6f0; width: 100%; max-width: 1200px; margin: 0 auto 1.5rem;" />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container wide-container">
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <h2 class="title is-3">STIPLAR Dataset</h2>
+        <div class="content has-text-justified">
+          <p>STIPLAR is a real-world paired scene text image dataset for Korean, Arabic, and Japanese, built to support real-world adaptation and evaluation. Pairs are constructed from real images via text detection and cropping, filtering, similarity based pairing, and manual verification of matched style attributes. In STELLAR’s multi-stage training, we use STIPLAR for Stage 2 fine-tuning to adapt the model from synthetic pretraining to real-world scenes. We also release representative samples to illustrate the diversity of real-world conditions.</p>
+        </div>
+        <button type="button" class="lightbox-trigger js-lightbox-trigger" data-lightbox-src="./static/images/stellar_stiplar.png">
+          <img src="./static/images/stellar_stiplar.png" alt="STIPLAR dataset samples" style="border-radius: 12px; border: 1px solid #e2e6f0; width: 85%; max-width: 1200px; margin: 0 auto 1.5rem;" />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container wide-container">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">TAS Metric</h2>
+        <div class="content has-text-justified">
+          <p>
+            Conventional image similarity metrics are unreliable for scene text editing because the edited text content differs and a ground truth target image is usually unavailable. TAS evaluates <b>appearance</b> consistency (color, font, background).
+          </p>
+
+          <p>
+            TAS relies on a pretrained <b>Text Style Encoder</b> \(S\). When a text image \(I\) is fed into \(S\), it yields disentangled style conditions
+            <b>texture features</b> \(c_\text{tex}\) and <b>spatial features</b> \(c_\text{spa}\), and can produce component-specific outputs via its task heads
+            \(F_\text{clr}\) (color), \(F_\text{fnt}\) (font), and \(F_\text{rmv}\) (background), with \(F_\text{seg}\) providing a text mask when needed.
+          </p>
+
+          <p>
+            To compare two images \(I_A\) and \(I_B\), we pass both through \(S\) and obtain
+            \(\tilde{i}^{A}_\text{clr}\), \(\tilde{i}^{B}_\text{clr}\),
+            \(\tilde{i}^{A}_\text{fnt}\), \(\tilde{i}^{B}_\text{fnt}\),
+            and text-removed backgrounds \(\tilde{i}^{A}_\text{bg}\), \(\tilde{i}^{B}_\text{bg}\).
+            TAS then computes <b>color</b> \(s_\text{clr}\), <b>font</b> \(s_\text{fnt}\), and <b>background</b> \(s_\text{bg}\) similarities from these outputs,
+            and reports the final score by <b>averaging</b> the three.
+          </p>
+        </div>
+        <div class="columns is-vcentered">
+          <div class="column has-text-centered">
+            <button type="button" class="lightbox-trigger js-lightbox-trigger" data-lightbox-src="./static/images/stellar_text_style_encoder.png">
+              <img src="./static/images/stellar_text_style_encoder.png" alt="Text style encoder" style="border-radius: 12px; border: 1px solid #e2e6f0; width: 100%; max-width: 1200px; margin: 0 auto 1rem;" />
+            </button>
+            <p class="is-size-6">[Text Style Encoder]</p>
+          </div>
+          <div class="column has-text-centered">
+            <button type="button" class="lightbox-trigger js-lightbox-trigger" data-lightbox-src="./static/images/stellar_tas.png">
+              <img src="./static/images/stellar_tas.png" alt="TAS metric" style="border-radius: 12px; border: 1px solid #e2e6f0; width: 100%; max-width: 1200px; margin: 0 auto 1rem;" />
+            </button>
+            <p class="is-size-6">[Examples of TAS Component Similarities]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container wide-container">
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <h2 class="title is-3">Results on Real-world STE</h2>
+        <div class="content has-text-justified">
+          <p>We evaluate STELLAR on real-world scene text editing and compare it with prior methods in terms of visual fidelity and style preservation. Qualitative results show that STELLAR better maintains key appearance factors such as text color, font style, and background consistency while producing cleaner and more coherent edited text. These examples highlight STELLAR’s ability to perform realistic edits in challenging real-world conditions.</p>
+        </div>
+        <button type="button" class="lightbox-trigger js-lightbox-trigger" data-lightbox-src="./static/images/stellar_qualitative.png">
+          <img src="./static/images/stellar_qualitative.png" alt="Real-world STE results" style="border-radius: 12px; border: 1px solid #e2e6f0; width: 100%; max-width: 1200px; margin: 0 auto 1.5rem;" />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container wide-container">
+    <div class="columns is-centered">
+      <div class="column is-three-quarters has-text-centered">
+        <h2 class="title is-3">More Editing Results</h2>
+        <button type="button" class="lightbox-trigger js-lightbox-trigger" data-lightbox-src="./static/images/stellar_additional_examples.png">
+          <img src="./static/images/stellar_additional_examples.png" alt="Additional editing results" style="border-radius: 12px; border: 1px solid #e2e6f0; width: 100%; max-width: 1200px; margin: 0 auto 1.5rem;" />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container content">
+    <h2 class="title">BibTeX</h2>
+<pre><code>@article{seo2025stellar,
+  title={STELLAR: Scene Text Editor for Low-Resource Languages and Real-World Data},
+  author={Seo, Yongdeuk and Min, Hyun-seok and Choi, Sungchul},
+  journal={arXiv preprint arXiv:2511.09977},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+<div class="lightbox-overlay" id="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button type="button" id="lightbox-close" aria-label="Close preview">×</button>
+  <img id="lightbox-image" src="" alt="Preview image" />
+</div>
+<footer class="footer">
+  <div class="container wide-container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+          <p>This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noreferrer noopener">source code</a> of this website, we just ask that you link back to this page in the footer. Please remember to remove the analytics code included in the header of the website which you do not want on your website.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>

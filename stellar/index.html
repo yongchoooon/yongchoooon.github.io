@@ -104,7 +104,7 @@
         <div class="column is-four-fifths">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
-            <p>Scene Text Editing (STE) is the task of modifying text content in an image while preserving its visual style, such as font, color, and background. While recent diffusion-based approaches have shown improvements in visual quality, key limitations remain: lack of support for low-resource languages, domain gap between synthetic and real data, and the absence of appropriate metrics for evaluating text style preservation. To address these challenges, we propose STELLAR (Scene Text Editor for Low-resource LAnguages and Real-world data). STELLAR enables reliable multilingual editing through a language-adaptive glyph encoder and a multi-stage training strategy that first pre-trains on synthetic data and then fine-tunes on real images. We also construct a new dataset, STIPLAR(Scene Text Image Pairs of Lowresource lAnguages and Real-world data), for training and evaluation. Furthermore, we propose Text Appearance Similarity (TAS), a novel metric that assesses style preservation by independently measuring font, color, and background similarity, enabling robust evaluation even without ground truth. Experimental results demonstrate that STELLAR outperforms state-of-the-art models in visual consistency and recognition accuracy, achieving an average TAS improvement of 2.2% across languages over the baselines.</p>
+            <p>Scene Text Editing (STE) is the task of modifying text content in an image while preserving its visual style, such as <b>font, color, and background</b>. While recent diffusion-based approaches have shown improvements in visual quality, key limitations remain: lack of support for low-resource languages, domain gap between synthetic and real data, and the absence of appropriate metrics for evaluating text style preservation. To address these challenges, we propose <b>STELLAR</b> (<b>S</b>cene <b>T</b>ext <b>E</b>ditor for <b>L</b>ow-resource <b>LA</b>nguages and <b>R</b>eal-world data). STELLAR enables reliable multilingual editing through a language-adaptive glyph encoder and a multi-stage training strategy that first pre-trains on synthetic data and then fine-tunes on real images. We also construct a new dataset, <b>STIPLAR</b>(<b>S</b>cene <b>T</b>ext <b>I</b>mage <b>P</b>airs of <b>L</b>owresource l<b>A</b>nguages and <b>R</b>eal-world data), for training and evaluation. Furthermore, we propose <b>T</b>ext <b>A</b>ppearance <b>S</b>imilarity (<b>TAS</b>), a novel metric that assesses style preservation by independently measuring <b>font, color, and background similarity</b>, enabling robust evaluation even without ground truth. Experimental results demonstrate that STELLAR outperforms state-of-the-art models in visual consistency and recognition accuracy, achieving an average TAS improvement of 2.2% across languages over the baselines.</p>
           </div>
         </div>
       </div>
@@ -112,13 +112,37 @@
   </div>
 </section>
 
-<section class="section section-framework">
+<section class="section section-key-contributions">
+  <div class="container wide-container">
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <h2 class="title is-3" id="key-contributions">Key Contributions</h2>
+        <div class="content">
+          <ul class="key-contrib-list">
+            <li>1️⃣ Accurate text editing in <b>low-resource languages (Korean, Arabic, and Japanese)</b>.</li>
+            <li>
+              2️⃣ Develop an STE model that performs strongly on <b>real-world images</b>.<br />
+              → <a class="key-link" href="#section-stiplar">[Dataset] STIPLAR</a>: Scene Text Image Pairs of Low-resource lAnguages and Real-World Data<br />
+              → <a class="key-link" href="#section-framework">[Model] STELLAR</a>: Scene Text Editor for Low-Resource LAnguages and Real-World Data
+            </li>
+            <li>
+              3️⃣ Propose a new metric to <b>evaluate style preservation</b> in text images without GT.<br />
+              → <a class="key-link" href="#section-tas">[Metric] TAS</a>: Text Appearance Similarity
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="section-framework">
   <div class="container wide-container">
     <div class="columns is-centered">
       <div class="column is-two-thirds">
         <h2 class="title is-3">Framework</h2>
         <div class="content has-text-justified">
-          <p>STELLAR guides a diffusion generator using two signals: glyph features for accurate text rendering and style features for preserving color, font, and background. The glyph features come from a language-adaptive glyph encoder trained with language-specific OCR recognizers, making it effective for scripts with different structural properties. The model is trained in two stages: synthetic pre-training followed by real-world fine-tuning on STIPLAR.</p>
+          <p>STELLAR guides a diffusion generator using two signals: glyph features for accurate text rendering and style features for preserving color, font, and background. The glyph features come from a language-adaptive glyph encoder trained with language-specific OCR recognizers, making it effective for scripts with different structural properties. <b>The model is trained in two stages: synthetic pre-training followed by real-world fine-tuning on STIPLAR.</b></p>
         </div>
         <button type="button" class="lightbox-trigger js-lightbox-trigger" data-lightbox-src="./static/images/stellar_framework.png">
           <img src="./static/images/stellar_framework.png" alt="STELLAR framework" style="border-radius: 18px; border: 1px solid #e2e6f0; width: 100%; max-width: 1200px; margin: 0 auto 1.5rem;" />
@@ -128,13 +152,16 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="section-stiplar">
   <div class="container wide-container">
     <div class="columns is-centered">
       <div class="column is-two-thirds">
         <h2 class="title is-3">STIPLAR Dataset</h2>
-        <div class="content has-text-justified">
-          <p>STIPLAR is a real-world paired scene text image dataset for Korean, Arabic, and Japanese, built to support real-world adaptation and evaluation. Pairs are constructed from real images via text detection and cropping, filtering, similarity based pairing, and manual verification of matched style attributes. In STELLAR’s multi-stage training, we use STIPLAR for Stage 2 fine-tuning to adapt the model from synthetic pretraining to real-world scenes. We also release representative samples to illustrate the diversity of real-world conditions.</p>
+        <div class="content has-text-justified" id="section-tas">
+          <p><b>STIPLAR is a real-world paired scene text image dataset for Korean, Arabic, and Japanese, built to support real-world adaptation and evaluation</b>. Pairs are constructed from real images via text detection and cropping, filtering, similarity based pairing, and manual verification of matched style attributes. In STELLAR’s multi-stage training, we use STIPLAR for Stage 2 fine-tuning to adapt the model to real-world scenes. We also release representative samples to illustrate the diversity of real-world conditions.</p>
+          <p>
+            As far as we know, STIPLAR is the first real-world paired scene text image dataset covering three languages.
+          </p>
         </div>
         <button type="button" class="lightbox-trigger js-lightbox-trigger" data-lightbox-src="./static/images/stellar_stiplar.png">
           <img src="./static/images/stellar_stiplar.png" alt="STIPLAR dataset samples" style="border-radius: 12px; border: 1px solid #e2e6f0; width: 85%; max-width: 1200px; margin: 0 auto 1.5rem;" />
@@ -194,7 +221,7 @@
       <div class="column is-two-thirds">
         <h2 class="title is-3">Results on Real-world STE</h2>
         <div class="content has-text-justified">
-          <p>We evaluate STELLAR on real-world scene text editing and compare it with prior methods in terms of visual fidelity and style preservation. Qualitative results show that STELLAR better maintains key appearance factors such as text color, font style, and background consistency while producing cleaner and more coherent edited text. These examples highlight STELLAR’s ability to perform realistic edits in challenging real-world conditions.</p>
+          <p>We evaluate STELLAR on real-world scene text editing and compare it with prior methods in terms of visual fidelity and style preservation. Qualitative results show that STELLAR better maintains key appearance factors <b>such as text color, font style, and background consistency while producing cleaner and more coherent edited text</b>. These examples highlight STELLAR’s ability to perform realistic edits in challenging real-world conditions.</p>
         </div>
         <button type="button" class="lightbox-trigger js-lightbox-trigger" data-lightbox-src="./static/images/stellar_qualitative.png">
           <img src="./static/images/stellar_qualitative.png" alt="Real-world STE results" style="border-radius: 12px; border: 1px solid #e2e6f0; width: 100%; max-width: 1200px; margin: 0 auto 1.5rem;" />
@@ -208,7 +235,7 @@
   <div class="container wide-container">
     <div class="columns is-centered">
       <div class="column is-three-quarters has-text-centered">
-        <h2 class="title is-3">More Editing Results</h2>
+        <h2 class="title is-3">Additional Editing Results</h2>
         <button type="button" class="lightbox-trigger js-lightbox-trigger" data-lightbox-src="./static/images/stellar_additional_examples.png">
           <img src="./static/images/stellar_additional_examples.png" alt="Additional editing results" style="border-radius: 12px; border: 1px solid #e2e6f0; width: 100%; max-width: 1200px; margin: 0 auto 1.5rem;" />
         </button>

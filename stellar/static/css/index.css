@@ -128,8 +128,28 @@ body {
   padding-bottom: 1rem;
 }
 
-.section-framework{
+.section-key-contributions{
   padding-top: 2rem;
+}
+
+.key-contrib-list {
+  list-style: none;
+  padding-left: 0;
+  line-height: 1.7;
+}
+
+.key-contrib-list li {
+  margin-bottom: 0.8rem;
+}
+
+.key-link {
+  color: #ad1f1f;
+  font-weight: 700;
+}
+
+.key-link:hover,
+.key-link:focus-visible {
+  text-decoration: underline;
 }
 
 .publication-body img {

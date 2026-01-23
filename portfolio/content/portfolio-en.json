@@ -28,7 +28,7 @@
     "title": "Snapshot of My Work",
     "bullets": [
       "Majored in Technology & Data Engineering and now pursue an Industrial Data Engineering master's program, keeping research and practice balanced.",
-      "At the Industrial AI Lab and during the Tomocube internship I led projects ranging from <strong>Segment Anything labeling automation</strong> to <strong>Diffusion + LLM data augmentation</strong> on production datasets.",
+      "At the Industrial AI Lab (TEAMLAB) and during the Tomocube internship I led projects ranging from <strong>Segment Anything labeling automation</strong> to <strong>Diffusion + LLM data augmentation</strong> on production datasets.",
       "Two patent filings plus hackathon and conference awards validate both practical value and research impact."
     ]
   },
@@ -42,7 +42,7 @@
         },
         {
           "date": "2024.03 – Present",
-          "text": "M.S. Candidate, Industrial Data Engineering Convergence, Dept. of Industrial & Data Engineering, Pukyong National University"
+          "text": "Major in Industrial Data Science & Engineering, Department of Industrial and Data Engineering, Pukyong National University"
         }
       ]
     },
@@ -51,7 +51,7 @@
       "items": [
         {
           "date": "2022.04 – Present",
-          "text": "Researcher, Industrial AI Lab, Pukyong National University"
+          "text": "Researcher, Industrial AI Lab (TEAMLAB), Pukyong National University"
         },
         {
           "date": "2023.08 – 2023.12",
@@ -83,7 +83,7 @@
         },
         {
           "date": "2024.11 – 2024.12",
-          "text": "<strong>KIMCHI</strong>: Korean-style diffusion model and paper at the KSCDE conference",
+          "text": "<strong>KIMCHI</strong>: Korean-style diffusion model and paper at the Korean CDE conference",
           "page": 5,
           "aria": "Go to portfolio page 4 (KIMCHI diffusion model)"
         },
@@ -119,7 +119,7 @@
         },
         {
           "date": "2025.02",
-          "text": "Best Presentation, KSCDE Winter Conference",
+          "text": "Best Presentation, Korean CDE Winter Conference",
           "page": 5,
           "aria": "Go to portfolio page 4 (KIMCHI)"
         }

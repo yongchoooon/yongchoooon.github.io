@@ -28,7 +28,7 @@
     "title": "이력 한눈에 보기",
     "bullets": [
       "국립부경대학교 기술데이터공학 전공 후 산업데이터공학 석사과정으로 진학해 연구와 실무 경험을 균형 있게 쌓고 있습니다.",
-      "산업AI연구실 연구원과 토모큐브 인턴십을 통해 현장의 데이터를 다루며 <strong>Segment Anything 기반 라벨링 자동화</strong>에서 <strong>Diffusion·LLM 데이터 증강</strong>까지 다양한 프로젝트를 주도했습니다.",
+      "산업AI연구실(TEAMLAB) 연구원과 토모큐브 인턴십을 통해 현장의 데이터를 다루며 <strong>Segment Anything 기반 라벨링 자동화</strong>에서 <strong>Diffusion·LLM 데이터 증강</strong>까지 다양한 프로젝트를 주도했습니다.",
       "두 건의 특허 출원과 해커톤·학회 수상으로 실용성과 연구 성과를 검증했습니다."
     ]
   },
@@ -42,7 +42,7 @@
         },
         {
           "date": "2024.03 – 현재",
-          "text": "국립부경대학교 산업및데이터공학과 산업데이터공학융합 전공 (석사과정)"
+          "text": "Major in Industrial Data Science & Engineering, Department of Industrial and Data Engineering, Pukyong National University"
         }
       ]
     },
@@ -51,7 +51,7 @@
       "items": [
         {
           "date": "2022.04 – 현재",
-          "text": "국립부경대학교 산업AI연구실 연구원"
+          "text": "국립부경대학교 산업AI연구실(TEAMLAB) 연구원"
         },
         {
           "date": "2023.08 – 2023.12",
@@ -83,7 +83,7 @@
         },
         {
           "date": "2024.11 – 2024.12",
-          "text": "<strong>KIMCHI</strong>: 한국적 Diffusion 모델 개발 및 한국CDE학회 논문 게재",
+          "text": "<strong>KIMCHI</strong>: 한국적 Diffusion 모델 개발 및 Korean CDE 학회 논문 게재",
           "page": 5,
           "aria": "포트폴리오 4페이지( KIMCHI: 한국적 Diffusion 모델 개발 )로 이동"
         },
@@ -119,7 +119,7 @@
         },
         {
           "date": "2025.02",
-          "text": "한국CDE학회 동계학술대회 우수발표상",
+          "text": "Korean CDE 동계학술대회 우수발표상",
           "page": 5,
           "aria": "포트폴리오 4페이지( KIMCHI )로 이동"
         }

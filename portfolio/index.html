@@ -182,7 +182,45 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
     }
 
-    .theme-toggle span {
+    .language-toggle {
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: var(--card);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .language-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .language-toggle__option {
+      opacity: 0.55;
+      letter-spacing: 0.06em;
+    }
+
+    .language-toggle__divider {
+      width: 1px;
+      height: 14px;
+      background: var(--border-strong);
+      display: inline-block;
+    }
+
+    .language-toggle[data-active-lang="ko"] .language-toggle__option[data-lang-option="ko"],
+    .language-toggle[data-active-lang="en"] .language-toggle__option[data-lang-option="en"] {
+      opacity: 1;
+      color: var(--accent-dark);
+    }
+
+    .theme-toggle__icon {
       font-size: 1.1rem;
     }
 
@@ -200,7 +238,7 @@
       color: var(--muted);
     }
 
-    .hero__eyebrow span {
+    .hero__eyebrow-rule {
       width: 34px;
       height: 1px;
       background: var(--border-strong);
@@ -779,24 +817,31 @@
   </style>
 </head>
 <body>
-  <div class="banner">Seo Yongdeuk Portfolio</div>
+  <div class="banner" id="banner-title"></div>
   <header>
     <div class="container header-toolbar">
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드로 전환"><span aria-hidden="true">🌙</span> Mode</button>
+      <button class="language-toggle" id="language-toggle" type="button" aria-label="영어로 보기" data-active-lang="ko">
+        <span class="language-toggle__option" data-lang-option="ko">한</span>
+        <span class="language-toggle__divider" aria-hidden="true"></span>
+        <span class="language-toggle__option" data-lang-option="en">EN</span>
+      </button>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드로 전환">
+        <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+        <span id="theme-toggle-text">Mode</span>
+      </button>
     </div>
     <div class="container hero">
-      <div class="hero__photo" role="button" tabindex="0" aria-label="프로필 사진을 눌러 인사하기">
-        <img src="imgs/profile.jpg" alt="서용득 프로필 사진">
+      <div class="hero__photo" role="button" tabindex="0" id="hero-photo" aria-label="">
+        <img src="imgs/profile.jpg" id="hero-photo-img" alt="">
         <div class="thumbs-pop" aria-hidden="true">👍🏻</div>
       </div>
         <div class="hero__heading">
-          <div class="hero__eyebrow"><span></span>Seo Yongdeuk Portfolio</div>
-          <h1>AI로 가능성을 확장하는 Engineer, 서용득입니다.</h1>
-          <ul class="hero__lead-list">
-            <li>복잡한 문제를 분석하고 해결하는 과정에서 성취감을 느낍니다.</li>
-            <li>Computer Vision, Generative AI 등 다양한 인공지능 기술에 관심을 가지고 이를 활용해 다양한 문제 해결 경험을 쌓아왔습니다.</li>
-            <li>연구적 탐구와 실무적 개발 경험을 바탕으로 AI 기술을 실제 서비스와 산업 현장에 적용할 수 있습니다.</li>
-          </ul>
+          <div class="hero__eyebrow">
+            <span class="hero__eyebrow-rule" aria-hidden="true"></span>
+            <span id="hero-eyebrow"></span>
+          </div>
+          <h1 id="hero-title"></h1>
+          <ul class="hero__lead-list" id="hero-bullets"></ul>
           <div class="contact-row">
             <a href="tel:+821030468377" data-label="M.">010-3046-8377</a>
             <a href="mailto:sod7050@gmail.com" data-label="E.">sod7050@gmail.com</a>
@@ -810,161 +855,36 @@
     <div class="container">
       <section class="overview">
         <div class="overview__lead">
-          <h2>이력 한눈에 보기</h2>
-          <ul class="overview__list">
-            <li>국립부경대학교 기술데이터공학 전공 후 산업데이터공학 석사과정으로 진학해 연구와 실무 경험을 균형 있게 쌓고 있습니다.</li>
-            <li>산업AI연구실 연구원과 토모큐브 인턴십을 통해 현장의 데이터를 다루며 <strong>Segment Anything 기반 라벨링 자동화</strong>에서 <strong>Diffusion·LLM 데이터 증강</strong>까지 다양한 프로젝트를 주도했습니다.</li>
-            <li>두 건의 특허 출원과 해커톤·학회 수상으로 실용성과 연구 성과를 검증했습니다.</li>
-          </ul>
+          <h2 id="overview-title"></h2>
+          <ul class="overview__list" id="overview-bullets"></ul>
         </div>
         <div class="overview__layout">
           <div class="overview__left">
             <article class="card card--grad">
-              <h3>Graduation</h3>
-              <ul class="timeline">
-                <li>
-                  <span class="timeline__date">2017.03 – 2024.02</span>
-                  <span class="timeline__divider">|</span>
-                  <span class="timeline__text">국립부경대학교 시스템경영안전공학부 기술데이터공학 전공 (공학사)</span>
-                </li>
-                <li>
-                  <span class="timeline__date">2024.03 – 현재</span>
-                  <span class="timeline__divider">|</span>
-                  <span class="timeline__text">국립부경대학교 산업및데이터공학과 산업데이터공학융합 전공 (석사과정)</span>
-                </li>
-              </ul>
+              <h3 id="education-title"></h3>
+              <ul class="timeline" id="education-list"></ul>
             </article>
             <article class="card card--experience">
-              <h3>Experience</h3>
-              <ul class="timeline">
-                <li>
-                  <span class="timeline__date">2022.04 – 현재</span>
-                  <span class="timeline__divider">|</span>
-                  <span class="timeline__text">국립부경대학교 산업AI연구실 연구원</span>
-                </li>
-                <li>
-                  <span class="timeline__date">2023.08 – 2023.12</span>
-                  <span class="timeline__divider">|</span>
-                  <span class="timeline__text">(주)토모큐브 AI팀 Intern</span>
-                </li>
-              </ul>
+              <h3 id="experience-title"></h3>
+              <ul class="timeline" id="experience-list"></ul>
             </article>
             <article class="card card--projects card--scroll">
-              <h3>Project Highlights</h3>
-              <ul class="timeline">
-                <li>
-                  <span class="timeline__date">2023.08 – 2023.12</span>
-                  <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="3" aria-label="포트폴리오 6페이지( Segment Anything 기반 Auto-Annotator 개발 및 사내 배포 )로 이동">↗</button>
-                  <span class="timeline__text">Segment Anything Model 기반 Auto-Annotator 개발 및 사내 배포</span>
-                </li>
-                <li>
-                  <span class="timeline__date">2024.04 – 2024.08</span>
-                  <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="4" aria-label="포트폴리오 3페이지( DALDA: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재 )로 이동">↗</button>
-                  <span class="timeline__text">
-                    <strong>DALDA</strong>: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 ECCVW 논문 게재
-                    <a class="timeline__link timeline__link--springer" href="https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11" target="_blank" rel="noreferrer noopener">
-                      <span class="timeline__link-icon" aria-hidden="true">S</span>
-                      Springer
-                      <span class="sr-only">에서 논문 보기 (새 창)</span>
-                    </a>
-                  </span>
-                </li>
-                <li>
-                  <span class="timeline__date">2024.11 – 2024.12</span>
-                  <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="5" aria-label="포트폴리오 4페이지( KIMCHI: 한국적 Diffusion 모델 개발 )로 이동">↗</button>
-                  <span class="timeline__text"><strong>KIMCHI</strong>: 한국적 Diffusion 모델 개발 및 한국CDE학회 논문 게재</span>
-                </li>
-                <li>
-                  <span class="timeline__date">2025.03 – 2025.08</span>
-                  <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="6" aria-label="포트폴리오 5페이지( STELLAR: Scene Text Editing 모델 개발 )로 이동">↗</button>
-                  <span class="timeline__text">
-                    <strong>STELLAR</strong>: 저자원 언어 Scene Text Editing 모델 개발 및 AAAIW 논문 게재
-                    <a class="timeline__link timeline__link--arxiv" href="https://arxiv.org/abs/2511.09977" target="_blank" rel="noreferrer noopener">
-                      <span class="timeline__link-icon" aria-hidden="true">A</span>
-                      arXiv
-                      <span class="sr-only">에서 논문 보기 (새 창)</span>
-                    </a>
-                  </span>
-                </li>
-                <li>
-                  <span class="timeline__date">2025.09 – 진행 중</span>
-                  <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="7" aria-label="포트폴리오 7페이지( T-RADAR: 상표 검색 &amp; 등록 시뮬레이션 시스템 )로 이동">↗</button>
-                  <span class="timeline__text"><strong>T-RADAR</strong>: 유사 상표 멀티모달 검색 &amp; AI Agent 기반 등록 시뮬레이션 시스템 개발</span>
-                </li>
-              </ul>
+              <h3 id="projects-title"></h3>
+              <ul class="timeline" id="projects-list"></ul>
             </article>
             <article class="card card--awards">
-              <h3>Awards</h3>
-              <ul class="timeline">
-                <li>
-                  <span class="timeline__date">2024.08</span>
-                  <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="9" aria-label="포트폴리오 9페이지( Gymnius )로 이동">↗</button>
-                  <span class="timeline__text"><strong>Gymnius</strong>: 제1회 LLM 활용 서비스 개발 해커톤 우수상</span>
-                </li>
-                <li>
-                  <span class="timeline__date">2025.02</span>
-                  <span class="timeline__divider">|</span>
-                  <button class="timeline__action timeline__jump" type="button" data-page="5" aria-label="포트폴리오 4페이지( KIMCHI )로 이동">↗</button>
-                  <span class="timeline__text">한국CDE학회 동계학술대회 우수발표상</span>
-                </li>
-              </ul>
+              <h3 id="awards-title"></h3>
+              <ul class="timeline" id="awards-list"></ul>
             </article>
           </div>
           <div class="overview__right">
             <article class="card card--patent">
-              <h3>Patent</h3>
-              <ul class="timeline timeline--compact">
-                <li>
-                  <span class="timeline__date">2023</span>
-                  <span class="timeline__divider">|</span>
-                  <span class="timeline__text">화재 이미지 생성 시스템 및 방법 <br>(출원·공개, 1020250021779)</span>
-                </li>
-                <li>
-                  <span class="timeline__date">2024</span>
-                  <span class="timeline__divider">|</span>
-                  <span class="timeline__text">LLM 프롬프트 기반 환산 모델 데이터 증강 장치 <br>(출원, 1020240137347)</span>
-                </li>
-                <li>
-                  <span class="timeline__date">2025</span>
-                  <span class="timeline__divider">|</span>
-                  <span class="timeline__text">상표 검색 및 등록 가능성 판단을 위한 AI Agent 기반 복합 유사도 산정 시스템 및 방법 <br>(출원, 1020250165072)</span>
-                </li>
-              </ul>
+              <h3 id="patent-title"></h3>
+              <ul class="timeline timeline--compact" id="patent-list"></ul>
             </article>
             <article class="card card--skill card--scroll">
-              <h3>Skill</h3>
-              <div class="skill-group">
-                <h4>3회 이상 프로젝트 경험</h4>
-                <div class="tag-grid">
-                  <span class="tag tag--primary">Python</span>
-                  <span class="tag tag--primary">PyTorch</span>
-                  <span class="tag tag--primary">OpenCV</span>
-                  <span class="tag tag--primary">OpenAI</span>
-                  <span class="tag tag--primary">Diffusers</span>
-                  <span class="tag tag--primary">FastAPI</span>
-                  <span class="tag tag--primary">MySQL</span>
-                  <span class="tag tag--primary">Git</span>
-                  <span class="tag tag--primary">Docker</span>
-                  <span class="tag tag--primary">Slack</span>
-                </div>
-              </div>
-              <div class="skill-group">
-                <h4>1회 이상 프로젝트 경험 보유</h4>
-                <div class="tag-grid">
-                  <span class="tag tag--secondary">JavaScript</span>
-                  <span class="tag tag--secondary">PaddleOCR</span>
-                  <span class="tag tag--secondary">MongoDB</span>
-                  <span class="tag tag--secondary">PostgreSQL</span>
-                  <span class="tag tag--secondary">PGVector</span>
-                  <span class="tag tag--secondary">LangGraph</span>
-                </div>
-              </div>
+              <h3 id="skills-title"></h3>
+              <div id="skill-groups"></div>
             </article>
           </div>
         </div>
@@ -972,48 +892,313 @@
 
       <section class="pdf-section" aria-labelledby="pdf-title">
         <header>
-          <h2 id="pdf-title">포트폴리오 PDF 슬라이드</h2>
+          <h2 id="pdf-title"></h2>
           <div class="pdf-actions">
-            <a class="btn btn-primary" href="Portfolio-YongdeukSeo.pdf" download>PDF 다운로드</a>
-            <a class="btn btn-secondary" href="Portfolio-YongdeukSeo.pdf" target="_blank" rel="noreferrer noopener">새 탭에서 열기</a>
+            <a class="btn btn-primary" id="pdf-download" href="Portfolio-YongdeukSeo.pdf" download></a>
+            <a class="btn btn-secondary" id="pdf-open" href="Portfolio-YongdeukSeo.pdf" target="_blank" rel="noreferrer noopener"></a>
           </div>
         </header>
         <div class="pdf-stage">
           <div class="pdf-viewer">
-            <img id="pdf-slide" src="imgs/slides/portfolio-page-01.png" alt="포트폴리오 1페이지">
+            <img id="pdf-slide" src="imgs/slides/portfolio-page-01.png" alt="">
           </div>
           <div class="pdf-nav">
-            <button class="btn btn-secondary" id="prev-page" type="button">이전 페이지</button>
+            <button class="btn btn-secondary" id="prev-page" type="button"></button>
             <span class="page-indicator"><span id="current-page">1</span> / <span id="total-pages">10</span></span>
-            <button class="btn btn-secondary" id="next-page" type="button">다음 페이지</button>
+            <button class="btn btn-secondary" id="next-page" type="button"></button>
           </div>
         </div>
       </section>
     </div>
   </main>
 
-  <footer>
-    &copy; <span id="year"></span> Seo Yongdeuk. All rights reserved.
-  </footer>
+  <footer id="footer-text"></footer>
 
   <script>
-    const yearEl = document.getElementById('year');
-    if (yearEl) {
-      yearEl.textContent = new Date().getFullYear();
+    const LANGUAGE_FILES = {
+      ko: 'content/portfolio-ko.json',
+      en: 'content/portfolio-en.json'
+    };
+    const contentCache = {};
+    let currentLang = 'ko';
+    let currentCopy = null;
+    let pdfAltTemplate = 'Portfolio page {page}';
+
+    const TOTAL_PAGES = 10;
+    const imagePrefix = 'imgs/slides/portfolio-page-';
+    const imageEl = document.getElementById('pdf-slide');
+    const currentPageEl = document.getElementById('current-page');
+    const totalPagesEl = document.getElementById('total-pages');
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+    const pdfSection = document.querySelector('.pdf-section');
+    let currentPage = 1;
+
+    const bannerEl = document.getElementById('banner-title');
+    const heroEyebrowText = document.getElementById('hero-eyebrow');
+    const heroTitleEl = document.getElementById('hero-title');
+    const heroBulletList = document.getElementById('hero-bullets');
+    const heroPhoto = document.getElementById('hero-photo');
+    const heroPhotoImg = document.getElementById('hero-photo-img');
+    const thumbsPop = heroPhoto ? heroPhoto.querySelector('.thumbs-pop') : null;
+
+    const overviewTitleEl = document.getElementById('overview-title');
+    const overviewBulletList = document.getElementById('overview-bullets');
+
+    const educationTitleEl = document.getElementById('education-title');
+    const educationListEl = document.getElementById('education-list');
+    const experienceTitleEl = document.getElementById('experience-title');
+    const experienceListEl = document.getElementById('experience-list');
+    const projectsTitleEl = document.getElementById('projects-title');
+    const projectsListEl = document.getElementById('projects-list');
+    const awardsTitleEl = document.getElementById('awards-title');
+    const awardsListEl = document.getElementById('awards-list');
+    const patentTitleEl = document.getElementById('patent-title');
+    const patentListEl = document.getElementById('patent-list');
+    const skillsTitleEl = document.getElementById('skills-title');
+    const skillGroupsEl = document.getElementById('skill-groups');
+
+    const pdfTitleEl = document.getElementById('pdf-title');
+    const pdfDownloadEl = document.getElementById('pdf-download');
+    const pdfOpenEl = document.getElementById('pdf-open');
+    const footerEl = document.getElementById('footer-text');
+
+    const languageToggleBtn = document.getElementById('language-toggle');
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleIcon = themeToggleBtn ? themeToggleBtn.querySelector('.theme-toggle__icon') : null;
+    const themeToggleText = document.getElementById('theme-toggle-text');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const FALLBACK_THEME_LABELS = {
+      light: 'Switch to light mode',
+      dark: 'Switch to dark mode'
+    };
+
+    if (totalPagesEl) {
+      totalPagesEl.textContent = TOTAL_PAGES;
     }
 
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleIcon = themeToggleBtn ? themeToggleBtn.querySelector('span') : null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    function setText(element, value = '') {
+      if (element) {
+        element.textContent = value ?? '';
+      }
+    }
+
+    function renderList(listEl, items, options = {}) {
+      if (!listEl) return;
+      listEl.innerHTML = '';
+      if (!Array.isArray(items)) return;
+      items.forEach((item) => {
+        if (item === undefined || item === null) return;
+        const li = document.createElement('li');
+        if (options.html) {
+          li.innerHTML = item;
+        } else {
+          li.textContent = item;
+        }
+        listEl.appendChild(li);
+      });
+    }
+
+    function createLinkElement(link) {
+      const anchor = document.createElement('a');
+      anchor.className = 'timeline__link';
+      if (link.variant) {
+        anchor.classList.add(`timeline__link--${link.variant}`);
+      }
+      anchor.href = link.href;
+      anchor.target = '_blank';
+      anchor.rel = 'noreferrer noopener';
+      if (link.icon) {
+        const icon = document.createElement('span');
+        icon.className = 'timeline__link-icon';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.textContent = link.icon;
+        anchor.appendChild(icon);
+      }
+      anchor.appendChild(document.createTextNode(link.label || 'Link'));
+      if (link.srText) {
+        const sr = document.createElement('span');
+        sr.className = 'sr-only';
+        sr.textContent = link.srText;
+        anchor.appendChild(sr);
+      }
+      return anchor;
+    }
+
+    function renderTimeline(listEl, items) {
+      if (!listEl) return;
+      listEl.innerHTML = '';
+      if (!Array.isArray(items)) return;
+      items.forEach((item) => {
+        if (!item) return;
+        const li = document.createElement('li');
+        const dateEl = document.createElement('span');
+        dateEl.className = 'timeline__date';
+        dateEl.textContent = item.date || '';
+        const dividerEl = document.createElement('span');
+        dividerEl.className = 'timeline__divider';
+        dividerEl.textContent = '|';
+        li.appendChild(dateEl);
+        li.appendChild(dividerEl);
+        if (typeof item.page === 'number') {
+          const jumpBtn = document.createElement('button');
+          jumpBtn.className = 'timeline__action timeline__jump';
+          jumpBtn.type = 'button';
+          jumpBtn.textContent = '↗';
+          jumpBtn.dataset.page = String(item.page);
+          if (item.aria) {
+            jumpBtn.setAttribute('aria-label', item.aria);
+          }
+          jumpBtn.addEventListener('click', () => navigateToPage(item.page));
+          li.appendChild(jumpBtn);
+        }
+        const textEl = document.createElement('span');
+        textEl.className = 'timeline__text';
+        textEl.innerHTML = item.text || '';
+        if (item.link) {
+          textEl.appendChild(document.createTextNode(' '));
+          textEl.appendChild(createLinkElement(item.link));
+        }
+        li.appendChild(textEl);
+        listEl.appendChild(li);
+      });
+    }
+
+    function renderSkills(container, groups) {
+      if (!container) return;
+      container.innerHTML = '';
+      if (!Array.isArray(groups)) return;
+      groups.forEach((group) => {
+        const groupEl = document.createElement('div');
+        groupEl.className = 'skill-group';
+        const heading = document.createElement('h4');
+        heading.textContent = group.title || '';
+        groupEl.appendChild(heading);
+        const tagGrid = document.createElement('div');
+        tagGrid.className = 'tag-grid';
+        (group.tags || []).forEach((tag) => {
+          const tagEl = document.createElement('span');
+          const styleClass = group.style === 'secondary' ? 'tag--secondary' : 'tag--primary';
+          tagEl.className = `tag ${styleClass}`;
+          tagEl.textContent = tag;
+          tagGrid.appendChild(tagEl);
+        });
+        groupEl.appendChild(tagGrid);
+        container.appendChild(groupEl);
+      });
+    }
+
+    function applyCopy(copy) {
+      currentCopy = copy;
+      currentLang = copy.lang || currentLang;
+      document.documentElement.lang = currentLang;
+      if (copy.meta) {
+        document.title = copy.meta.title || document.title;
+        const metaDesc = document.querySelector('meta[name=\"description\"]');
+        if (metaDesc && copy.meta.description) {
+          metaDesc.setAttribute('content', copy.meta.description);
+        }
+      }
+      setText(bannerEl, copy.bannerTitle);
+      if (languageToggleBtn) {
+        languageToggleBtn.dataset.activeLang = currentLang;
+        const ariaLabel = copy.languageToggle?.aria || 'Toggle language';
+        languageToggleBtn.setAttribute('aria-label', ariaLabel);
+      }
+      if (copy.themeToggle?.label) {
+        setText(themeToggleText, copy.themeToggle.label);
+      }
+      const heroCopy = copy.hero || {};
+      setText(heroEyebrowText, heroCopy.eyebrow);
+      setText(heroTitleEl, heroCopy.title);
+      renderList(heroBulletList, heroCopy.bullets || []);
+      if (heroPhoto) {
+        heroPhoto.setAttribute('aria-label', heroCopy.photoAria || '');
+      }
+      if (heroPhotoImg) {
+        heroPhotoImg.alt = heroCopy.photoAlt || '';
+      }
+      const overviewCopy = copy.overview || {};
+      setText(overviewTitleEl, overviewCopy.title);
+      renderList(overviewBulletList, overviewCopy.bullets || [], { html: true });
+      const cards = copy.cards || {};
+      setText(educationTitleEl, cards.education?.title);
+      renderTimeline(educationListEl, cards.education?.items || []);
+      setText(experienceTitleEl, cards.experience?.title);
+      renderTimeline(experienceListEl, cards.experience?.items || []);
+      setText(projectsTitleEl, cards.projects?.title);
+      renderTimeline(projectsListEl, cards.projects?.items || []);
+      setText(awardsTitleEl, cards.awards?.title);
+      renderTimeline(awardsListEl, cards.awards?.items || []);
+      setText(patentTitleEl, cards.patents?.title);
+      renderTimeline(patentListEl, cards.patents?.items || []);
+      setText(skillsTitleEl, cards.skills?.title);
+      renderSkills(skillGroupsEl, cards.skills?.groups || []);
+      const pdfCopy = copy.pdf || {};
+      setText(pdfTitleEl, pdfCopy.title);
+      setText(pdfDownloadEl, pdfCopy.download);
+      setText(pdfOpenEl, pdfCopy.open);
+      setText(prevBtn, pdfCopy.prev);
+      setText(nextBtn, pdfCopy.next);
+      pdfAltTemplate = pdfCopy.imageAlt || 'Portfolio page {page}';
+      updateViewer();
+      if (footerEl && copy.footer) {
+        const year = new Date().getFullYear();
+        footerEl.textContent = copy.footer.replace('%YEAR%', year);
+      }
+      applyTheme(activeTheme, false);
+    }
+
+    async function loadCopy(lang) {
+      const path = LANGUAGE_FILES[lang];
+      if (!path) {
+        throw new Error(`Unsupported language: ${lang}`);
+      }
+      if (contentCache[lang]) {
+        return contentCache[lang];
+      }
+      const response = await fetch(path);
+      if (!response.ok) {
+        throw new Error(`Failed to load ${path}`);
+      }
+      const data = await response.json();
+      contentCache[lang] = data;
+      return data;
+    }
+
+    let isLanguageLoading = false;
+    async function setLanguage(lang) {
+      if (isLanguageLoading) return;
+      isLanguageLoading = true;
+      if (languageToggleBtn) {
+        languageToggleBtn.disabled = true;
+      }
+      try {
+        const copy = await loadCopy(lang);
+        applyCopy(copy);
+      } catch (error) {
+        console.error('Failed to load language copy:', error);
+      } finally {
+        isLanguageLoading = false;
+        if (languageToggleBtn) {
+          languageToggleBtn.disabled = false;
+          languageToggleBtn.dataset.activeLang = currentLang;
+        }
+      }
+    }
 
     function applyTheme(theme, persist = true) {
       document.body.classList.toggle('dark', theme === 'dark');
       if (themeToggleBtn && themeToggleIcon) {
         themeToggleIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-        themeToggleBtn.setAttribute(
-          'aria-label',
-          theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환'
-        );
+        const label = theme === 'dark'
+          ? (currentCopy?.themeToggle?.switchToLight || FALLBACK_THEME_LABELS.light)
+          : (currentCopy?.themeToggle?.switchToDark || FALLBACK_THEME_LABELS.dark);
+        themeToggleBtn.setAttribute('aria-label', label);
+      }
+      if (themeToggleText && currentCopy?.themeToggle?.label) {
+        setText(themeToggleText, currentCopy.themeToggle.label);
       }
       if (persist) {
         localStorage.setItem('theme', theme);
@@ -1048,9 +1233,6 @@
       prefersDark.addListener(handlePrefersChange);
     }
 
-    const heroPhoto = document.querySelector('.hero__photo');
-    const thumbsPop = heroPhoto ? heroPhoto.querySelector('.thumbs-pop') : null;
-
     function showThumbs(event) {
       if (!heroPhoto || !thumbsPop) return;
       const rect = heroPhoto.getBoundingClientRect();
@@ -1082,24 +1264,12 @@
       });
     }
 
-    const TOTAL_PAGES = 10;
-    const imagePrefix = 'imgs/slides/portfolio-page-';
-    const imageEl = document.getElementById('pdf-slide');
-    const currentPageEl = document.getElementById('current-page');
-    const totalPagesEl = document.getElementById('total-pages');
-    const prevBtn = document.getElementById('prev-page');
-    const nextBtn = document.getElementById('next-page');
-    let currentPage = 1;
-
-    if (totalPagesEl) {
-      totalPagesEl.textContent = TOTAL_PAGES;
-    }
-
     function updateViewer() {
       if (!imageEl || !currentPageEl || !prevBtn || !nextBtn) return;
       const pageStr = String(currentPage).padStart(2, '0');
       imageEl.src = `${imagePrefix}${pageStr}.png?v=${currentPage}`;
-      imageEl.alt = `포트폴리오 ${currentPage}페이지`;
+      const altTemplate = pdfAltTemplate || 'Portfolio page {page}';
+      imageEl.alt = altTemplate.replace('{page}', String(currentPage));
       currentPageEl.textContent = String(currentPage);
       prevBtn.disabled = currentPage === 1;
       nextBtn.disabled = currentPage === TOTAL_PAGES;
@@ -1110,8 +1280,8 @@
       const clamped = Math.min(Math.max(Math.round(pageNumber), 1), TOTAL_PAGES);
       if (clamped !== currentPage) {
         currentPage = clamped;
+        updateViewer();
       }
-      updateViewer();
       if (pdfSection) {
         pdfSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -1133,15 +1303,15 @@
       });
     }
 
-    const pdfSection = document.querySelector('.pdf-section');
-    document.querySelectorAll('.timeline__jump').forEach((button) => {
-      button.addEventListener('click', () => {
-        const target = Number(button.dataset.page);
-        navigateToPage(target);
+    if (languageToggleBtn) {
+      languageToggleBtn.addEventListener('click', () => {
+        const nextLang = currentLang === 'ko' ? 'en' : 'ko';
+        setLanguage(nextLang);
       });
-    });
+    }
 
     updateViewer();
+    setLanguage('ko');
   </script>
 </body>
 </html>

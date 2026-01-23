@@ -1,0 +1,170 @@
+{
+  "lang": "en",
+  "meta": {
+    "title": "Yongdeuk Seo | Portfolio",
+    "description": "Browse Yongdeuk Seo's education, research, projects, patents, and awards, and open the full portfolio PDF instantly."
+  },
+  "bannerTitle": "Seo Yongdeuk Portfolio",
+  "languageToggle": {
+    "aria": "View this page in Korean"
+  },
+  "themeToggle": {
+    "label": "Mode",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "hero": {
+    "eyebrow": "Seo Yongdeuk Portfolio",
+    "title": "I'm Yongdeuk Seo, an engineer expanding what's possible with AI.",
+    "bullets": [
+      "I find the most energy in analyzing complex problems and shipping practical solutions.",
+      "Computer Vision, Generative AI, and other ML skills let me tackle end-to-end projects on real datasets.",
+      "Research rigor plus production experience helps me translate AI ideas into services and industrial workflows."
+    ],
+    "photoAlt": "Portrait of Yongdeuk Seo",
+    "photoAria": "Tap the profile photo to say hello"
+  },
+  "overview": {
+    "title": "Snapshot of My Work",
+    "bullets": [
+      "Majored in Technology & Data Engineering and now pursue an Industrial Data Engineering master's program, keeping research and practice balanced.",
+      "At the Industrial AI Lab and during the Tomocube internship I led projects ranging from <strong>Segment Anything labeling automation</strong> to <strong>Diffusion + LLM data augmentation</strong> on production datasets.",
+      "Two patent filings plus hackathon and conference awards validate both practical value and research impact."
+    ]
+  },
+  "cards": {
+    "education": {
+      "title": "Graduation",
+      "items": [
+        {
+          "date": "2017.03 – 2024.02",
+          "text": "B.S., Technology Data Engineering, Dept. of Systems Management & Safety Engineering, Pukyong National University"
+        },
+        {
+          "date": "2024.03 – Present",
+          "text": "M.S. Candidate, Industrial Data Engineering Convergence, Dept. of Industrial & Data Engineering, Pukyong National University"
+        }
+      ]
+    },
+    "experience": {
+      "title": "Experience",
+      "items": [
+        {
+          "date": "2022.04 – Present",
+          "text": "Researcher, Industrial AI Lab, Pukyong National University"
+        },
+        {
+          "date": "2023.08 – 2023.12",
+          "text": "AI Team Intern, Tomocube Inc."
+        }
+      ]
+    },
+    "projects": {
+      "title": "Project Highlights",
+      "items": [
+        {
+          "date": "2023.08 – 2023.12",
+          "text": "Built and deployed a Segment Anything Model-based auto-annotator inside the company",
+          "page": 3,
+          "aria": "Go to portfolio page 6 (Segment Anything-based auto-annotator)"
+        },
+        {
+          "date": "2024.04 – 2024.08",
+          "text": "<strong>DALDA</strong>: Diffusion + LLM data augmentation framework accepted to ECCVW",
+          "page": 4,
+          "aria": "Go to portfolio page 3 (DALDA: Diffusion + LLM data augmentation)",
+          "link": {
+            "href": "https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11",
+            "label": "Springer",
+            "icon": "S",
+            "variant": "springer",
+            "srText": "Open paper in a new tab"
+          }
+        },
+        {
+          "date": "2024.11 – 2024.12",
+          "text": "<strong>KIMCHI</strong>: Korean-style diffusion model and paper at the KSCDE conference",
+          "page": 5,
+          "aria": "Go to portfolio page 4 (KIMCHI diffusion model)"
+        },
+        {
+          "date": "2025.03 – 2025.08",
+          "text": "<strong>STELLAR</strong>: Low-resource scene text editing model accepted to AAAIW",
+          "page": 6,
+          "aria": "Go to portfolio page 5 (STELLAR scene text editing)",
+          "link": {
+            "href": "https://arxiv.org/abs/2511.09977",
+            "label": "arXiv",
+            "icon": "A",
+            "variant": "arxiv",
+            "srText": "Open paper in a new tab"
+          }
+        },
+        {
+          "date": "2025.09 – Ongoing",
+          "text": "<strong>T-RADAR</strong>: Multimodal trademark search & AI agent-based registration simulator",
+          "page": 7,
+          "aria": "Go to portfolio page 7 (T-RADAR trademark search system)"
+        }
+      ]
+    },
+    "awards": {
+      "title": "Awards",
+      "items": [
+        {
+          "date": "2024.08",
+          "text": "<strong>Gymnius</strong>: Excellence Award at the 1st LLM Service Development Hackathon",
+          "page": 9,
+          "aria": "Go to portfolio page 9 (Gymnius)"
+        },
+        {
+          "date": "2025.02",
+          "text": "Best Presentation, KSCDE Winter Conference",
+          "page": 5,
+          "aria": "Go to portfolio page 4 (KIMCHI)"
+        }
+      ]
+    },
+    "patents": {
+      "title": "Patent",
+      "items": [
+        {
+          "date": "2023",
+          "text": "Fire image generation system and method <br>(Filed & published, 1020250021779)"
+        },
+        {
+          "date": "2024",
+          "text": "LLM prompt-based conversion model data augmentation device <br>(Filed, 1020240137347)"
+        },
+        {
+          "date": "2025",
+          "text": "AI agent multimodal similarity system for trademark search & registration decisions <br>(Filed, 1020250165072)"
+        }
+      ]
+    },
+    "skills": {
+      "title": "Skill",
+      "groups": [
+        {
+          "title": "Shipped in 3+ projects",
+          "style": "primary",
+          "tags": ["Python", "PyTorch", "OpenCV", "OpenAI", "Diffusers", "FastAPI", "MySQL", "Git", "Docker", "Slack"]
+        },
+        {
+          "title": "Used in at least 1 project",
+          "style": "secondary",
+          "tags": ["JavaScript", "PaddleOCR", "MongoDB", "PostgreSQL", "PGVector", "LangGraph"]
+        }
+      ]
+    }
+  },
+  "pdf": {
+    "title": "Portfolio PDF Slides",
+    "download": "Download PDF",
+    "open": "Open in new tab",
+    "prev": "Previous page",
+    "next": "Next page",
+    "imageAlt": "Portfolio page {page}"
+  },
+  "footer": "© %YEAR% Seo Yongdeuk. All rights reserved."
+}

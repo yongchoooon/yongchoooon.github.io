@@ -29,7 +29,7 @@
     "bullets": [
       "국립부경대학교 기술데이터공학 전공 후 산업데이터공학 석사과정으로 진학해 연구와 실무 경험을 균형 있게 쌓고 있습니다.",
       "산업AI연구실(TEAMLAB) 연구원과 토모큐브 인턴십을 통해 현장의 데이터를 다루며 <strong>Segment Anything 기반 라벨링 자동화</strong>에서 <strong>Diffusion·LLM 데이터 증강</strong>까지 다양한 프로젝트를 주도했습니다.",
-      "두 건의 특허 출원과 해커톤·학회 수상으로 실용성과 연구 성과를 검증했습니다."
+      "세 건의 특허 출원과 해커톤·학회 수상으로 실용성과 연구 성과를 검증했습니다."
     ]
   },
   "cards": {
@@ -180,5 +180,5 @@
     "next": "다음 페이지",
     "imageAlt": "포트폴리오 {page}페이지"
   },
-  "footer": "© %YEAR% 서용득. 모든 권리를 보유하고 있습니다."
+  "footer": "© %YEAR% Seo Yongdeuk. All rights reserved."
 }

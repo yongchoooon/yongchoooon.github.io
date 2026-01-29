@@ -235,6 +235,10 @@
       letter-spacing: -0.04em;
     }
 
+    html[lang="en"] #hero-title {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+    }
+
     .hero__lead-list {
       margin: 0;
       padding-left: 22px;
@@ -472,6 +476,18 @@
       border-color: rgba(248, 113, 113, 0.45);
     }
 
+    .timeline__link--github {
+      background: #0f172a;
+      color: #f8fafc;
+      border-color: rgba(15, 23, 42, 0.8);
+    }
+
+    body.dark .timeline__link--github {
+      background: rgba(248, 250, 252, 0.18);
+      color: #0f172a;
+      border-color: rgba(248, 250, 252, 0.35);
+    }
+
     .timeline__link-icon {
       width: 18px;
       height: 18px;
@@ -507,6 +523,16 @@
     body.dark .timeline__link--arxiv .timeline__link-icon {
       background: #f87171;
       color: #111827;
+    }
+
+    .timeline__link--github .timeline__link-icon {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    body.dark .timeline__link--github .timeline__link-icon {
+      background: #0f172a;
+      color: #f8fafc;
     }
 
     body.dark .timeline__link:hover {

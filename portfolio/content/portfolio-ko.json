@@ -85,7 +85,14 @@
           "date": "2024.11 – 2024.12",
           "text": "<strong>KIMCHI</strong>: 한국적 Diffusion 모델 개발 및 Korean CDE 학회 논문 게재",
           "page": 5,
-          "aria": "포트폴리오 4페이지( KIMCHI: 한국적 Diffusion 모델 개발 )로 이동"
+          "aria": "포트폴리오 4페이지( KIMCHI: 한국적 Diffusion 모델 개발 )로 이동",
+          "link": {
+            "href": "https://github.com/yongchoooon/kimchi",
+            "label": "GitHub",
+            "icon": "G",
+            "variant": "github",
+            "srText": "GitHub 저장소 열기 (새 창)"
+          }
         },
         {
           "date": "2025.03 – 2025.08",
@@ -104,7 +111,14 @@
           "date": "2025.09 – 진행 중",
           "text": "<strong>T-RADAR</strong>: 유사 상표 멀티모달 검색 &amp; AI Agent 기반 등록 시뮬레이션 시스템 개발",
           "page": 7,
-          "aria": "포트폴리오 7페이지( T-RADAR: 상표 검색 &amp; 등록 시뮬레이션 시스템 )로 이동"
+          "aria": "포트폴리오 7페이지( T-RADAR: 상표 검색 &amp; 등록 시뮬레이션 시스템 )로 이동",
+          "link": {
+            "href": "https://github.com/yongchoooon/tradar",
+            "label": "GitHub",
+            "icon": "G",
+            "variant": "github",
+            "srText": "GitHub 저장소 열기 (새 창)"
+          }
         }
       ]
     },

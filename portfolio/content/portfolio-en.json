@@ -85,7 +85,14 @@
           "date": "2024.11 – 2024.12",
           "text": "<strong>KIMCHI</strong>: Korean-style diffusion model and paper at the Korean CDE conference",
           "page": 5,
-          "aria": "Go to portfolio page 4 (KIMCHI diffusion model)"
+          "aria": "Go to portfolio page 4 (KIMCHI diffusion model)",
+          "link": {
+            "href": "https://github.com/yongchoooon/kimchi",
+            "label": "GitHub",
+            "icon": "G",
+            "variant": "github",
+            "srText": "Open GitHub repository in a new tab"
+          }
         },
         {
           "date": "2025.03 – 2025.08",
@@ -104,7 +111,14 @@
           "date": "2025.09 – Ongoing",
           "text": "<strong>T-RADAR</strong>: Multimodal trademark search & AI agent-based registration simulator",
           "page": 7,
-          "aria": "Go to portfolio page 7 (T-RADAR trademark search system)"
+          "aria": "Go to portfolio page 7 (T-RADAR trademark search system)",
+          "link": {
+            "href": "https://github.com/yongchoooon/tradar",
+            "label": "GitHub",
+            "icon": "G",
+            "variant": "github",
+            "srText": "Open GitHub repository in a new tab"
+          }
         }
       ]
     },

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="T-RADAR simulates trademark examination through an interactive retrieval interface for confusion risk assessment.">
+  <meta name="keywords" content="T-RADAR, Trademark Examination, Confusion Risk Assessment, Interactive Retrieval, Trademark Search">
+  <title>T-RADAR: Simulating Trademark Examination as an Interactive Retrieval Interface for Confusion Risk Assessment</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="../index.html" aria-label="Home">
+        <span class="icon">
+          <i class="fas fa-home"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<section class="section">
+    <div class="container wide-container">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span class="stellar-gradient">T-RADAR</span>: Simulating Trademark Examination as an Interactive Retrieval Interface for Confusion Risk Assessment</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://yongchoooon.github.io/portfolio/">Yongdeuk Seo</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://github.com/pizzalist">Noah Lee</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.co.kr/citations?user=METPtcAAAAAJ&hl=ko&oi=ao">Hyun-seok Min</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.co.kr/citations?user=kQ1PV1EAAAAJ&hl=ko&oi=ao">Sungchul Choi</a><sup>1</sup></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Pukyong National University, South Korea,</span>
+            <span class="author-block"><sup>2</sup>Tomocube Inc., South Korea</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><i class="fas fa-envelope"></i> sod7050@pukyong.ac.kr,</span>
+            <span class="author-block">pizzalist@pukyong.ac.kr,</span>
+            <span class="author-block">hsmin@tomocube.com,</span>
+            <span class="author-block">sc82.choi@pknu.ac.kr</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://do7ajfzdgr22.cloudfront.net/" target="_blank" rel="noreferrer noopener" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-play-circle"></i></span>
+                  <span>Demo</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/yongchoooon/tradar" target="_blank" rel="noreferrer noopener" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container wide-container">
+    <div class="has-text-centered">
+      <video controls playsinline preload="metadata" style="border-radius: 18px; width: 80%; max-width: 840px; border: 1px solid #e2e6f0;">
+        <source src="./static/videos/tradar_demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="section abstract-band">
+  <div class="abstract-wrapper">
+    <div class="container wide-container">
+      <div class="columns is-centered has-text-centered abstract-section">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>Ranked lists excel at finding candidates but provide no mechanism for judging them. In trademark clearance, where practitioners must assess likelihood of confusion and registrability risk across visual, phonetic, and conceptual dimensions under goods and services constraints, the core task is not retrieval but multi-criteria comparative judgment informed by examination practice and prior prosecution records. We propose agentic simulation as an IR interface and demonstrate it in T-RADAR, a trademark clearance system. Beyond retrieval, T-RADAR introduces simulation-driven adjudication: candidates retrieved via multimodal dual-encoder search can be examined through an adversarial agent-to-agent Examiner versus Applicant exchange governed by a structured protocol of claims and rebuttals, producing a scored assessment that draws on similarity factors described in trademark examination guidelines and serves as a heuristic review prioritization signal. The interaction proceeds in three steps. Query: users input a candidate mark and its goods designation to retrieve potentially conflicting registrations. Select and Simulate: users choose high-risk pairs and launch simulated examination. Refine and Re-simulate: users adjust the mark elements or goods designation based on system suggested strategies and compare how outcomes change.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container wide-container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+          <p>This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noreferrer noopener">source code</a> of this website, we just ask that you link back to this page in the footer. Please remember to remove the analytics code included in the header of the website which you do not want on your website.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

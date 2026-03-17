@@ -27,8 +27,8 @@
   "overview": {
     "title": "이력 한눈에 보기",
     "bullets": [
-      "국립부경대학교 기술데이터공학 전공 후 산업데이터공학 석사과정으로 진학해 연구와 실무 경험을 균형 있게 쌓고 있습니다.",
-      "산업AI연구실(TEAMLAB)과 토모큐브 인턴십에서 Segment Anything 자동 라벨링부터 Diffusion·LLM 기반 데이터 증강까지 현장 프로젝트를 주도했습니다.",
+      "<strong>국립부경대학교</strong> 기술데이터공학 전공 후 산업데이터공학 석사과정으로 진학해 연구와 실무 경험을 균형 있게 쌓고 있습니다.",
+      "<strong>산업AI연구실(TEAMLAB)</strong>과 토모큐브 인턴십에서 <strong>Segment Anything 자동 라벨링</strong>부터 <strong>Diffusion·LLM 기반</strong> 데이터 증강까지 현장 프로젝트를 주도했습니다.",
       "유사 상표 멀티모달 검색과 <strong>AI Agent 기반 등록 가능성 시뮬레이션 시스템</strong>을 설계·개발하고 <strong>FastAPI + AWS</strong> 기반 서비스 배포 경험이 있습니다.",
       "연구 결과를 <strong>ECCV Workshop</strong>과 <strong>AAAI Workshop</strong>에서 발표했습니다."
     ]
@@ -39,11 +39,11 @@
       "items": [
         {
           "date": "2017.03 – 2024.02",
-          "text": "국립부경대학교 시스템경영안전공학부 기술데이터공학 전공 (공학사)"
+          "text": "<strong>국립부경대학교</strong> 시스템경영안전공학부 기술데이터공학 전공 (공학사)"
         },
         {
           "date": "2024.03 – 2026.02",
-          "text": "Major in Industrial Data Science & Engineering, Department of Industrial and Data Engineering, Pukyong National University"
+          "text": "Major in Industrial Data Science & Engineering, Department of Industrial and Data Engineering, <strong>Pukyong National University</strong>"
         }
       ]
     },
@@ -52,7 +52,7 @@
       "items": [
         {
           "date": "2022.04 – 2026.02",
-          "text": "국립부경대학교 산업AI연구실(TEAMLAB) 연구원"
+          "text": "<strong>국립부경대학교</strong> <strong>산업AI연구실(TEAMLAB)</strong> 연구원"
         },
         {
           "date": "2023.08 – 2023.12",

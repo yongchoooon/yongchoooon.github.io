@@ -27,8 +27,8 @@
   "overview": {
     "title": "Snapshot of My Work",
     "bullets": [
-      "After majoring in Technology & Data Engineering at Pukyong National University, I entered the master's program in Industrial Data Engineering, building research and hands-on experience in balance.",
-      "At the Industrial AI Lab (TEAMLAB) and during my internship at Tomocube, I led production projects from Segment Anything auto-labeling to Diffusion + LLM-based data augmentation.",
+      "After majoring in Technology & Data Engineering at <strong>Pukyong National University</strong>, I entered the master's program in Industrial Data Engineering, building research and hands-on experience in balance.",
+      "At the <strong>Industrial AI Lab (TEAMLAB)</strong> and during my internship at Tomocube, I led production projects from <strong>Segment Anything auto-labeling</strong> to <strong>Diffusion + LLM-based</strong> data augmentation.",
       "I designed and developed a multimodal similar-trademark search system and an <strong>AI Agent-based registration feasibility simulation system</strong>, and I have experience deploying services with <strong>FastAPI + AWS</strong>.",
       "I presented research outcomes at the <strong>ECCV Workshop</strong> and the <strong>AAAI Workshop</strong>."
     ]
@@ -39,11 +39,11 @@
       "items": [
         {
           "date": "2017.03 – 2024.02",
-          "text": "B.S., Technology Data Engineering, Dept. of Systems Management & Safety Engineering, Pukyong National University"
+          "text": "B.S., Technology Data Engineering, Dept. of Systems Management & Safety Engineering, <strong>Pukyong National University</strong>"
         },
         {
           "date": "2024.03 – 2026.02",
-          "text": "Major in Industrial Data Science & Engineering, Department of Industrial and Data Engineering, Pukyong National University"
+          "text": "Major in Industrial Data Science & Engineering, Department of Industrial and Data Engineering, <strong>Pukyong National University</strong>"
         }
       ]
     },
@@ -52,7 +52,7 @@
       "items": [
         {
           "date": "2022.04 – 2026.02",
-          "text": "Researcher, Industrial AI Lab (TEAMLAB), Pukyong National University"
+          "text": "Researcher, <strong>Industrial AI Lab (TEAMLAB)</strong>, <strong>Pukyong National University</strong>"
         },
         {
           "date": "2023.08 – 2023.12",

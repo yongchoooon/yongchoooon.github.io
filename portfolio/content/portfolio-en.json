@@ -27,9 +27,10 @@
   "overview": {
     "title": "Snapshot of My Work",
     "bullets": [
-      "Majored in Technology & Data Engineering and now pursue an Industrial Data Engineering master's program, keeping research and practice balanced.",
-      "At the Industrial AI Lab (TEAMLAB) and during the Tomocube internship I led projects ranging from <strong>Segment Anything labeling automation</strong> to <strong>Diffusion + LLM data augmentation</strong> on production datasets.",
-      "Three patent filings plus hackathon and conference awards validate both practical value and research impact."
+      "After majoring in Technology & Data Engineering at Pukyong National University, I entered the master's program in Industrial Data Engineering, building research and hands-on experience in balance.",
+      "At the Industrial AI Lab (TEAMLAB) and during my internship at Tomocube, I led production projects from Segment Anything auto-labeling to Diffusion + LLM-based data augmentation.",
+      "I designed and developed a multimodal similar-trademark search system and an <strong>AI Agent-based registration feasibility simulation system</strong>, and I have experience deploying services with <strong>FastAPI + AWS</strong>.",
+      "I presented research outcomes at the <strong>ECCV Workshop</strong> and the <strong>AAAI Workshop</strong>."
     ]
   },
   "cards": {

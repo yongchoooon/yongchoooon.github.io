@@ -67,13 +67,13 @@
           "date": "2023.08 – 2023.12",
           "text": "Built and deployed a Segment Anything Model-based auto-annotator inside the company",
           "page": 3,
-          "aria": "Go to portfolio page 6 (Segment Anything-based auto-annotator)"
+          "aria": "Go to portfolio page 3 (Segment Anything-based auto-annotator)"
         },
         {
           "date": "2024.04 – 2024.08",
           "text": "<strong>DALDA</strong>: Diffusion + LLM data augmentation framework accepted to ECCVW",
           "page": 4,
-          "aria": "Go to portfolio page 3 (DALDA: Diffusion + LLM data augmentation)",
+          "aria": "Go to portfolio page 4 (DALDA: Diffusion + LLM data augmentation)",
           "link": {
             "href": "https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11",
             "label": "Springer",
@@ -86,7 +86,7 @@
           "date": "2024.11 – 2024.12",
           "text": "<strong>KIMCHI</strong>: Korean-style diffusion model and paper at the Korean CDE conference",
           "page": 5,
-          "aria": "Go to portfolio page 4 (KIMCHI diffusion model)",
+          "aria": "Go to portfolio page 5 (KIMCHI diffusion model)",
           "link": {
             "href": "https://github.com/yongchoooon/kimchi",
             "label": "GitHub",
@@ -96,10 +96,16 @@
           }
         },
         {
+          "date": "2025.02 – 2025.08",
+          "text": "<strong>CABIN</strong>: Role-separated synthetic data augmentation framework for 1-shot classification (Under review at an SCIE-indexed journal)",
+          "page": 6,
+          "aria": "Go to portfolio page 6 (CABIN 1-shot augmentation framework)"
+        },
+        {
           "date": "2025.03 – 2025.08",
           "text": "<strong>STELLAR</strong>: Low-resource scene text editing model accepted to AAAIW",
-          "page": 6,
-          "aria": "Go to portfolio page 5 (STELLAR scene text editing)",
+          "page": 7,
+          "aria": "Go to portfolio page 7 (STELLAR scene text editing)",
           "link": {
             "href": "https://arxiv.org/abs/2511.09977",
             "label": "arXiv",
@@ -111,8 +117,8 @@
         {
           "date": "2025.09 – 2026.02",
           "text": "<strong>T-RADAR</strong>: Multimodal trademark search & AI agent-based registration simulator",
-          "page": 7,
-          "aria": "Go to portfolio page 7 (T-RADAR trademark search system)",
+          "page": 8,
+          "aria": "Go to portfolio page 8 (T-RADAR trademark search system)",
           "link": {
             "href": "https://github.com/yongchoooon/tradar",
             "label": "GitHub",
@@ -129,14 +135,14 @@
         {
           "date": "2024.08",
           "text": "<strong>Gymnius</strong>: Excellence Award at the 1st LLM Service Development Hackathon",
-          "page": 9,
-          "aria": "Go to portfolio page 9 (Gymnius)"
+          "page": 10,
+          "aria": "Go to portfolio page 10 (Gymnius)"
         },
         {
           "date": "2025.02",
           "text": "Best Presentation, Korean CDE Winter Conference",
           "page": 5,
-          "aria": "Go to portfolio page 4 (KIMCHI)"
+          "aria": "Go to portfolio page 5 (KIMCHI)"
         }
       ]
     },

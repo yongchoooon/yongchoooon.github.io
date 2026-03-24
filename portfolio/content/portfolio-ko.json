@@ -67,13 +67,13 @@
           "date": "2023.08 – 2023.12",
           "text": "Segment Anything Model 기반 Auto-Annotator 개발 및 사내 배포",
           "page": 3,
-          "aria": "포트폴리오 6페이지( Segment Anything 기반 Auto-Annotator 개발 및 사내 배포 )로 이동"
+          "aria": "포트폴리오 3페이지( Segment Anything 기반 Auto-Annotator 개발 및 사내 배포 )로 이동"
         },
         {
           "date": "2024.04 – 2024.08",
           "text": "<strong>DALDA</strong>: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 ECCVW 논문 게재",
           "page": 4,
-          "aria": "포트폴리오 3페이지( DALDA: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재 )로 이동",
+          "aria": "포트폴리오 4페이지( DALDA: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 논문 게재 )로 이동",
           "link": {
             "href": "https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11",
             "label": "Springer",
@@ -86,7 +86,7 @@
           "date": "2024.11 – 2024.12",
           "text": "<strong>KIMCHI</strong>: 한국적 Diffusion 모델 개발 및 Korean CDE 학회 논문 게재",
           "page": 5,
-          "aria": "포트폴리오 4페이지( KIMCHI: 한국적 Diffusion 모델 개발 )로 이동",
+          "aria": "포트폴리오 5페이지( KIMCHI: 한국적 Diffusion 모델 개발 )로 이동",
           "link": {
             "href": "https://github.com/yongchoooon/kimchi",
             "label": "GitHub",
@@ -96,10 +96,16 @@
           }
         },
         {
+          "date": "2025.02 – 2025.08",
+          "text": "<strong>CABIN</strong>: 1-shot 분류를 위한 분리형 합성 데이터 증강 프레임워크 개발 (SCIE급 저널 심사 중)",
+          "page": 6,
+          "aria": "포트폴리오 6페이지( CABIN: 1-shot 분류 합성 데이터 증강 프레임워크 )로 이동"
+        },
+        {
           "date": "2025.03 – 2025.08",
           "text": "<strong>STELLAR</strong>: 저자원 언어 Scene Text Editing 모델 개발 및 AAAIW 논문 게재",
-          "page": 6,
-          "aria": "포트폴리오 5페이지( STELLAR: Scene Text Editing 모델 개발 )로 이동",
+          "page": 7,
+          "aria": "포트폴리오 7페이지( STELLAR: Scene Text Editing 모델 개발 )로 이동",
           "link": {
             "href": "https://arxiv.org/abs/2511.09977",
             "label": "arXiv",
@@ -111,8 +117,8 @@
         {
           "date": "2025.09 – 2026.02",
           "text": "<strong>T-RADAR</strong>: 유사 상표 멀티모달 검색 &amp; AI Agent 기반 등록 시뮬레이션 시스템 개발",
-          "page": 7,
-          "aria": "포트폴리오 7페이지( T-RADAR: 상표 검색 &amp; 등록 시뮬레이션 시스템 )로 이동",
+          "page": 8,
+          "aria": "포트폴리오 8페이지( T-RADAR: 상표 검색 &amp; 등록 시뮬레이션 시스템 )로 이동",
           "link": {
             "href": "https://github.com/yongchoooon/tradar",
             "label": "GitHub",
@@ -129,14 +135,14 @@
         {
           "date": "2024.08",
           "text": "<strong>Gymnius</strong>: 제1회 LLM 활용 서비스 개발 해커톤 우수상",
-          "page": 9,
-          "aria": "포트폴리오 9페이지( Gymnius )로 이동"
+          "page": 10,
+          "aria": "포트폴리오 10페이지( Gymnius )로 이동"
         },
         {
           "date": "2025.02",
           "text": "Korean CDE 동계학술대회 우수발표상",
           "page": 5,
-          "aria": "포트폴리오 4페이지( KIMCHI )로 이동"
+          "aria": "포트폴리오 5페이지( KIMCHI )로 이동"
         }
       ]
     },

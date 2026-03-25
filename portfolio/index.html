@@ -363,7 +363,7 @@
     .card--scroll {
       overflow: visible;
       max-height: none;
-      padding-right: 0;
+      padding-inline: 22px;
     }
 
     .timeline {
@@ -614,6 +614,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      width: 100%;
+      align-items: flex-start;
     }
 
     .tag {
@@ -621,6 +623,8 @@
       border-radius: 12px;
       font-weight: 600;
       font-size: 0.9rem;
+      flex: 0 0 auto;
+      max-width: 100%;
     }
 
     .tag--primary {

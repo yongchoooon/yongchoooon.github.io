@@ -169,12 +169,12 @@
         {
           "title": "Shipped in 3+ projects",
           "style": "primary",
-          "tags": ["Python", "PyTorch", "OpenCV", "OpenAI", "Diffusers", "FastAPI", "MySQL", "Git", "Docker", "Slack"]
+          "tags": ["Python", "PyTorch", "OpenCV", "OpenAI", "Codex", "Diffusers", "FastAPI", "MySQL", "Git", "Docker", "Slack"]
         },
         {
           "title": "Used in at least 1 project",
           "style": "secondary",
-          "tags": ["JavaScript", "PaddleOCR", "MongoDB", "PostgreSQL", "PGVector", "LangGraph"]
+          "tags": ["JavaScript", "Cursor", "PaddleOCR", "MongoDB", "PostgreSQL", "PGVector", "LangGraph"]
         }
       ]
     }

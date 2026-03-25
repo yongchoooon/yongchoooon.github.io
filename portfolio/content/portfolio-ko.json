@@ -169,12 +169,12 @@
         {
           "title": "3회 이상 프로젝트 경험",
           "style": "primary",
-          "tags": ["Python", "PyTorch", "OpenCV", "OpenAI", "Diffusers", "FastAPI", "MySQL", "Git", "Docker", "Slack"]
+          "tags": ["Python", "PyTorch", "OpenCV", "OpenAI", "Codex", "Diffusers", "FastAPI", "MySQL", "Git", "Docker", "Slack"]
         },
         {
           "title": "1회 이상 프로젝트 경험 보유",
           "style": "secondary",
-          "tags": ["JavaScript", "PaddleOCR", "MongoDB", "PostgreSQL", "PGVector", "LangGraph"]
+          "tags": ["JavaScript", "Cursor", "PaddleOCR", "MongoDB", "PostgreSQL", "PGVector", "LangGraph"]
         }
       ]
     }

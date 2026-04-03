@@ -1,0 +1,273 @@
+{
+  "lang": "ko",
+  "meta": {
+    "title": "서용득 | Portfolio",
+    "description": "서용득 연구원의 학력, 연구 경력, 프로젝트, 특허, 수상 이력을 확인하고 포트폴리오 PDF를 바로 열어보세요."
+  },
+  "bannerTitle": "Seo Yongdeuk Portfolio",
+  "languageToggle": {
+    "aria": "영어로 보기"
+  },
+  "themeToggle": {
+    "label": "모드",
+    "switchToLight": "라이트 모드로 전환",
+    "switchToDark": "다크 모드로 전환"
+  },
+  "hero": {
+    "eyebrow": "Seo Yongdeuk Portfolio",
+    "title": "AI로 가능성을 확장하는 Engineer, 서용득입니다.",
+    "bullets": [
+      "복잡한 문제를 분석하고 해결하는 과정에서 성취감을 느낍니다.",
+      "Computer Vision, Generative AI 등 다양한 인공지능 기술에 관심을 가지고 이를 활용해 다양한 문제 해결 경험을 쌓아왔습니다.",
+      "연구적 탐구와 실무적 개발 경험을 바탕으로 AI 기술을 실제 서비스와 산업 현장에 적용할 수 있습니다."
+    ],
+    "photoAlt": "서용득 프로필 사진",
+    "photoAria": "프로필 사진을 눌러 인사하기"
+  },
+  "overview": {
+    "title": "이력 한눈에 보기",
+    "bullets": [
+      "국립부경대학교 기술데이터공학 전공 후 산업데이터공학 석사과정으로 진학해 연구와 실무 경험을 균형 있게 쌓고 있습니다.",
+      "산업AI연구실(TEAMLAB)과 토모큐브 인턴십에서 Segment Anything 자동 라벨링부터 Diffusion·LLM 기반 데이터 증강까지 현장 프로젝트를 주도했습니다.",
+      "유사 상표 멀티모달 검색과 AI Agent 기반 등록 가능성 시뮬레이션 시스템을 설계·개발하고 FastAPI + AWS 기반 서비스 배포 경험이 있습니다.",
+      "연구 결과를 ECCV Workshops, AAAI Workshops, ACM SIGIR Demonstration Track, Society for CDE에서 발표했습니다."
+    ]
+  },
+  "cards": {
+    "education": {
+      "title": "Graduation",
+      "items": [
+        {
+          "date": "2017.03 – 2024.02",
+          "text": "국립부경대학교 시스템경영안전공학부 기술데이터공학 전공 (공학사)"
+        },
+        {
+          "date": "2024.03 – 2026.02",
+          "text": "국립부경대학교 산업및데이터공학과 산업데이터공학융합 전공 (석사과정)"
+        }
+      ]
+    },
+    "experience": {
+      "title": "Experience",
+      "items": [
+        {
+          "date": "2022.04 – 2026.02",
+          "text": "<strong>국립부경대학교</strong> <strong>산업AI연구실(TEAMLAB)</strong> 연구원"
+        },
+        {
+          "date": "2023.08 – 2023.12",
+          "text": "(주)토모큐브 AI팀 Intern"
+        }
+      ]
+    },
+    "projects": {
+      "title": "Paper & Project Highlights",
+      "legend": [
+        {
+          "icon": "💙",
+          "label": "게재/채택 논문"
+        },
+        {
+          "icon": "🩵",
+          "label": "심사 중 논문"
+        },
+        {
+          "icon": "🛠️",
+          "label": "산업/연구 프로젝트"
+        }
+      ],
+      "items": [
+        {
+          "date": "2023.08 – 2023.12",
+          "kind": "project",
+          "icon": "🛠️",
+          "text": "<strong>SAM Auto-Annotator</strong>: Segment Anything Model 기반 Auto-Annotator 개발 및 사내 배포"
+        },
+        {
+          "date": "2024.04 – 2024.08",
+          "kind": "paper",
+          "icon": "💙",
+          "text": "“<strong>DALDA</strong>: Data Augmentation Leveraging Diffusion Model and LLM with Adaptive Guidance Scaling”",
+          "authors": "Jung, K.; <strong>Seo, Y.</strong>; Cho, S.; Kim, J.; Min, H.S.; Choi, S.",
+          "venue": "Accepted to European Conference on Computer Vision (ECCV) Workshops Oral. (2024)",
+          "links": [
+            {
+              "href": "https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11",
+              "label": "Springer",
+              "icon": "S",
+              "variant": "springer",
+              "srText": "에서 논문 보기 (새 창)"
+            },
+            {
+              "href": "https://github.com/kkyuhun94/dalda",
+              "label": "GitHub",
+              "icon": "G",
+              "variant": "github",
+              "srText": "GitHub 저장소 열기 (새 창)"
+            }
+          ]
+        },
+        {
+          "date": "2024.11 – 2024.12",
+          "kind": "paper",
+          "icon": "💙",
+          "text": "“<strong>KIMCHI</strong>: Korean Diffusion Model Adapting Culture and History”",
+          "authors": "<strong>Seo, Y.</strong>; Kwon, Y.; Lee, N.; Jung, K.; Cho, S.; Jang, S.; Choi, S.",
+          "venue": "Accepted to Society for Computational Design and Engineering 2025 Winter Conference Oral. (2025)",
+          "links": [
+            {
+              "href": "https://github.com/yongchoooon/kimchi",
+              "label": "GitHub",
+              "icon": "G",
+              "variant": "github",
+              "srText": "GitHub 저장소 열기 (새 창)"
+            }
+          ]
+        },
+        {
+          "date": "2025.02 – 2025.08",
+          "kind": "submission",
+          "icon": "🩵",
+          "text": "“<strong>CABIN</strong>: Controlling Augmentations for Balancing Invariance and Diversification in One-Shot Image Classification”",
+          "authors": "Jung, K.; <strong>Seo, Y.</strong>; Jung, Y.; Cho, S.; Min, H.S.; Choi, S.; Kim, J.",
+          "venue": "Submitted to Neurocomputing. Under Review. (2026)",
+          "links": [
+            {
+              "href": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6300631",
+              "label": "SSRN",
+              "icon": "S",
+              "variant": "ssrn",
+              "srText": "에서 프리프린트 보기 (새 창)"
+            },
+            {
+              "href": "https://github.com/kkyuhun94/CABIN",
+              "label": "GitHub",
+              "icon": "G",
+              "variant": "github",
+              "srText": "GitHub 저장소 열기 (새 창)"
+            }
+          ]
+        },
+        {
+          "date": "2025.03 – 2025.08",
+          "kind": "paper",
+          "icon": "💙",
+          "text": "“<strong>STELLAR</strong>: Scene Text Editor for Low-Resource Language and Real-World Data”",
+          "authors": "<strong>Seo, Y.</strong>; Min, H.S.; Choi, S.",
+          "venue": "Accepted to The Association for the Advance of Artificial Intelligence (AAAI) Workshops Oral. (2026)",
+          "links": [
+            {
+              "href": "https://yongchoooon.github.io/stellar",
+              "label": "Project Page",
+              "icon": "P",
+              "variant": "project",
+              "srText": "프로젝트 페이지 열기 (새 창)"
+            },
+            {
+              "href": "https://arxiv.org/abs/2511.09977",
+              "label": "arXiv",
+              "icon": "A",
+              "variant": "arxiv",
+              "srText": "에서 논문 보기 (새 창)"
+            },
+            {
+              "href": "https://github.com/yongchoooon/stellar",
+              "label": "GitHub",
+              "icon": "G",
+              "variant": "github",
+              "srText": "GitHub 저장소 열기 (새 창)"
+            }
+          ]
+        },
+        {
+          "date": "2025.09 – 2026.02",
+          "kind": "paper",
+          "icon": "💙",
+          "text": "“<strong>T-RADAR</strong>: Simulating Trademark Examination as an Interactive Retrieval Interface for Conflict Risk Assessment”",
+          "authors": "<strong>Seo, Y.</strong>; Noah, L.; Min, H.S.; Choi, S.",
+          "venue": "Accepted to International ACM SIGIR Conference on Research and Development in Information Retrieval Demonstration Track. (2026)",
+          "links": [
+            {
+              "href": "https://yongchoooon.github.io/tradar/",
+              "label": "Project Page",
+              "icon": "P",
+              "variant": "project",
+              "srText": "프로젝트 페이지 열기 (새 창)"
+            },
+            {
+              "href": "https://do7ajfzdgr22.cloudfront.net/",
+              "label": "Demo",
+              "icon": "D",
+              "variant": "demo",
+              "srText": "실시간 데모 열기 (새 창)"
+            },
+            {
+              "href": "https://github.com/yongchoooon/tradar",
+              "label": "GitHub",
+              "icon": "G",
+              "variant": "github",
+              "srText": "GitHub 저장소 열기 (새 창)"
+            }
+          ]
+        }
+      ]
+    },
+    "awards": {
+      "title": "Awards",
+      "items": [
+        {
+          "date": "2024.08",
+          "text": "<strong>Gymnius</strong>: 제1회 LLM 활용 서비스 개발 해커톤 우수상"
+        },
+        {
+          "date": "2025.02",
+          "text": "<strong>KIMCHI</strong>: Korean CDE 동계학술대회 우수발표상"
+        }
+      ]
+    },
+    "patents": {
+      "title": "Patent",
+      "items": [
+        {
+          "date": "2023",
+          "title": "인공지능 학습을 위한 화재이미지 생성 시스템 및 방법 (System and method for creating fire image for training artificial intelligence model)",
+          "meta": "출원번호 1020230102847 / 공개번호 1020250021779"
+        },
+        {
+          "date": "2024",
+          "title": "대규모 언어 모델의 프롬프트를 적용한 확산 모델을 통한 데이터 증강 방법 및 장치 (Method and Device for Data Augmentation Using Diffusion Model Adapting LLM Prompts)",
+          "meta": "출원번호 1020240137347"
+        },
+        {
+          "date": "2025",
+          "title": "상표 검색 및 등록 가능성 판단을 위한 AI Agent 기반 복합 유사도 산정 시스템 및 방법 (AI Agent-based Composite Similarity Calculation System and Method For Trademark Search and Registration)",
+          "meta": "출원번호 1020250165072"
+        }
+      ]
+    },
+    "skills": {
+      "title": "Skill",
+      "groups": [
+        {
+          "title": "3회 이상 프로젝트 경험",
+          "style": "primary",
+          "tags": ["Python", "PyTorch", "OpenCV", "OpenAI", "Codex", "Diffusers", "FastAPI", "MySQL", "Git", "Docker", "Slack"]
+        },
+        {
+          "title": "1회 이상 프로젝트 경험 보유",
+          "style": "secondary",
+          "tags": ["JavaScript", "PaddleOCR", "MongoDB", "PostgreSQL", "PGVector", "LangGraph", "Cursor"]
+        }
+      ]
+    }
+  },
+  "pdf": {
+    "title": "포트폴리오 PDF 슬라이드",
+    "download": "PDF 다운로드",
+    "open": "새 탭에서 열기",
+    "prev": "이전 페이지",
+    "next": "다음 페이지",
+    "imageAlt": "포트폴리오 {page}페이지"
+  },
+  "footer": "© %YEAR% Seo Yongdeuk. All rights reserved."
+}

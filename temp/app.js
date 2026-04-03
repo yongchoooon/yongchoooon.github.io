@@ -1,6 +1,6 @@
 const COPY_PATHS = {
-  en: '../portfolio/content/portfolio-en.json',
-  ko: '../portfolio/content/portfolio-ko.json'
+  en: './content/portfolio-en.json',
+  ko: './content/portfolio-ko.json'
 };
 
 const UI_COPY = {
@@ -46,6 +46,7 @@ const heroBulletsEl = document.getElementById('hero-bullets');
 const overviewTitleEl = document.getElementById('overview-title');
 const overviewListEl = document.getElementById('overview-list');
 const projectsTitleEl = document.getElementById('projects-title');
+const projectsLegendEl = document.getElementById('projects-legend');
 const projectsListEl = document.getElementById('projects-list');
 const experienceTitleEl = document.getElementById('experience-title');
 const experienceListEl = document.getElementById('experience-list');
@@ -97,19 +98,138 @@ function renderEntries(container, items = [], options = {}) {
       : (item.text || '');
     textEl.innerHTML = textValue;
 
-    if (item.link?.href) {
+    const links = getEntryLinks(item);
+    links.forEach((link) => {
       textEl.appendChild(document.createTextNode(' '));
       const linkEl = document.createElement('a');
       linkEl.className = 'entry-link';
-      linkEl.href = item.link.href;
+      linkEl.href = link.href;
       linkEl.target = '_blank';
       linkEl.rel = 'noreferrer noopener';
-      linkEl.textContent = `[${item.link.label || 'Link'}]`;
+      linkEl.textContent = `[${link.label || 'Link'}]`;
       textEl.appendChild(linkEl);
-    }
+    });
 
     article.appendChild(textEl);
     container.appendChild(article);
+  });
+}
+
+function getEntryLinks(item) {
+  if (Array.isArray(item?.links)) {
+    return item.links.filter((link) => link?.href);
+  }
+  return item?.link?.href ? [item.link] : [];
+}
+
+function renderProjectLegend(legendItems = []) {
+  if (!projectsLegendEl) return;
+  projectsLegendEl.innerHTML = '';
+
+  legendItems.forEach((item) => {
+    const badgeEl = document.createElement('span');
+    badgeEl.className = 'project-legend-badge';
+
+    const iconEl = document.createElement('span');
+    iconEl.className = 'project-legend-icon';
+    iconEl.setAttribute('aria-hidden', 'true');
+    iconEl.textContent = item.icon || '';
+
+    const labelEl = document.createElement('span');
+    labelEl.textContent = item.label || '';
+
+    badgeEl.appendChild(iconEl);
+    badgeEl.appendChild(labelEl);
+    projectsLegendEl.appendChild(badgeEl);
+  });
+}
+
+function renderProjectEntries(container, items = []) {
+  if (!container) return;
+  container.innerHTML = '';
+
+  items.forEach((item) => {
+    const articleEl = document.createElement('article');
+    articleEl.className = 'entry project-entry';
+
+    const dateEl = document.createElement('span');
+    dateEl.className = 'entry-date';
+    dateEl.textContent = item.date || '';
+    articleEl.appendChild(dateEl);
+
+    const titleRowEl = document.createElement('p');
+    titleRowEl.className = 'entry-text project-title-row';
+
+    if (item.icon) {
+      const iconEl = document.createElement('span');
+      iconEl.className = 'project-kind-icon';
+      iconEl.setAttribute('aria-hidden', 'true');
+      iconEl.textContent = item.icon;
+      titleRowEl.appendChild(iconEl);
+    }
+
+    const titleEl = document.createElement('span');
+    titleEl.className = 'project-title-text';
+    titleEl.innerHTML = item.text || '';
+    titleRowEl.appendChild(titleEl);
+
+    getEntryLinks(item).forEach((link) => {
+      titleRowEl.appendChild(document.createTextNode(' '));
+      const linkEl = document.createElement('a');
+      linkEl.className = 'entry-link';
+      linkEl.href = link.href;
+      linkEl.target = '_blank';
+      linkEl.rel = 'noreferrer noopener';
+      linkEl.textContent = `[${link.label || 'Link'}]`;
+      titleRowEl.appendChild(linkEl);
+    });
+
+    articleEl.appendChild(titleRowEl);
+
+    if (item.authors) {
+      const authorsEl = document.createElement('p');
+      authorsEl.className = 'project-meta project-authors';
+      authorsEl.innerHTML = item.authors;
+      articleEl.appendChild(authorsEl);
+    }
+
+    if (item.venue) {
+      const venueEl = document.createElement('p');
+      venueEl.className = 'project-meta project-venue';
+      venueEl.innerHTML = item.venue;
+      articleEl.appendChild(venueEl);
+    }
+
+    container.appendChild(articleEl);
+  });
+}
+
+function renderPatentEntries(container, items = []) {
+  if (!container) return;
+  container.innerHTML = '';
+
+  items.forEach((item) => {
+    const articleEl = document.createElement('article');
+    articleEl.className = 'entry patent-entry';
+
+    const dateEl = document.createElement('span');
+    dateEl.className = 'entry-date';
+    dateEl.textContent = item.date || '';
+    articleEl.appendChild(dateEl);
+
+    const titleEl = document.createElement('p');
+    titleEl.className = 'patent-line entry-text';
+    titleEl.innerHTML = item.title || item.text || '';
+    articleEl.appendChild(titleEl);
+
+    if (item.meta) {
+      const metaEl = document.createElement('p');
+      metaEl.className = 'patent-line patent-meta';
+      metaEl.innerHTML = item.meta;
+      articleEl.appendChild(metaEl);
+    }
+
+    container.appendChild(articleEl);
   });
 }
 
@@ -130,7 +250,9 @@ function renderSkills(groups = []) {
 
     (group.tags || []).forEach((tag) => {
       const tagEl = document.createElement('span');
-      tagEl.className = 'skill-tag';
+      tagEl.className = group.style === 'secondary'
+        ? 'skill-tag skill-tag-secondary'
+        : 'skill-tag';
       tagEl.textContent = tag;
       tagListEl.appendChild(tagEl);
     });
@@ -184,7 +306,8 @@ function applyCopy(copy) {
   renderList(overviewListEl, copy.overview?.bullets || []);
 
   setText(projectsTitleEl, cards.projects?.title || uiCopy.nav.projects);
-  renderEntries(projectsListEl, cards.projects?.items || []);
+  renderProjectLegend(cards.projects?.legend || []);
+  renderProjectEntries(projectsListEl, cards.projects?.items || []);
 
   setText(experienceTitleEl, cards.experience?.title || uiCopy.nav.experience);
   renderEntries(experienceListEl, cards.experience?.items || [], { stripStrong: true });
@@ -196,7 +319,7 @@ function applyCopy(copy) {
   renderEntries(awardsListEl, cards.awards?.items || []);
 
   setText(patentsTitleEl, cards.patents?.title || uiCopy.nav.patents);
-  renderEntries(patentsListEl, cards.patents?.items || []);
+  renderPatentEntries(patentsListEl, cards.patents?.items || []);
 
   setText(skillsTitleEl, cards.skills?.title || uiCopy.nav.skills);
   renderSkills(cards.skills?.groups || []);

@@ -271,6 +271,30 @@ button {
   gap: 20px;
 }
 
+.project-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-top: 16px;
+}
+
+.project-legend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.project-legend-icon {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
 .entry-date {
   display: block;
   margin-bottom: 6px;
@@ -285,6 +309,65 @@ button {
   margin: 0;
   color: var(--text);
   font-size: 1rem;
+}
+
+.project-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 8px;
+}
+
+.project-kind-icon {
+  flex: 0 0 auto;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.project-title-text {
+  min-width: 0;
+}
+
+.project-meta {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.project-authors {
+  color: var(--muted);
+}
+
+.project-authors strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.project-venue {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.patent-line {
+  position: relative;
+  margin: 0;
+  padding-left: 16px;
+}
+
+.patent-line::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0.18em;
+  color: var(--accent);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.patent-meta {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
 .entry-link {
@@ -325,6 +408,11 @@ button {
   color: var(--accent);
   font-size: 0.88rem;
   font-weight: 600;
+}
+
+.skill-tag-secondary {
+  background: #e5e7eb;
+  color: #111111;
 }
 
 .footer {

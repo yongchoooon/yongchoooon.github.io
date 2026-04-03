@@ -102,6 +102,7 @@ button {
   gap: 44px;
   align-items: center;
   padding-top: 42px;
+  padding-bottom: 22px;
 }
 
 .profile-column {

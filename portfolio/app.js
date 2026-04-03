@@ -39,6 +39,12 @@ const UI_COPY = {
 const cache = {};
 let currentLang = 'en';
 
+const PROJECT_ICON_BY_KIND = {
+  paper: '💙',
+  submission: '🩵',
+  project: '🧩'
+};
+
 const langToggle = document.getElementById('lang-toggle');
 const heroEyebrowEl = document.getElementById('hero-eyebrow');
 const heroTitleEl = document.getElementById('hero-title');
@@ -122,6 +128,57 @@ function getEntryLinks(item) {
   return item?.link?.href ? [item.link] : [];
 }
 
+function normalizeProjectText(item) {
+  const rawText = item?.text || '';
+  const fallbackIcon = item?.icon || PROJECT_ICON_BY_KIND[item?.kind] || '';
+  if (!fallbackIcon || rawText.trim().startsWith(fallbackIcon)) {
+    return rawText;
+  }
+  return `${fallbackIcon} ${rawText}`.trim();
+}
+
+function localizePatentMeta(metaText) {
+  const rawMeta = metaText || '';
+  if (currentLang === 'ko') {
+    return rawMeta
+      .replace(/Application No\./g, '출원번호')
+      .replace(/Publication No\./g, '공개번호');
+  }
+  return rawMeta
+    .replace(/출원번호/g, 'Application No.')
+    .replace(/공개번호/g, 'Publication No.');
+}
+
+function normalizePatentEntry(item) {
+  if (!item) {
+    return { title: '', meta: '' };
+  }
+
+  if (item.title || item.meta) {
+    return {
+      title: item.title || '',
+      meta: localizePatentMeta(item.meta || '')
+    };
+  }
+
+  const lines = (item.text || '')
+    .split(/<br\s*\/?>/i)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (lines.length === 0) {
+    return { title: '', meta: '' };
+  }
+
+  const titleLines = lines.slice(0, Math.min(2, lines.length));
+  const koTitle = titleLines.find((line) => /[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(line)) || titleLines[0] || '';
+  const enTitle = titleLines.find((line) => !/[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(line)) || titleLines[1] || '';
+  const title = enTitle && enTitle !== koTitle ? `${koTitle} (${enTitle})` : koTitle;
+  const meta = localizePatentMeta(lines.slice(2).join(' / '));
+
+  return { title, meta };
+}
+
 function renderProjectLegend(legendItems = []) {
   if (!projectsLegendEl) return;
   projectsLegendEl.innerHTML = '';
@@ -162,7 +219,7 @@ function renderProjectEntries(container, items = []) {
 
     const titleEl = document.createElement('span');
     titleEl.className = 'project-title-text';
-    titleEl.innerHTML = item.text || '';
+    titleEl.innerHTML = normalizeProjectText(item);
     titleRowEl.appendChild(titleEl);
 
     getEntryLinks(item).forEach((link) => {
@@ -205,13 +262,14 @@ function renderPatentEntries(container, items = []) {
 
     const titleEl = document.createElement('p');
     titleEl.className = 'patent-line entry-text';
-    titleEl.innerHTML = item.title || item.text || '';
+    const normalizedPatent = normalizePatentEntry(item);
+    titleEl.innerHTML = normalizedPatent.title;
     articleEl.appendChild(titleEl);
 
-    if (item.meta) {
+    if (normalizedPatent.meta) {
       const metaEl = document.createElement('p');
       metaEl.className = 'patent-line patent-meta';
-      metaEl.innerHTML = item.meta;
+      metaEl.innerHTML = normalizedPatent.meta;
       articleEl.appendChild(metaEl);
     }
 

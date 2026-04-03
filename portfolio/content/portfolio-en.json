@@ -29,8 +29,7 @@
     "bullets": [
       "After majoring in Technology & Data Engineering at Pukyong National University, I entered the master's program in Industrial Data Engineering, building research and hands-on experience in balance.",
       "At the Industrial AI Lab (TEAMLAB) and during my internship at Tomocube, I led production projects from Segment Anything auto-labeling to Diffusion + LLM-based data augmentation.",
-      "I designed and developed a multimodal similar-trademark search system and an AI Agent-based registration feasibility simulation system, and I have experience deploying services with FastAPI + AWS.",
-      "I presented research outcomes at ECCV Workshops, AAAI Workshops, ACM SIGIR Demonstration Track, and Society for CDE."
+      "I designed and developed a multimodal similar-trademark search system and an AI Agent-based registration feasibility simulation system, and I have experience deploying services with FastAPI + AWS."
     ]
   },
   "cards": {
@@ -72,7 +71,7 @@
           "label": "Paper under review"
         },
         {
-          "icon": "🚀",
+          "icon": "🧩",
           "label": "Development Project"
         }
       ],
@@ -80,7 +79,7 @@
         {
           "date": "2023.08 – 2023.12",
           "kind": "project",
-          "text": "🚀 <strong>SAM Auto-Annotator</strong>: Built and deployed a Segment Anything Model-based auto-annotator in production"
+          "text": "🧩 <strong>SAM Auto-Annotator</strong>: Built and deployed a Segment Anything Model-based auto-annotator in production"
         },
         {
           "date": "2024.04 – 2024.08",

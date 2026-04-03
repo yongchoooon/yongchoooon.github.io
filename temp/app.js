@@ -58,6 +58,8 @@ const patentsListEl = document.getElementById('patents-list');
 const skillsTitleEl = document.getElementById('skills-title');
 const skillGroupsEl = document.getElementById('skill-groups');
 const footerTextEl = document.getElementById('footer-text');
+const profilePhotoButton = document.getElementById('profile-photo-button');
+const thumbsPopEl = profilePhotoButton ? profilePhotoButton.querySelector('.thumbs-pop') : null;
 
 function setText(element, text = '') {
   if (!element) return;
@@ -75,7 +77,7 @@ function renderList(container, items = []) {
   });
 }
 
-function renderEntries(container, items = []) {
+function renderEntries(container, items = [], options = {}) {
   if (!container) return;
   container.innerHTML = '';
 
@@ -90,7 +92,10 @@ function renderEntries(container, items = []) {
 
     const textEl = document.createElement('p');
     textEl.className = 'entry-text';
-    textEl.innerHTML = item.text || '';
+    const textValue = options.stripStrong
+      ? (item.text || '').replace(/<\/?strong>/g, '')
+      : (item.text || '');
+    textEl.innerHTML = textValue;
 
     if (item.link?.href) {
       textEl.appendChild(document.createTextNode(' '));
@@ -99,7 +104,7 @@ function renderEntries(container, items = []) {
       linkEl.href = item.link.href;
       linkEl.target = '_blank';
       linkEl.rel = 'noreferrer noopener';
-      linkEl.textContent = item.link.label || 'Link';
+      linkEl.textContent = `[${item.link.label || 'Link'}]`;
       textEl.appendChild(linkEl);
     }
 
@@ -182,7 +187,7 @@ function applyCopy(copy) {
   renderEntries(projectsListEl, cards.projects?.items || []);
 
   setText(experienceTitleEl, cards.experience?.title || uiCopy.nav.experience);
-  renderEntries(experienceListEl, cards.experience?.items || []);
+  renderEntries(experienceListEl, cards.experience?.items || [], { stripStrong: true });
 
   setText(educationTitleEl, uiCopy.educationTitle);
   renderEntries(educationListEl, cards.education?.items || []);
@@ -212,6 +217,20 @@ async function setLanguage(lang) {
 
 langToggle.addEventListener('click', () => {
   setLanguage(currentLang === 'en' ? 'ko' : 'en');
+});
+
+if (profilePhotoButton && thumbsPopEl) {
+  profilePhotoButton.addEventListener('click', () => {
+    thumbsPopEl.classList.remove('is-active');
+    void thumbsPopEl.offsetWidth;
+    thumbsPopEl.classList.add('is-active');
+  });
+}
+
+document.querySelectorAll('[data-placeholder-link="true"]').forEach((linkEl) => {
+  linkEl.addEventListener('click', (event) => {
+    event.preventDefault();
+  });
 });
 
 setLanguage('en');

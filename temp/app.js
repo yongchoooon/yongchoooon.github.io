@@ -160,14 +160,6 @@ function renderProjectEntries(container, items = []) {
     const titleRowEl = document.createElement('p');
     titleRowEl.className = 'entry-text project-title-row';
 
-    if (item.icon) {
-      const iconEl = document.createElement('span');
-      iconEl.className = 'project-kind-icon';
-      iconEl.setAttribute('aria-hidden', 'true');
-      iconEl.textContent = item.icon;
-      titleRowEl.appendChild(iconEl);
-    }
-
     const titleEl = document.createElement('span');
     titleEl.className = 'project-title-text';
     titleEl.innerHTML = item.text || '';
@@ -186,18 +178,12 @@ function renderProjectEntries(container, items = []) {
 
     articleEl.appendChild(titleRowEl);
 
-    if (item.authors) {
-      const authorsEl = document.createElement('p');
-      authorsEl.className = 'project-meta project-authors';
-      authorsEl.innerHTML = item.authors;
-      articleEl.appendChild(authorsEl);
-    }
-
-    if (item.venue) {
-      const venueEl = document.createElement('p');
-      venueEl.className = 'project-meta project-venue';
-      venueEl.innerHTML = item.venue;
-      articleEl.appendChild(venueEl);
+    const metaText = [item.authors, item.venue].filter(Boolean).join(' ');
+    if (metaText) {
+      const metaEl = document.createElement('p');
+      metaEl.className = 'project-meta';
+      metaEl.innerHTML = metaText;
+      articleEl.appendChild(metaEl);
     }
 
     container.appendChild(articleEl);

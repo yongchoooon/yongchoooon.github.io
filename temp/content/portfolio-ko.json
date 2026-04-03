@@ -72,24 +72,22 @@
           "label": "심사 중 논문"
         },
         {
-          "icon": "🛠️",
-          "label": "산업/연구 프로젝트"
+          "icon": "🚀",
+          "label": "개발 프로젝트"
         }
       ],
       "items": [
         {
           "date": "2023.08 – 2023.12",
           "kind": "project",
-          "icon": "🛠️",
-          "text": "<strong>SAM Auto-Annotator</strong>: Segment Anything Model 기반 Auto-Annotator 개발 및 사내 배포"
+          "text": "🚀 <strong>SAM Auto-Annotator</strong>: Segment Anything Model 기반 Auto-Annotator 개발 및 사내 배포"
         },
         {
           "date": "2024.04 – 2024.08",
           "kind": "paper",
-          "icon": "💙",
-          "text": "“<strong>DALDA</strong>: Data Augmentation Leveraging Diffusion Model and LLM with Adaptive Guidance Scaling”",
+          "text": "💙 “<strong>DALDA</strong>: Data Augmentation Leveraging Diffusion Model and LLM with Adaptive Guidance Scaling”",
           "authors": "Jung, K.; <strong>Seo, Y.</strong>; Cho, S.; Kim, J.; Min, H.S.; Choi, S.",
-          "venue": "Accepted to European Conference on Computer Vision (ECCV) Workshops Oral. (2024)",
+          "venue": "Accepted to ECCV 2024 Workshops Oral.",
           "links": [
             {
               "href": "https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11",
@@ -110,10 +108,9 @@
         {
           "date": "2024.11 – 2024.12",
           "kind": "paper",
-          "icon": "💙",
-          "text": "“<strong>KIMCHI</strong>: Korean Diffusion Model Adapting Culture and History”",
+          "text": "💙 “<strong>KIMCHI</strong>: Korean Diffusion Model Adapting Culture and History”",
           "authors": "<strong>Seo, Y.</strong>; Kwon, Y.; Lee, N.; Jung, K.; Cho, S.; Jang, S.; Choi, S.",
-          "venue": "Accepted to Society for Computational Design and Engineering 2025 Winter Conference Oral. (2025)",
+          "venue": "Accepted to 한국CDE학회 2025 동계학술대회 Oral.",
           "links": [
             {
               "href": "https://github.com/yongchoooon/kimchi",
@@ -127,8 +124,7 @@
         {
           "date": "2025.02 – 2025.08",
           "kind": "submission",
-          "icon": "🩵",
-          "text": "“<strong>CABIN</strong>: Controlling Augmentations for Balancing Invariance and Diversification in One-Shot Image Classification”",
+          "text": "🩵 “<strong>CABIN</strong>: Controlling Augmentations for Balancing Invariance and Diversification in One-Shot Image Classification”",
           "authors": "Jung, K.; <strong>Seo, Y.</strong>; Jung, Y.; Cho, S.; Min, H.S.; Choi, S.; Kim, J.",
           "venue": "Submitted to Neurocomputing. Under Review. (2026)",
           "links": [
@@ -151,10 +147,9 @@
         {
           "date": "2025.03 – 2025.08",
           "kind": "paper",
-          "icon": "💙",
-          "text": "“<strong>STELLAR</strong>: Scene Text Editor for Low-Resource Language and Real-World Data”",
+          "text": "💙 “<strong>STELLAR</strong>: Scene Text Editor for Low-Resource Language and Real-World Data”",
           "authors": "<strong>Seo, Y.</strong>; Min, H.S.; Choi, S.",
-          "venue": "Accepted to The Association for the Advance of Artificial Intelligence (AAAI) Workshops Oral. (2026)",
+          "venue": "Accepted to AAAI Workshops Oral.",
           "links": [
             {
               "href": "https://yongchoooon.github.io/stellar",
@@ -182,10 +177,9 @@
         {
           "date": "2025.09 – 2026.02",
           "kind": "paper",
-          "icon": "💙",
-          "text": "“<strong>T-RADAR</strong>: Simulating Trademark Examination as an Interactive Retrieval Interface for Conflict Risk Assessment”",
+          "text": "💙 “<strong>T-RADAR</strong>: Simulating Trademark Examination as an Interactive Retrieval Interface for Conflict Risk Assessment”",
           "authors": "<strong>Seo, Y.</strong>; Noah, L.; Min, H.S.; Choi, S.",
-          "venue": "Accepted to International ACM SIGIR Conference on Research and Development in Information Retrieval Demonstration Track. (2026)",
+          "venue": "Accepted to ACM SIGIR 2026 Demonstration Track.",
           "links": [
             {
               "href": "https://yongchoooon.github.io/tradar/",

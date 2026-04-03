@@ -7,7 +7,7 @@ const UI_COPY = {
   en: {
     nav: {
       about: 'About',
-      projects: 'Projects',
+      projects: 'Paper & Project',
       experience: 'Experience',
       education: 'Education',
       awards: 'Awards',
@@ -22,7 +22,7 @@ const UI_COPY = {
   ko: {
     nav: {
       about: '소개',
-      projects: '프로젝트',
+      projects: '논문 & 프로젝트',
       experience: '경력',
       education: '학력',
       awards: '수상',
@@ -316,6 +316,13 @@ function updateNavigation(lang) {
   });
 }
 
+function getSectionTitle(lang, fallbackTitle, navTitle) {
+  if (lang === 'ko') {
+    return navTitle || fallbackTitle || '';
+  }
+  return fallbackTitle || navTitle || '';
+}
+
 async function loadPortfolioCopy(lang) {
   if (cache[lang]) {
     return cache[lang];
@@ -346,26 +353,44 @@ function applyCopy(copy) {
   setText(heroTitleEl, copy.hero?.title || 'Yongdeuk Seo');
   renderList(heroBulletsEl, copy.hero?.bullets || []);
 
-  setText(overviewTitleEl, copy.overview?.title || uiCopy.nav.about);
+  setText(
+    overviewTitleEl,
+    getSectionTitle(currentLang, copy.overview?.title, uiCopy.nav.about)
+  );
   renderList(overviewListEl, copy.overview?.bullets || []);
 
-  setText(projectsTitleEl, cards.projects?.title || uiCopy.nav.projects);
+  setText(
+    projectsTitleEl,
+    getSectionTitle(currentLang, cards.projects?.title, uiCopy.nav.projects)
+  );
   renderProjectLegend(cards.projects?.legend || []);
   renderProjectEntries(projectsListEl, cards.projects?.items || []);
 
-  setText(experienceTitleEl, cards.experience?.title || uiCopy.nav.experience);
+  setText(
+    experienceTitleEl,
+    getSectionTitle(currentLang, cards.experience?.title, uiCopy.nav.experience)
+  );
   renderEntries(experienceListEl, cards.experience?.items || [], { stripStrong: true });
 
   setText(educationTitleEl, uiCopy.educationTitle);
   renderEntries(educationListEl, cards.education?.items || []);
 
-  setText(awardsTitleEl, cards.awards?.title || uiCopy.nav.awards);
+  setText(
+    awardsTitleEl,
+    getSectionTitle(currentLang, cards.awards?.title, uiCopy.nav.awards)
+  );
   renderEntries(awardsListEl, cards.awards?.items || []);
 
-  setText(patentsTitleEl, cards.patents?.title || uiCopy.nav.patents);
+  setText(
+    patentsTitleEl,
+    getSectionTitle(currentLang, cards.patents?.title, uiCopy.nav.patents)
+  );
   renderPatentEntries(patentsListEl, cards.patents?.items || []);
 
-  setText(skillsTitleEl, cards.skills?.title || uiCopy.nav.skills);
+  setText(
+    skillsTitleEl,
+    getSectionTitle(currentLang, cards.skills?.title, uiCopy.nav.skills)
+  );
   renderSkills(cards.skills?.groups || []);
 
   const footer = copy.footer || '© %YEAR% Seo Yongdeuk. All rights reserved.';

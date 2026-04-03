@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yongdeuk Seo | Temp Portfolio</title>
+  <meta
+    name="description"
+    content="Temporary one-column text-only portfolio draft for Yongdeuk Seo."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="topbar">
+        <nav class="topnav" aria-label="Section links">
+          <a href="#about" data-nav-key="about">About</a>
+          <a href="#projects" data-nav-key="projects">Projects</a>
+          <a href="#experience" data-nav-key="experience">Experience</a>
+          <a href="#education" data-nav-key="education">Education</a>
+          <a href="#awards" data-nav-key="awards">Awards</a>
+          <a href="#patents" data-nav-key="patents">Patents</a>
+          <a href="#skills" data-nav-key="skills">Skills</a>
+        </nav>
+        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="View in Korean">
+          <span class="lang-option" data-lang-option="en">EN</span>
+          <span class="lang-separator" aria-hidden="true"></span>
+          <span class="lang-option" data-lang-option="ko">KO</span>
+        </button>
+      </div>
+
+      <p class="hero-eyebrow" id="hero-eyebrow"></p>
+      <h1 class="hero-title" id="hero-title"></h1>
+      <ul class="hero-bullets" id="hero-bullets"></ul>
+      <div class="contact-links">
+        <a href="mailto:sod7050@gmail.com">sod7050@gmail.com</a>
+        <a href="https://github.com/yongchoooon" target="_blank" rel="noreferrer noopener">github.com/yongchoooon</a>
+        <a href="tel:+821030468377">010-3046-8377</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="section" id="about">
+        <h2 class="section-title" id="overview-title"></h2>
+        <ul class="about-list" id="overview-list"></ul>
+      </section>
+
+      <section class="section" id="projects">
+        <h2 class="section-title" id="projects-title"></h2>
+        <div class="entry-list" id="projects-list"></div>
+      </section>
+
+      <section class="section" id="experience">
+        <h2 class="section-title" id="experience-title"></h2>
+        <div class="entry-list" id="experience-list"></div>
+      </section>
+
+      <section class="section" id="education">
+        <h2 class="section-title" id="education-title"></h2>
+        <div class="entry-list" id="education-list"></div>
+      </section>
+
+      <section class="section" id="awards">
+        <h2 class="section-title" id="awards-title"></h2>
+        <div class="entry-list" id="awards-list"></div>
+      </section>
+
+      <section class="section" id="patents">
+        <h2 class="section-title" id="patents-title"></h2>
+        <div class="entry-list" id="patents-list"></div>
+      </section>
+
+      <section class="section" id="skills">
+        <h2 class="section-title" id="skills-title"></h2>
+        <div class="skill-groups" id="skill-groups"></div>
+      </section>
+    </main>
+
+    <footer class="footer" id="footer-text"></footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -36,7 +36,7 @@ button {
 }
 
 .page {
-  width: min(980px, calc(100vw - 48px));
+  width: min(1180px, calc(100vw - 48px));
   margin: 0 auto;
   padding: 24px 0 64px;
 }
@@ -53,7 +53,7 @@ button {
 .topnav {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 28px;
 }
 
 .topnav a {
@@ -126,6 +126,7 @@ button {
   display: block;
   width: 100%;
   height: auto;
+  cursor: pointer;
 }
 
 .thumbs-pop {
@@ -203,15 +204,15 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .contact-icon-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--panel);
@@ -220,8 +221,8 @@ button {
 }
 
 .contact-icon-link svg {
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   fill: currentColor;
 }
 
@@ -233,8 +234,8 @@ button {
 }
 
 .scholar-link svg {
-  width: 23px;
-  height: 23px;
+  width: 20px;
+  height: 20px;
 }
 
 .section {
@@ -335,7 +336,7 @@ button {
 
 @media (max-width: 640px) {
   .page {
-    width: min(100vw - 32px, 980px);
+    width: min(100vw - 32px, 1180px);
   }
 
   .topbar {

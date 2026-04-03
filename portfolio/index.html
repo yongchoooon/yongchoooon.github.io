@@ -366,6 +366,30 @@
       padding-inline: 22px;
     }
 
+    .project-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .project-legend__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--tag-muted-bg);
+    }
+
+    .project-legend__icon {
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+
     .timeline {
       list-style: none;
       margin: 0;
@@ -424,6 +448,61 @@
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
+    }
+
+    .timeline--projects {
+      gap: 14px;
+    }
+
+    .timeline--projects li {
+      padding-left: 0;
+    }
+
+    .timeline--projects li::before {
+      content: none;
+    }
+
+    .timeline__project-item {
+      grid-template-columns: auto auto 1fr;
+    }
+
+    .project-entry {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .project-entry__title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .project-entry__icon {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .project-entry__title {
+      display: inline;
+    }
+
+    .project-entry__authors,
+    .project-entry__venue {
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .project-entry__authors {
+      color: var(--muted);
+    }
+
+    .project-entry__venue {
+      color: var(--accent-dark);
+      font-weight: 600;
     }
 
     .timeline__action {
@@ -487,6 +566,42 @@
       background: rgba(248, 250, 252, 0.18);
       color: #0f172a;
       border-color: rgba(248, 250, 252, 0.35);
+    }
+
+    .timeline__link--project {
+      background: rgba(14, 165, 233, 0.14);
+      color: #0369a1;
+      border-color: rgba(14, 165, 233, 0.22);
+    }
+
+    body.dark .timeline__link--project {
+      background: rgba(14, 165, 233, 0.18);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .timeline__link--demo {
+      background: rgba(22, 163, 74, 0.12);
+      color: #15803d;
+      border-color: rgba(22, 163, 74, 0.22);
+    }
+
+    body.dark .timeline__link--demo {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border-color: rgba(74, 222, 128, 0.35);
+    }
+
+    .timeline__link--ssrn {
+      background: rgba(37, 99, 235, 0.12);
+      color: #1d4ed8;
+      border-color: rgba(37, 99, 235, 0.22);
+    }
+
+    body.dark .timeline__link--ssrn {
+      background: rgba(59, 130, 246, 0.16);
+      color: #60a5fa;
+      border-color: rgba(96, 165, 250, 0.35);
     }
 
     body.dark .timeline__link:hover {
@@ -553,6 +668,36 @@
     body.dark .timeline__link--github .timeline__link-icon {
       background: #0f172a;
       color: #f8fafc;
+    }
+
+    .timeline__link--project .timeline__link-icon {
+      background: #0369a1;
+      color: #ffffff;
+    }
+
+    body.dark .timeline__link--project .timeline__link-icon {
+      background: #38bdf8;
+      color: #082f49;
+    }
+
+    .timeline__link--demo .timeline__link-icon {
+      background: #15803d;
+      color: #ffffff;
+    }
+
+    body.dark .timeline__link--demo .timeline__link-icon {
+      background: #4ade80;
+      color: #052e16;
+    }
+
+    .timeline__link--ssrn .timeline__link-icon {
+      background: #1d4ed8;
+      color: #ffffff;
+    }
+
+    body.dark .timeline__link--ssrn .timeline__link-icon {
+      background: #60a5fa;
+      color: #172554;
     }
 
     .sr-only {
@@ -875,7 +1020,8 @@
             </article>
             <article class="card card--projects card--scroll">
               <h3 id="projects-title"></h3>
-              <ul class="timeline" id="projects-list"></ul>
+              <div class="project-legend" id="projects-legend"></div>
+              <ul class="timeline timeline--projects" id="projects-list"></ul>
             </article>
             <article class="card card--awards">
               <h3 id="awards-title"></h3>
@@ -955,6 +1101,7 @@
     const experienceTitleEl = document.getElementById('experience-title');
     const experienceListEl = document.getElementById('experience-list');
     const projectsTitleEl = document.getElementById('projects-title');
+    const projectsLegendEl = document.getElementById('projects-legend');
     const projectsListEl = document.getElementById('projects-list');
     const awardsTitleEl = document.getElementById('awards-title');
     const awardsListEl = document.getElementById('awards-list');
@@ -977,6 +1124,12 @@
     const FALLBACK_THEME_LABELS = {
       light: 'Switch to light mode',
       dark: 'Switch to dark mode'
+    };
+
+    const PROJECT_KIND_ICONS = {
+      paper: '💙',
+      submission: '🩵',
+      project: '🛠️'
     };
 
     if (totalPagesEl) {
@@ -1031,6 +1184,13 @@
       return anchor;
     }
 
+    function getTimelineLinks(item) {
+      if (Array.isArray(item?.links)) {
+        return item.links.filter(Boolean);
+      }
+      return item?.link ? [item.link] : [];
+    }
+
     function renderTimeline(listEl, items) {
       if (!listEl) return;
       listEl.innerHTML = '';
@@ -1061,11 +1221,90 @@
         const textEl = document.createElement('span');
         textEl.className = 'timeline__text';
         textEl.innerHTML = item.text || '';
-        if (item.link) {
+        const links = getTimelineLinks(item);
+        if (links.length > 0) {
           textEl.appendChild(document.createTextNode(' '));
-          textEl.appendChild(createLinkElement(item.link));
+          links.forEach((link) => {
+            textEl.appendChild(createLinkElement(link));
+          });
         }
         li.appendChild(textEl);
+        listEl.appendChild(li);
+      });
+    }
+
+    function renderProjectLegend(legendEl, items) {
+      if (!legendEl) return;
+      legendEl.innerHTML = '';
+      if (!Array.isArray(items)) return;
+      items.forEach((item) => {
+        if (!item) return;
+        const badge = document.createElement('span');
+        badge.className = 'project-legend__item';
+        const icon = document.createElement('span');
+        icon.className = 'project-legend__icon';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.textContent = item.icon || '';
+        const label = document.createElement('span');
+        label.textContent = item.label || '';
+        badge.appendChild(icon);
+        badge.appendChild(label);
+        legendEl.appendChild(badge);
+      });
+    }
+
+    function appendProjectMeta(container, className, html) {
+      if (!html) return;
+      const metaEl = document.createElement('div');
+      metaEl.className = className;
+      metaEl.innerHTML = html;
+      container.appendChild(metaEl);
+    }
+
+    function renderProjectTimeline(listEl, items) {
+      if (!listEl) return;
+      listEl.innerHTML = '';
+      if (!Array.isArray(items)) return;
+      items.forEach((item) => {
+        if (!item) return;
+        const li = document.createElement('li');
+        li.className = 'timeline__project-item';
+
+        const dateEl = document.createElement('span');
+        dateEl.className = 'timeline__date';
+        dateEl.textContent = item.date || '';
+        const dividerEl = document.createElement('span');
+        dividerEl.className = 'timeline__divider';
+        dividerEl.textContent = '|';
+
+        const entryEl = document.createElement('div');
+        entryEl.className = 'project-entry';
+
+        const titleRowEl = document.createElement('div');
+        titleRowEl.className = 'project-entry__title-row';
+
+        const iconEl = document.createElement('span');
+        iconEl.className = 'project-entry__icon';
+        iconEl.setAttribute('aria-hidden', 'true');
+        iconEl.textContent = item.icon || PROJECT_KIND_ICONS[item.kind] || PROJECT_KIND_ICONS.project;
+
+        const titleEl = document.createElement('span');
+        titleEl.className = 'project-entry__title';
+        titleEl.innerHTML = item.text || '';
+
+        titleRowEl.appendChild(iconEl);
+        titleRowEl.appendChild(titleEl);
+        getTimelineLinks(item).forEach((link) => {
+          titleRowEl.appendChild(createLinkElement(link));
+        });
+
+        entryEl.appendChild(titleRowEl);
+        appendProjectMeta(entryEl, 'project-entry__authors', item.authors);
+        appendProjectMeta(entryEl, 'project-entry__venue', item.venue);
+
+        li.appendChild(dateEl);
+        li.appendChild(dividerEl);
+        li.appendChild(entryEl);
         listEl.appendChild(li);
       });
     }
@@ -1133,7 +1372,8 @@
       setText(experienceTitleEl, cards.experience?.title);
       renderTimeline(experienceListEl, cards.experience?.items || []);
       setText(projectsTitleEl, cards.projects?.title);
-      renderTimeline(projectsListEl, cards.projects?.items || []);
+      renderProjectLegend(projectsLegendEl, cards.projects?.legend || []);
+      renderProjectTimeline(projectsListEl, cards.projects?.items || []);
       setText(awardsTitleEl, cards.awards?.title);
       renderTimeline(awardsListEl, cards.awards?.items || []);
       setText(patentTitleEl, cards.patents?.title);

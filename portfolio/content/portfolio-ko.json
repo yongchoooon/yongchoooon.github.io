@@ -30,7 +30,7 @@
       "국립부경대학교 기술데이터공학 전공 후 산업데이터공학 석사과정으로 진학해 연구와 실무 경험을 균형 있게 쌓고 있습니다.",
       "산업AI연구실(TEAMLAB)과 토모큐브 인턴십에서 Segment Anything 자동 라벨링부터 Diffusion·LLM 기반 데이터 증강까지 현장 프로젝트를 주도했습니다.",
       "유사 상표 멀티모달 검색과 AI Agent 기반 등록 가능성 시뮬레이션 시스템을 설계·개발하고 FastAPI + AWS 기반 서비스 배포 경험이 있습니다.",
-      "연구 결과를 ECCV Workshop과 AAAI Workshop에서 발표했습니다."
+      "연구 결과를 ECCV Workshops, AAAI Workshops, ACM SIGIR Demonstration Track, Society for CDE에서 발표했습니다."
     ]
   },
   "cards": {
@@ -61,59 +61,154 @@
       ]
     },
     "projects": {
-      "title": "Project Highlights",
+      "title": "Paper & Project Highlights",
+      "legend": [
+        {
+          "icon": "💙",
+          "label": "게재/채택 논문"
+        },
+        {
+          "icon": "🩵",
+          "label": "심사 중 논문"
+        },
+        {
+          "icon": "🛠️",
+          "label": "산업/연구 프로젝트"
+        }
+      ],
       "items": [
         {
           "date": "2023.08 – 2023.12",
-          "text": "Segment Anything Model 기반 Auto-Annotator 개발 및 사내 배포"
+          "kind": "project",
+          "icon": "🛠️",
+          "text": "<strong>SAM Auto-Annotator</strong>: Segment Anything Model 기반 Auto-Annotator 개발 및 사내 배포"
         },
         {
           "date": "2024.04 – 2024.08",
-          "text": "<strong>DALDA</strong>: LLM·Diffusion 활용 데이터 증강 프레임워크 구축 및 ECCVW 논문 게재",
-          "link": {
-            "href": "https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11",
-            "label": "Springer",
-            "icon": "S",
-            "variant": "springer",
-            "srText": "에서 논문 보기 (새 창)"
-          }
+          "kind": "paper",
+          "icon": "💙",
+          "text": "<strong>DALDA</strong>: Data Augmentation Leveraging Diffusion Model and LLM with Adaptive Guidance Scaling",
+          "authors": "Jung, K.; <strong>Seo, Y.</strong>; Cho, S.; Kim, J.; Min, H.S.; Choi, S.",
+          "venue": "Accepted to European Conference on Computer Vision (ECCV) Workshops Oral. (2024)",
+          "links": [
+            {
+              "href": "https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11",
+              "label": "Springer",
+              "icon": "S",
+              "variant": "springer",
+              "srText": "에서 논문 보기 (새 창)"
+            },
+            {
+              "href": "https://github.com/kkyuhun94/dalda",
+              "label": "GitHub",
+              "icon": "G",
+              "variant": "github",
+              "srText": "GitHub 저장소 열기 (새 창)"
+            }
+          ]
         },
         {
           "date": "2024.11 – 2024.12",
-          "text": "<strong>KIMCHI</strong>: 한국적 Diffusion 모델 개발 및 Korean CDE 학회 논문 게재",
-          "link": {
-            "href": "https://github.com/yongchoooon/kimchi",
-            "label": "GitHub",
-            "icon": "G",
-            "variant": "github",
-            "srText": "GitHub 저장소 열기 (새 창)"
-          }
+          "kind": "paper",
+          "icon": "💙",
+          "text": "<strong>KIMCHI</strong>: Korean Diffusion Model Adapting Culture and History",
+          "authors": "<strong>Seo, Y.</strong>; Kwon, Y.; Lee, N.; Jung, K.; Cho, S.; Jang, S.; Choi, S.",
+          "venue": "Accepted to Society for Computational Design and Engineering 2025 Winter Conference Oral. (2025)",
+          "links": [
+            {
+              "href": "https://github.com/yongchoooon/kimchi",
+              "label": "GitHub",
+              "icon": "G",
+              "variant": "github",
+              "srText": "GitHub 저장소 열기 (새 창)"
+            }
+          ]
         },
         {
           "date": "2025.02 – 2025.08",
-          "text": "<strong>CABIN</strong>: 1-shot 분류를 위한 분리형 합성 데이터 증강 프레임워크 개발"
+          "kind": "submission",
+          "icon": "🩵",
+          "text": "<strong>CABIN</strong>: Controlling Augmentations for Balancing Invariance and Diversification in One-Shot Image Classification",
+          "authors": "Jung, K.; <strong>Seo, Y.</strong>; Jung, Y.; Cho, S.; Min, H.S.; Choi, S.; Kim, J.",
+          "venue": "Submitted to Neurocomputing. Under Review. (2026)",
+          "links": [
+            {
+              "href": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6300631",
+              "label": "SSRN",
+              "icon": "S",
+              "variant": "ssrn",
+              "srText": "에서 프리프린트 보기 (새 창)"
+            },
+            {
+              "href": "https://github.com/kkyuhun94/CABIN",
+              "label": "GitHub",
+              "icon": "G",
+              "variant": "github",
+              "srText": "GitHub 저장소 열기 (새 창)"
+            }
+          ]
         },
         {
           "date": "2025.03 – 2025.08",
-          "text": "<strong>STELLAR</strong>: 저자원 언어 Scene Text Editing 모델 개발 및 AAAIW 논문 게재",
-          "link": {
-            "href": "https://arxiv.org/abs/2511.09977",
-            "label": "arXiv",
-            "icon": "A",
-            "variant": "arxiv",
-            "srText": "에서 논문 보기 (새 창)"
-          }
+          "kind": "paper",
+          "icon": "💙",
+          "text": "<strong>STELLAR</strong>: Scene Text Editor for Low-Resource Language and Real-World Data",
+          "authors": "<strong>Seo, Y.</strong>; Min, H.S.; Choi, S.",
+          "venue": "Accepted to The Association for the Advance of Artificial Intelligence (AAAI) Workshops Oral. (2026)",
+          "links": [
+            {
+              "href": "https://yongchoooon.github.io/stellar",
+              "label": "Project Page",
+              "icon": "P",
+              "variant": "project",
+              "srText": "프로젝트 페이지 열기 (새 창)"
+            },
+            {
+              "href": "https://arxiv.org/abs/2511.09977",
+              "label": "arXiv",
+              "icon": "A",
+              "variant": "arxiv",
+              "srText": "에서 논문 보기 (새 창)"
+            },
+            {
+              "href": "https://github.com/yongchoooon/stellar",
+              "label": "GitHub",
+              "icon": "G",
+              "variant": "github",
+              "srText": "GitHub 저장소 열기 (새 창)"
+            }
+          ]
         },
         {
           "date": "2025.09 – 2026.02",
-          "text": "<strong>T-RADAR</strong>: 유사 상표 멀티모달 검색 &amp; AI Agent 기반 등록 시뮬레이션 시스템 개발, SIGIR Demo Track Accepted",
-          "link": {
-            "href": "https://github.com/yongchoooon/tradar",
-            "label": "GitHub",
-            "icon": "G",
-            "variant": "github",
-            "srText": "GitHub 저장소 열기 (새 창)"
-          }
+          "kind": "paper",
+          "icon": "💙",
+          "text": "<strong>T-RADAR</strong>: Simulating Trademark Examination as an Interactive Retrieval Interface for Conflict Risk Assessment",
+          "authors": "<strong>Seo, Y.</strong>; Lee, N.; Min, H.S.; Choi, S.",
+          "venue": "Accepted to International ACM SIGIR Conference on Research and Development in Information Retrieval Demonstration Track. (2026)",
+          "links": [
+            {
+              "href": "https://yongchoooon.github.io/tradar/",
+              "label": "Project Page",
+              "icon": "P",
+              "variant": "project",
+              "srText": "프로젝트 페이지 열기 (새 창)"
+            },
+            {
+              "href": "https://do7ajfzdgr22.cloudfront.net/",
+              "label": "Demo",
+              "icon": "D",
+              "variant": "demo",
+              "srText": "실시간 데모 열기 (새 창)"
+            },
+            {
+              "href": "https://github.com/yongchoooon/tradar",
+              "label": "GitHub",
+              "icon": "G",
+              "variant": "github",
+              "srText": "GitHub 저장소 열기 (새 창)"
+            }
+          ]
         }
       ]
     },

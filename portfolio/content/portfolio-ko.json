@@ -72,24 +72,22 @@
           "label": "심사 중 논문"
         },
         {
-          "icon": "🛠️",
-          "label": "산업/연구 프로젝트"
+          "icon": "🚀",
+          "label": "개발 프로젝트"
         }
       ],
       "items": [
         {
           "date": "2023.08 – 2023.12",
           "kind": "project",
-          "icon": "🛠️",
-          "text": "<strong>SAM Auto-Annotator</strong>: Segment Anything Model 기반 Auto-Annotator 개발 및 사내 배포"
+          "text": "🚀 <strong>SAM Auto-Annotator</strong>: Segment Anything Model 기반 Auto-Annotator 개발 및 사내 배포"
         },
         {
           "date": "2024.04 – 2024.08",
           "kind": "paper",
-          "icon": "💙",
-          "text": "<strong>DALDA</strong>: Data Augmentation Leveraging Diffusion Model and LLM with Adaptive Guidance Scaling",
+          "text": "💙 “<strong>DALDA</strong>: Data Augmentation Leveraging Diffusion Model and LLM with Adaptive Guidance Scaling”",
           "authors": "Jung, K.; <strong>Seo, Y.</strong>; Cho, S.; Kim, J.; Min, H.S.; Choi, S.",
-          "venue": "Accepted to European Conference on Computer Vision (ECCV) Workshops Oral. (2024)",
+          "venue": "Accepted to 2024 ECCV Workshops.",
           "links": [
             {
               "href": "https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11",
@@ -110,10 +108,9 @@
         {
           "date": "2024.11 – 2024.12",
           "kind": "paper",
-          "icon": "💙",
-          "text": "<strong>KIMCHI</strong>: Korean Diffusion Model Adapting Culture and History",
+          "text": "💙 “<strong>KIMCHI</strong>: Korean Diffusion Model Adapting Culture and History”",
           "authors": "<strong>Seo, Y.</strong>; Kwon, Y.; Lee, N.; Jung, K.; Cho, S.; Jang, S.; Choi, S.",
-          "venue": "Accepted to Society for Computational Design and Engineering 2025 Winter Conference Oral. (2025)",
+          "venue": "Accepted to 한국CDE학회 2025 동계학술대회.",
           "links": [
             {
               "href": "https://github.com/yongchoooon/kimchi",
@@ -127,10 +124,9 @@
         {
           "date": "2025.02 – 2025.08",
           "kind": "submission",
-          "icon": "🩵",
-          "text": "<strong>CABIN</strong>: Controlling Augmentations for Balancing Invariance and Diversification in One-Shot Image Classification",
+          "text": "🩵 “<strong>CABIN</strong>: Controlling Augmentations for Balancing Invariance and Diversification in One-Shot Image Classification”",
           "authors": "Jung, K.; <strong>Seo, Y.</strong>; Jung, Y.; Cho, S.; Min, H.S.; Choi, S.; Kim, J.",
-          "venue": "Submitted to Neurocomputing. Under Review. (2026)",
+          "venue": "Submitted to Neurocomputing. Under Review.",
           "links": [
             {
               "href": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6300631",
@@ -151,10 +147,9 @@
         {
           "date": "2025.03 – 2025.08",
           "kind": "paper",
-          "icon": "💙",
-          "text": "<strong>STELLAR</strong>: Scene Text Editor for Low-Resource Language and Real-World Data",
+          "text": "💙 “<strong>STELLAR</strong>: Scene Text Editor for Low-Resource Language and Real-World Data”",
           "authors": "<strong>Seo, Y.</strong>; Min, H.S.; Choi, S.",
-          "venue": "Accepted to The Association for the Advance of Artificial Intelligence (AAAI) Workshops Oral. (2026)",
+          "venue": "Accepted to 2026 AAAI Workshops.",
           "links": [
             {
               "href": "https://yongchoooon.github.io/stellar",
@@ -182,10 +177,9 @@
         {
           "date": "2025.09 – 2026.02",
           "kind": "paper",
-          "icon": "💙",
-          "text": "<strong>T-RADAR</strong>: Simulating Trademark Examination as an Interactive Retrieval Interface for Conflict Risk Assessment",
-          "authors": "<strong>Seo, Y.</strong>; Lee, N.; Min, H.S.; Choi, S.",
-          "venue": "Accepted to International ACM SIGIR Conference on Research and Development in Information Retrieval Demonstration Track. (2026)",
+          "text": "💙 “<strong>T-RADAR</strong>: Simulating Trademark Examination as an Interactive Retrieval Interface for Conflict Risk Assessment”",
+          "authors": "<strong>Seo, Y.</strong>; Noah, L.; Min, H.S.; Choi, S.",
+          "venue": "Accepted to ACM SIGIR 2026 Demonstration Track.",
           "links": [
             {
               "href": "https://yongchoooon.github.io/tradar/",
@@ -230,15 +224,18 @@
       "items": [
         {
           "date": "2023",
-          "text": "인공지능 학습을 위한 화재이미지 생성 시스템 및 방법<br>System and method for creating fire image for training artificial intelligence model<br>출원번호 1020230102847 공개번호 1020250021779"
+          "title": "인공지능 학습을 위한 화재이미지 생성 시스템 및 방법 (System and method for creating fire image for training artificial intelligence model)",
+          "meta": "출원번호 1020230102847 / 공개번호 1020250021779"
         },
         {
           "date": "2024",
-          "text": "대규모 언어 모델의 프롬프트를 적용한 확산 모델을 통한 데이터 증강 방법 및 장치<br>Method and Device for Data Augmentation Using Diffusion Model Adapting LLM Prompts<br>출원번호 1020240137347"
+          "title": "대규모 언어 모델의 프롬프트를 적용한 확산 모델을 통한 데이터 증강 방법 및 장치 (Method and Device for Data Augmentation Using Diffusion Model Adapting LLM Prompts)",
+          "meta": "출원번호 1020240137347"
         },
         {
           "date": "2025",
-          "text": "상표 검색 및 등록 가능성 판단을 위한 AI Agent 기반 복합 유사도 산정 시스템 및 방법<br>AI Agent-based Composite Similarity Calculation System and Method For Trademark Search and Registration<br>출원번호 1020250165072"
+          "title": "상표 검색 및 등록 가능성 판단을 위한 AI Agent 기반 복합 유사도 산정 시스템 및 방법 (AI Agent-based Composite Similarity Calculation System and Method For Trademark Search and Registration)",
+          "meta": "출원번호 1020250165072"
         }
       ]
     },

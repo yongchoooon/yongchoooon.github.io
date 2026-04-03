@@ -39,11 +39,11 @@
       "items": [
         {
           "date": "2017.03 – 2024.02",
-          "text": "B.S., Technology Data Engineering, Dept. of Systems Management & Safety Engineering, <strong>Pukyong National University</strong>"
+          "text": "B.S., Technology Data Engineering, Dept. of Systems Management & Safety Engineering, Pukyong National University"
         },
         {
           "date": "2024.03 – 2026.02",
-          "text": "Major in Industrial Data Science & Engineering, Department of Industrial and Data Engineering, <strong>Pukyong National University</strong>"
+          "text": "Major in Industrial Data Science & Engineering, Department of Industrial and Data Engineering, Pukyong National University"
         }
       ]
     },
@@ -65,15 +65,11 @@
       "items": [
         {
           "date": "2023.08 – 2023.12",
-          "text": "Built and deployed a Segment Anything Model-based auto-annotator inside the company",
-          "page": 3,
-          "aria": "Go to portfolio page 3 (Segment Anything-based auto-annotator)"
+          "text": "Built and deployed a Segment Anything Model-based auto-annotator inside the company"
         },
         {
           "date": "2024.04 – 2024.08",
           "text": "<strong>DALDA</strong>: Diffusion + LLM data augmentation framework accepted to ECCVW",
-          "page": 4,
-          "aria": "Go to portfolio page 4 (DALDA: Diffusion + LLM data augmentation)",
           "link": {
             "href": "https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11",
             "label": "Springer",
@@ -85,8 +81,6 @@
         {
           "date": "2024.11 – 2024.12",
           "text": "<strong>KIMCHI</strong>: Korean-style diffusion model and paper at the Korean CDE conference",
-          "page": 5,
-          "aria": "Go to portfolio page 5 (KIMCHI diffusion model)",
           "link": {
             "href": "https://github.com/yongchoooon/kimchi",
             "label": "GitHub",
@@ -97,15 +91,11 @@
         },
         {
           "date": "2025.02 – 2025.08",
-          "text": "<strong>CABIN</strong>: Role-separated synthetic data augmentation framework for 1-shot classification",
-          "page": 6,
-          "aria": "Go to portfolio page 6 (CABIN 1-shot augmentation framework)"
+          "text": "<strong>CABIN</strong>: Role-separated synthetic data augmentation framework for 1-shot classification"
         },
         {
           "date": "2025.03 – 2025.08",
           "text": "<strong>STELLAR</strong>: Low-resource scene text editing model accepted to AAAIW",
-          "page": 7,
-          "aria": "Go to portfolio page 7 (STELLAR scene text editing)",
           "link": {
             "href": "https://arxiv.org/abs/2511.09977",
             "label": "arXiv",
@@ -116,9 +106,7 @@
         },
         {
           "date": "2025.09 – 2026.02",
-          "text": "<strong>T-RADAR</strong>: Multimodal trademark search & AI agent-based registration simulator",
-          "page": 8,
-          "aria": "Go to portfolio page 8 (T-RADAR trademark search system)",
+          "text": "<strong>T-RADAR</strong>: Multimodal trademark search & AI agent-based registration simulator, SIGIR Demo Track Accepted",
           "link": {
             "href": "https://github.com/yongchoooon/tradar",
             "label": "GitHub",
@@ -134,15 +122,11 @@
       "items": [
         {
           "date": "2024.08",
-          "text": "<strong>Gymnius</strong>: Excellence Award at the 1st LLM Service Development Hackathon",
-          "page": 10,
-          "aria": "Go to portfolio page 10 (Gymnius)"
+          "text": "<strong>Gymnius</strong>: Excellence Award at the 1st LLM Service Development Hackathon"
         },
         {
           "date": "2025.02",
-          "text": "<strong>KIMCHI</strong>: Best Presentation, Korean CDE Winter Conference",
-          "page": 5,
-          "aria": "Go to portfolio page 5 (KIMCHI)"
+          "text": "<strong>KIMCHI</strong>: Best Presentation, Korean CDE Winter Conference"
         }
       ]
     },

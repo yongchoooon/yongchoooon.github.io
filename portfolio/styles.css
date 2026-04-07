@@ -201,6 +201,78 @@ button {
   color: var(--accent);
 }
 
+.hero-profile-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 860px;
+}
+
+.hero-profile-card {
+  position: relative;
+  padding: 18px 20px 20px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f8fc 100%);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.hero-profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(90deg, var(--accent) 0%, #60a5fa 100%);
+}
+
+.hero-profile-heading {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero-profile-list {
+  display: grid;
+  gap: 12px;
+}
+
+.hero-profile-item {
+  display: grid;
+  gap: 4px;
+}
+
+.hero-profile-item + .hero-profile-item {
+  padding-top: 12px;
+  border-top: 1px solid rgba(91, 100, 114, 0.18);
+}
+
+.hero-profile-date {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-profile-text {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.hero-profile-text strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
 .contact-links {
   display: flex;
   flex-wrap: wrap;
@@ -428,6 +500,10 @@ button {
     grid-template-columns: 1fr;
     gap: 28px;
     padding-top: 32px;
+  }
+
+  .hero-profile-grid {
+    grid-template-columns: 1fr;
   }
 
   .profile-photo-button {

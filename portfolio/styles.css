@@ -22,7 +22,7 @@ body {
   margin: 0;
   background: var(--page-bg);
   color: var(--text);
-  font-family: "Inter", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Lato", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.7;
 }
 
@@ -108,6 +108,7 @@ button {
 .profile-column {
   display: grid;
   gap: 16px;
+  align-self: start;
   justify-items: center;
 }
 
@@ -190,10 +191,33 @@ button {
 .hero-bullets {
   margin: 22px 0 0;
   padding-left: 20px;
-  max-width: 72ch;
-  color: var(--muted);
+  max-width: 92ch;
+  color: var(--text);
   display: grid;
   gap: 8px;
+}
+
+.hero-details {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.hero-details a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hero-details strong {
+  color: inherit;
+  font-weight: 600;
+}
+
+.hero-details a:hover,
+.hero-details a:focus-visible {
+  color: inherit;
 }
 
 .hero-bullets li::marker,
@@ -201,109 +225,54 @@ button {
   color: var(--accent);
 }
 
-.hero-profile-grid {
-  margin-top: 28px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  max-width: 860px;
-}
-
-.hero-profile-card {
-  position: relative;
-  padding: 18px 20px 20px;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  background: linear-gradient(180deg, #ffffff 0%, #f5f8fc 100%);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
-}
-
-.hero-profile-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  border-radius: 20px 20px 0 0;
-  background: linear-gradient(90deg, var(--accent) 0%, #60a5fa 100%);
-}
-
-.hero-profile-heading {
-  margin: 0 0 12px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.hero-profile-list {
-  display: grid;
-  gap: 12px;
-}
-
-.hero-profile-item {
+.contact-links {
+  width: 88%;
+  max-width: 240px;
   display: grid;
   gap: 4px;
 }
 
-.hero-profile-item + .hero-profile-item {
-  padding-top: 12px;
-  border-top: 1px solid rgba(91, 100, 114, 0.18);
-}
-
-.hero-profile-date {
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.hero-profile-text {
-  margin: 0;
-  color: var(--text);
-  font-size: 0.96rem;
-  line-height: 1.6;
-}
-
-.hero-profile-text strong {
-  color: var(--text);
-  font-weight: 700;
-}
-
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
-
 .contact-icon-link {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.contact-icon-shell {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--panel);
+  width: 22px;
+  height: 22px;
   color: var(--accent);
-  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .contact-icon-link svg {
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
   fill: currentColor;
+}
+
+.contact-link-text {
+  min-width: 0;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: inherit;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .contact-icon-link:hover,
 .contact-icon-link:focus-visible {
-  background: var(--accent-soft);
-  border-color: rgba(29, 78, 216, 0.35);
-  transform: translateY(-2px);
+  color: var(--accent);
+  transform: translateY(-1px) scale(1.01);
 }
 
 .scholar-link svg {
@@ -328,7 +297,7 @@ button {
   padding-left: 20px;
   display: grid;
   gap: 10px;
-  color: var(--muted);
+  color: var(--text);
 }
 
 .about-list strong,
@@ -357,7 +326,7 @@ button {
   padding: 6px 12px;
   border-radius: 999px;
   background: #eef2f7;
-  color: var(--muted);
+  color: var(--text);
   font-size: 0.86rem;
   font-weight: 600;
 }
@@ -500,10 +469,6 @@ button {
     grid-template-columns: 1fr;
     gap: 28px;
     padding-top: 32px;
-  }
-
-  .hero-profile-grid {
-    grid-template-columns: 1fr;
   }
 
   .profile-photo-button {

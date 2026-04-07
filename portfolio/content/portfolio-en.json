@@ -21,14 +21,19 @@
       "Computer Vision, Generative AI, and other ML skills let me tackle end-to-end projects on real datasets.",
       "Research rigor plus production experience helps me translate AI ideas into services and industrial workflows."
     ],
+    "details": [
+      "M.S., <a href=\"http://theteamlab.io/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>TEAMLAB</strong></a>, Industrial Data Science & Engineering, <a href=\"https://www.pknu.ac.kr/main\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Pukyong National University</strong></a> (2024.03 - 2026.02)",
+      "B.S., <a href=\"http://theteamlab.io/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>TEAMLAB</strong></a>, Technology Data Engineering, <a href=\"https://www.pknu.ac.kr/main\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Pukyong National University</strong></a> (2022.02 - 2024.02)",
+      "AI Team Intern, <a href=\"https://www.tomocube.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Tomocube Inc.</strong></a> (2023.08 - 2023.12)"
+    ],
     "photoAlt": "Portrait of Yongdeuk Seo",
     "photoAria": "Tap the profile photo to say hello"
   },
   "overview": {
     "title": "Snapshot of My Work",
     "bullets": [
-      "After majoring in Technology & Data Engineering at Pukyong National University, I entered the master's program in Industrial Data Engineering, building research and hands-on experience in balance.",
-      "At the Industrial AI Lab (TEAMLAB) and during my internship at Tomocube, I led production projects from Segment Anything auto-labeling to Diffusion + LLM-based data augmentation.",
+      "My work connects research ideas with deployable systems, from model design to service implementation.",
+      "At the TEAMLAB (Industrial AI Lab) and during my internship at Tomocube, I led production projects from Segment Anything auto-labeling to Diffusion + LLM-based data augmentation.",
       "I designed and developed a multimodal similar-trademark search system and an AI Agent-based registration feasibility simulation system, and I have experience deploying services with FastAPI + AWS."
     ]
   },
@@ -51,7 +56,7 @@
       "items": [
         {
           "date": "2022.04 – 2026.02",
-          "text": "Researcher, <strong>Industrial AI Lab (TEAMLAB)</strong>, <strong>Pukyong National University</strong>"
+          "text": "Researcher, <strong>TEAMLAB (Industrial AI Lab)</strong>, <strong>Pukyong National University</strong>"
         },
         {
           "date": "2023.08 – 2023.12",

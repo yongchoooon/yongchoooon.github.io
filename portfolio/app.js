@@ -49,10 +49,7 @@ const langToggle = document.getElementById('lang-toggle');
 const heroEyebrowEl = document.getElementById('hero-eyebrow');
 const heroTitleEl = document.getElementById('hero-title');
 const heroBulletsEl = document.getElementById('hero-bullets');
-const heroExperienceTitleEl = document.getElementById('hero-experience-title');
-const heroExperienceListEl = document.getElementById('hero-experience-list');
-const heroEducationTitleEl = document.getElementById('hero-education-title');
-const heroEducationListEl = document.getElementById('hero-education-list');
+const heroDetailsEl = document.getElementById('hero-details');
 const overviewTitleEl = document.getElementById('overview-title');
 const overviewListEl = document.getElementById('overview-list');
 const projectsTitleEl = document.getElementById('projects-title');
@@ -122,32 +119,6 @@ function renderEntries(container, items = [], options = {}) {
 
     article.appendChild(textEl);
     container.appendChild(article);
-  });
-}
-
-function renderHeroProfileItems(container, items = [], options = {}) {
-  if (!container) return;
-  container.innerHTML = '';
-
-  items.forEach((item) => {
-    const itemEl = document.createElement('article');
-    itemEl.className = 'hero-profile-item';
-
-    if (item.date) {
-      const dateEl = document.createElement('span');
-      dateEl.className = 'hero-profile-date';
-      dateEl.textContent = item.date;
-      itemEl.appendChild(dateEl);
-    }
-
-    const textEl = document.createElement('p');
-    textEl.className = 'hero-profile-text';
-    textEl.innerHTML = options.stripStrong
-      ? (item.text || '').replace(/<\/?strong>/g, '')
-      : (item.text || '');
-    itemEl.appendChild(textEl);
-
-    container.appendChild(itemEl);
   });
 }
 
@@ -382,10 +353,7 @@ function applyCopy(copy) {
   setText(heroEyebrowEl, copy.hero?.eyebrow || copy.bannerTitle || 'Portfolio');
   setText(heroTitleEl, copy.hero?.title || 'Yongdeuk Seo');
   renderList(heroBulletsEl, copy.hero?.bullets || []);
-  setText(heroExperienceTitleEl, uiCopy.nav.experience);
-  renderHeroProfileItems(heroExperienceListEl, cards.experience?.items || [], { stripStrong: true });
-  setText(heroEducationTitleEl, uiCopy.nav.education || uiCopy.educationTitle);
-  renderHeroProfileItems(heroEducationListEl, cards.education?.items || []);
+  renderList(heroDetailsEl, copy.hero?.details || []);
 
   setText(
     overviewTitleEl,

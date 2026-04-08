@@ -20,12 +20,9 @@
   <div class="page">
     <header class="hero">
       <div class="topbar">
-        <nav class="topnav" aria-label="Section links">
-          <a href="#about" data-nav-key="about">About</a>
-          <a href="#projects" data-nav-key="projects">Projects</a>
-          <a href="#awards" data-nav-key="awards">Awards</a>
-          <a href="#patents" data-nav-key="patents">Patents</a>
-          <a href="#skills" data-nav-key="skills">Skills</a>
+        <nav class="topnav" aria-label="Page links">
+          <a class="is-active" href="./" data-topnav-key="home">Home</a>
+          <a href="./papers/" data-topnav-key="papers">Paper &amp; Project</a>
         </nav>
         <button class="lang-toggle" id="lang-toggle" type="button" aria-label="View in Korean">
           <span class="lang-option" data-lang-option="en">EN</span>
@@ -42,7 +39,13 @@
           </button>
 
           <div class="contact-links" aria-label="Contact links">
-            <a class="contact-icon-link" href="mailto:sod7050@gmail.com" aria-label="Send email">
+            <a
+              class="contact-icon-link"
+              id="email-copy-link"
+              href="mailto:sod7050@gmail.com"
+              aria-label="Copy email address"
+              data-copy-text="sod7050@gmail.com"
+            >
               <span class="contact-icon-shell" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-.4 4.25-7.07 4.42a1 1 0 0 1-1.06 0L4.4 8.25A.85.85 0 0 1 5.3 6.8L12 11l6.7-4.2a.85.85 0 1 1 .9 1.45Z"/>
@@ -103,7 +106,16 @@
       </section>
 
       <section class="section" id="projects">
-        <h2 class="section-title" id="projects-title"></h2>
+        <div class="section-title-row section-title-row-link">
+          <a class="section-title-link" href="./papers/" title="Open Paper and Project page">
+            <h2 class="section-title" id="projects-title"></h2>
+            <span class="section-title-link-button" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M8 6L16.5 12L8 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
         <div class="project-legend" id="projects-legend"></div>
         <div class="entry-list" id="projects-list"></div>
       </section>
@@ -138,6 +150,8 @@
 
     <footer class="footer" id="footer-text"></footer>
   </div>
+
+  <div class="copy-toast" id="copy-toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script src="./app.js"></script>
 </body>

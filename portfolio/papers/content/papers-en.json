@@ -1,0 +1,148 @@
+{
+  "lang": "en",
+  "meta": {
+    "title": "Yongdeuk Seo | Paper & Project"
+  },
+  "hero": {
+    "eyebrow": "Detailed Works",
+    "title": "Paper & Project",
+    "legend": [
+      {
+        "icon": "💙",
+        "label": "Accepted / published paper"
+      },
+      {
+        "icon": "🩵",
+        "label": "Paper under review"
+      },
+      {
+        "icon": "🧩",
+        "label": "Development project"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "title": "Papers",
+      "items": [
+        {
+          "kind": "paper",
+          "kindLabel": "Paper",
+          "title": "“<strong>T-RADAR</strong>: Simulating Trademark Examination as an Interactive Retrieval Interface for Conflict Risk Assessment”",
+          "video": "https://github.com/yongchoooon/yongchoooon.github.io/releases/download/tradar-demo-2026-02-12/live_demo_tradar_with_voice.mp4",
+          "meta": "<strong>Seo, Y.</strong>; Noah, L.; Min, H.S.; Choi, S. Accepted to ACM SIGIR 2026 Demonstration Track.",
+          "links": [
+            {
+              "href": "https://yongchoooon.github.io/tradar/",
+              "label": "Project Page"
+            },
+            {
+              "href": "https://do7ajfzdgr22.cloudfront.net/",
+              "label": "Demo"
+            },
+            {
+              "href": "https://github.com/yongchoooon/tradar",
+              "label": "GitHub"
+            }
+          ],
+          "summary": "T-RADAR is a multi-source retrieval system for similar trademarks based on trademark images and names. It predicts conflict risk and registrability through an AI agent based simulation of the back-and-forth process between trademark examiners and applicants."
+        },
+        {
+          "kind": "paper",
+          "kindLabel": "Paper",
+          "image": "../imgs/paper-stellar.png",
+          "imageAlt": "STELLAR paper preview",
+          "title": "“<strong>STELLAR</strong>: Scene Text Editor for Low-Resource Language and Real-World Data”",
+          "meta": "<strong>Seo, Y.</strong>; Min, H.S.; Choi, S. Accepted to 2026 AAAI Workshops.",
+          "links": [
+            {
+              "href": "https://yongchoooon.github.io/stellar",
+              "label": "Project Page"
+            },
+            {
+              "href": "https://arxiv.org/abs/2511.09977",
+              "label": "arXiv"
+            },
+            {
+              "href": "https://github.com/yongchoooon/stellar",
+              "label": "GitHub"
+            },
+            {
+              "href": "https://aibsdworkshop.github.io/2026/index.html#:~:text=02%3A15%20PM-,Paper%20Presentation,-Yongdeuk%20Seo%20et",
+              "label": "Workshop"
+            }
+          ],
+          "summary": "STELLAR is a scene text editing model designed for low-resource languages and real-world images. It introduces a ControlNet-based pipeline and a two-stage training strategy, builds its own training dataset, and proposes a new Text Appearance Similarity (TAS) metric for evaluation."
+        },
+        {
+          "kind": "submission",
+          "kindLabel": "Paper Under Review",
+          "image": "../imgs/paper-cabin.png",
+          "imageAlt": "CABIN paper preview",
+          "title": "“<strong>CABIN</strong>: Controlling Augmentations for Balancing Invariance and Diversification in One-Shot Image Classification”",
+          "meta": "Jung, K.; <strong>Seo, Y.</strong>; Jung, Y.; Cho, S.; Min, H.S.; Choi, S.; Kim, J. Submitted to Neurocomputing. Under Review.",
+          "links": [
+            {
+              "href": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6300631",
+              "label": "SSRN"
+            },
+            {
+              "href": "https://github.com/kkyuhun94/CABIN",
+              "label": "GitHub"
+            }
+          ],
+          "summary": "CABIN is a data augmentation framework for systematically controlling diversity and class invariance in a one-shot learning setting. It uses class-specific descriptors extracted by an LLM to generate two role-separated types of synthetic data, followed by multi-stage learning."
+        },
+        {
+          "kind": "paper",
+          "kindLabel": "Paper",
+          "image": "../imgs/paper-kimchi.png",
+          "imageAlt": "KIMCHI paper preview",
+          "title": "“<strong>KIMCHI</strong>: Korean Diffusion Model Adapting Culture and History”",
+          "meta": "<strong>Seo, Y.</strong>; Kwon, Y.; Lee, N.; Jung, K.; Cho, S.; Jang, S.; Choi, S. Accepted to 2025 Winter Conference of Society for CDE.",
+          "links": [
+            {
+              "href": "https://github.com/yongchoooon/kimchi",
+              "label": "GitHub"
+            }
+          ],
+          "summary": "KIMCHI is a diffusion model designed to understand Korean text and naturally generate culturally grounded Korean images. It builds a Korean-style image dataset using Korean prompts generated with LLaVA + LLaMA, and fine-tunes both the Ko-CLIP text encoder and the diffusion model with LoRA."
+        },
+        {
+          "kind": "paper",
+          "kindLabel": "Paper",
+          "image": "../imgs/paper-dalda.png",
+          "imageAlt": "DALDA paper preview",
+          "title": "“<strong>DALDA</strong>: Data Augmentation Leveraging Diffusion Model and LLM with Adaptive Guidance Scaling”",
+          "meta": "Jung, K.; <strong>Seo, Y.</strong>; Cho, S.; Kim, J.; Min, H.S.; Choi, S. Accepted to 2024 ECCV Workshops.",
+          "links": [
+            {
+              "href": "https://link.springer.com/chapter/10.1007/978-3-031-91907-7_11",
+              "label": "Springer"
+            },
+            {
+              "href": "https://github.com/kkyuhun94/dalda",
+              "label": "GitHub"
+            }
+          ],
+          "summary": "DALDA is a data augmentation framework that balances the diversity and consistency of synthetic data in a few-shot learning setting. It proposes Adaptive Guidance Scaling, which dynamically adjusts synthesis weights according to the CLIPScore of real samples."
+        }
+      ]
+    },
+    {
+      "title": "Projects",
+      "items": [
+        {
+          "kind": "project",
+          "kindLabel": "Development project",
+          "image": "../imgs/project-samannotator.png",
+          "imageAlt": "SAM Auto-Annotator project preview",
+          "title": "<strong>SAM Auto-Annotator</strong>: Production Auto-Annotation Workflow",
+          "meta": "Tomocube Inc. internship project. Segment Anything Model based annotation assistance for internal production use.",
+          "summary": "SAM Auto-Annotator is a web-based, high-precision and high-efficiency auto-annotation system developed during my internship at Tomocube for building cell image datasets. I built the backend server, implemented Segment Anything Model based annotation and fine-tuning features, and deployed the tool for internal use."
+        }
+      ]
+    }
+  ],
+  "footer": "© %YEAR% Seo Yongdeuk. All rights reserved."
+}

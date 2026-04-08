@@ -67,6 +67,11 @@ button {
   color: var(--accent);
 }
 
+.topnav a.is-active {
+  color: var(--text);
+  font-weight: 700;
+}
+
 .lang-toggle {
   display: inline-flex;
   align-items: center;
@@ -275,6 +280,30 @@ button {
   transform: translateY(-1px) scale(1.01);
 }
 
+.copy-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 1200;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.92);
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.2;
+  transform: translate(-50%, 10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.22);
+}
+
+.copy-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 .scholar-link svg {
   width: 20px;
   height: 20px;
@@ -290,6 +319,52 @@ button {
   font-size: 1.45rem;
   line-height: 1.2;
   letter-spacing: -0.05em;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #c8cdd6;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, color 0.18s ease;
+}
+
+.section-title-link-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.section-title-link:hover .section-title-link-button,
+.section-title-link:focus-visible .section-title-link-button,
+.section-title-row-link:focus-within .section-title-link-button {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.section-title-link:hover,
+.section-title-link:focus-visible {
+  color: var(--text);
+}
+
+.section-title-link:hover .section-title-link-button,
+.section-title-link:focus-visible .section-title-link-button {
+  color: #aeb6c2;
 }
 
 .about-list {

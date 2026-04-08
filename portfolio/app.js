@@ -3,8 +3,14 @@ const COPY_PATHS = {
   ko: './content/portfolio-ko.json'
 };
 
+const LANG_STORAGE_KEY = 'portfolio-language';
+
 const UI_COPY = {
   en: {
+    topbarNav: {
+      home: 'Home',
+      papers: 'Paper & Project'
+    },
     nav: {
       about: 'About',
       projects: 'Paper & Project',
@@ -17,9 +23,15 @@ const UI_COPY = {
     educationTitle: 'Education',
     langAria: 'View in Korean',
     title: 'Yongdeuk Seo | Portfolio',
+    emailCopied: 'Email copied',
+    emailCopyFailed: 'Copy failed',
     loadError: 'Failed to load portfolio content.'
   },
   ko: {
+    topbarNav: {
+      home: '홈',
+      papers: '논문 & 프로젝트'
+    },
     nav: {
       about: '소개',
       projects: '논문 & 프로젝트',
@@ -32,6 +44,8 @@ const UI_COPY = {
     educationTitle: '학력',
     langAria: '영어로 보기',
     title: '서용득 | Portfolio',
+    emailCopied: '이메일이 복사되었습니다',
+    emailCopyFailed: '복사하지 못했습니다',
     loadError: '포트폴리오 내용을 불러오지 못했습니다.'
   }
 };
@@ -68,10 +82,75 @@ const skillGroupsEl = document.getElementById('skill-groups');
 const footerTextEl = document.getElementById('footer-text');
 const profilePhotoButton = document.getElementById('profile-photo-button');
 const thumbsPopEl = profilePhotoButton ? profilePhotoButton.querySelector('.thumbs-pop') : null;
+const emailCopyLinkEl = document.getElementById('email-copy-link');
+const copyToastEl = document.getElementById('copy-toast');
+let copyToastTimeoutId = null;
+
+function getStoredLanguage() {
+  try {
+    return window.localStorage.getItem(LANG_STORAGE_KEY) === 'ko' ? 'ko' : 'en';
+  } catch (_error) {
+    return 'en';
+  }
+}
+
+function persistLanguage(lang) {
+  try {
+    window.localStorage.setItem(LANG_STORAGE_KEY, lang === 'ko' ? 'ko' : 'en');
+  } catch (_error) {
+    // Ignore storage failures and keep the current in-memory state.
+  }
+}
 
 function setText(element, text = '') {
   if (!element) return;
   element.textContent = text ?? '';
+}
+
+function showCopyToast(message) {
+  if (!copyToastEl) return;
+  copyToastEl.textContent = message;
+  copyToastEl.classList.add('is-visible');
+
+  if (copyToastTimeoutId) {
+    window.clearTimeout(copyToastTimeoutId);
+  }
+
+  copyToastTimeoutId = window.setTimeout(() => {
+    copyToastEl.classList.remove('is-visible');
+  }, 1400);
+}
+
+async function copyTextToClipboard(text) {
+  if (!text) return false;
+
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (_error) {
+      // Fall through to the legacy fallback.
+    }
+  }
+
+  const textAreaEl = document.createElement('textarea');
+  textAreaEl.value = text;
+  textAreaEl.setAttribute('readonly', '');
+  textAreaEl.style.position = 'fixed';
+  textAreaEl.style.opacity = '0';
+  textAreaEl.style.pointerEvents = 'none';
+  document.body.appendChild(textAreaEl);
+  textAreaEl.select();
+
+  let didCopy = false;
+  try {
+    didCopy = document.execCommand('copy');
+  } catch (_error) {
+    didCopy = false;
+  }
+
+  document.body.removeChild(textAreaEl);
+  return didCopy;
 }
 
 function renderList(container, items = []) {
@@ -142,10 +221,14 @@ function localizePatentMeta(metaText) {
   const rawMeta = metaText || '';
   if (currentLang === 'ko') {
     return rawMeta
+      .replace(/Patent Application \(KR\),?/g, '특허 출원 (KR),')
+      .replace(/Patent Publication \(KR\),?/g, '특허 공개 (KR),')
       .replace(/Application No\./g, '출원번호')
       .replace(/Publication No\./g, '공개번호');
   }
   return rawMeta
+    .replace(/특허 출원 \(KR\),?/g, 'Patent Application (KR),')
+    .replace(/특허 공개 \(KR\),?/g, 'Patent Publication (KR),')
     .replace(/출원번호/g, 'Application No.')
     .replace(/공개번호/g, 'Publication No.');
 }
@@ -307,10 +390,10 @@ function renderSkills(groups = []) {
   });
 }
 
-function updateNavigation(lang) {
-  const navCopy = UI_COPY[lang].nav;
+function updateTopNavigation(lang) {
+  const navCopy = UI_COPY[lang].topbarNav || {};
   Object.entries(navCopy).forEach(([key, label]) => {
-    const linkEl = document.querySelector(`[data-nav-key="${key}"]`);
+    const linkEl = document.querySelector(`[data-topnav-key="${key}"]`);
     if (linkEl) {
       linkEl.textContent = label;
     }
@@ -341,6 +424,7 @@ async function loadPortfolioCopy(lang) {
 
 function applyCopy(copy) {
   currentLang = copy.lang === 'ko' ? 'ko' : 'en';
+  persistLanguage(currentLang);
   const uiCopy = UI_COPY[currentLang];
   const cards = copy.cards || {};
 
@@ -348,7 +432,7 @@ function applyCopy(copy) {
   document.title = uiCopy.title;
   langToggle.dataset.activeLang = currentLang;
   langToggle.setAttribute('aria-label', uiCopy.langAria);
-  updateNavigation(currentLang);
+  updateTopNavigation(currentLang);
 
   setText(heroEyebrowEl, copy.hero?.eyebrow || copy.bannerTitle || 'Portfolio');
   setText(heroTitleEl, copy.hero?.title || 'Yongdeuk Seo');
@@ -427,4 +511,14 @@ document.querySelectorAll('[data-placeholder-link="true"]').forEach((linkEl) => 
   });
 });
 
-setLanguage('en');
+if (emailCopyLinkEl) {
+  emailCopyLinkEl.addEventListener('click', async (event) => {
+    event.preventDefault();
+    const text = emailCopyLinkEl.dataset.copyText || '';
+    const didCopy = await copyTextToClipboard(text);
+    const uiCopy = UI_COPY[currentLang] || UI_COPY.en;
+    showCopyToast(didCopy ? uiCopy.emailCopied : uiCopy.emailCopyFailed);
+  });
+}
+
+setLanguage(getStoredLanguage());

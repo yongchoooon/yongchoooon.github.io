@@ -179,6 +179,9 @@ function renderEntries(container, items = [], options = {}) {
 
     const textEl = document.createElement('p');
     textEl.className = 'entry-text';
+    if (options.bullet) {
+      textEl.classList.add('entry-bullet-line');
+    }
     const textValue = options.stripStrong
       ? (item.text || '').replace(/<\/?strong>/g, '')
       : (item.text || '');
@@ -465,7 +468,7 @@ function applyCopy(copy) {
     awardsTitleEl,
     getSectionTitle(currentLang, cards.awards?.title, uiCopy.nav.awards)
   );
-  renderEntries(awardsListEl, cards.awards?.items || []);
+  renderEntries(awardsListEl, cards.awards?.items || [], { bullet: true });
 
   setText(
     patentsTitleEl,

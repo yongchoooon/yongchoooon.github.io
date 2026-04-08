@@ -451,19 +451,21 @@ button {
   font-weight: 700;
 }
 
+.entry-bullet-line,
 .patent-line {
   position: relative;
   margin: 0;
   padding-left: 16px;
 }
 
+.entry-bullet-line::before,
 .patent-line::before {
   content: '•';
   position: absolute;
   left: 0;
-  top: 0.18em;
+  top: 0.24em;
   color: var(--accent);
-  font-size: 1.1rem;
+  font-size: 1em;
   line-height: 1;
 }
 

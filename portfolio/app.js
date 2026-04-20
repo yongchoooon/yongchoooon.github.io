@@ -25,7 +25,9 @@ const UI_COPY = {
     title: 'Yongdeuk Seo | Portfolio',
     emailCopied: 'Email copied',
     emailCopyFailed: 'Copy failed',
-    loadError: 'Failed to load portfolio content.'
+    loadError: 'Failed to load portfolio content.',
+    projectsLinkCta: 'View details',
+    projectsLinkAria: 'Open Paper and Project page'
   },
   ko: {
     topbarNav: {
@@ -46,7 +48,9 @@ const UI_COPY = {
     title: '서용득 | Portfolio',
     emailCopied: '이메일이 복사되었습니다',
     emailCopyFailed: '복사하지 못했습니다',
-    loadError: '포트폴리오 내용을 불러오지 못했습니다.'
+    loadError: '포트폴리오 내용을 불러오지 못했습니다.',
+    projectsLinkCta: '상세 보기',
+    projectsLinkAria: '논문 및 프로젝트 상세 페이지 열기'
   }
 };
 
@@ -66,6 +70,8 @@ const heroBulletsEl = document.getElementById('hero-bullets');
 const heroDetailsEl = document.getElementById('hero-details');
 const overviewTitleEl = document.getElementById('overview-title');
 const overviewListEl = document.getElementById('overview-list');
+const projectsTitleLinkEl = document.getElementById('projects-title-link');
+const projectsTitleLinkCtaEl = document.getElementById('projects-title-link-cta');
 const projectsTitleEl = document.getElementById('projects-title');
 const projectsLegendEl = document.getElementById('projects-legend');
 const projectsListEl = document.getElementById('projects-list');
@@ -435,6 +441,11 @@ function applyCopy(copy) {
   document.title = uiCopy.title;
   langToggle.dataset.activeLang = currentLang;
   langToggle.setAttribute('aria-label', uiCopy.langAria);
+  if (projectsTitleLinkEl) {
+    projectsTitleLinkEl.setAttribute('aria-label', uiCopy.projectsLinkAria);
+    projectsTitleLinkEl.setAttribute('title', uiCopy.projectsLinkAria);
+  }
+  setText(projectsTitleLinkCtaEl, uiCopy.projectsLinkCta);
   updateTopNavigation(currentLang);
 
   setText(heroEyebrowEl, copy.hero?.eyebrow || copy.bannerTitle || 'Portfolio');

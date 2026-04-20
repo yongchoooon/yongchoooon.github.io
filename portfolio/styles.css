@@ -329,8 +329,34 @@ button {
 
 .section-title-link {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 999px;
+  color: var(--text);
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+
+.section-title-link .section-title {
+  min-width: 0;
+}
+
+.section-title-link-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 3px 10px;
+  border: 1px solid rgba(29, 78, 216, 0.2);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .section-title-link-button {
@@ -339,9 +365,9 @@ button {
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: #c8cdd6;
-  opacity: 0;
-  transform: translateX(-6px);
+  color: var(--accent);
+  opacity: 1;
+  transform: translateX(0);
   transition: opacity 0.18s ease, transform 0.18s ease, color 0.18s ease;
 }
 
@@ -354,17 +380,22 @@ button {
 .section-title-link:focus-visible .section-title-link-button,
 .section-title-row-link:focus-within .section-title-link-button {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(3px);
 }
 
 .section-title-link:hover,
 .section-title-link:focus-visible {
-  color: var(--text);
+  color: var(--accent);
 }
 
 .section-title-link:hover .section-title-link-button,
 .section-title-link:focus-visible .section-title-link-button {
-  color: #aeb6c2;
+  color: var(--accent);
+}
+
+.section-title-link:focus-visible {
+  outline: 3px solid rgba(29, 78, 216, 0.22);
+  outline-offset: 6px;
 }
 
 .about-list {

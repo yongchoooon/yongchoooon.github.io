@@ -75,16 +75,16 @@
           "summary": "STELLAR is a scene text editing model designed for low-resource languages and real-world images. It introduces a ControlNet-based pipeline and a two-stage training strategy, builds its own training dataset, and proposes a new Text Appearance Similarity (TAS) metric for evaluation."
         },
         {
-          "kind": "submission",
-          "kindLabel": "Paper Under Review",
+          "kind": "paper",
+          "kindLabel": "Paper",
           "image": "../imgs/paper-cabin.png",
           "imageAlt": "CABIN paper preview",
           "title": "“<strong>CABIN</strong>: Controlling Augmentations for Balancing Invariance and Diversification in One-Shot Image Classification”",
-          "meta": "Jung, K.; <strong>Seo, Y.</strong>; Jung, Y.; Cho, S.; Min, H.S.; Choi, S.; Kim, J. Submitted to Neurocomputing. Under Review.",
+          "meta": "Jung, K.; <strong>Seo, Y.</strong>; Jung, Y.; Cho, S.; Min, H.S.; Choi, S.; Kim, J. Neurocomputing.",
           "links": [
             {
-              "href": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6300631",
-              "label": "SSRN"
+              "href": "https://doi.org/10.1016/j.neucom.2026.134322",
+              "label": "DOI"
             },
             {
               "href": "https://github.com/kkyuhun94/CABIN",
@@ -132,6 +132,32 @@
     {
       "title": "Projects",
       "items": [
+        {
+          "kind": "project",
+          "kindLabel": "Development project",
+          "images": [
+            {
+              "src": "../imgs/project-paravoca.png",
+              "alt": "PARAVOCA project preview"
+            },
+            {
+              "src": "../imgs/project-paravoca-2.jpg",
+              "alt": "PARAVOCA generated poster preview"
+            }
+          ],
+          "carousel": true,
+          "mediaAspectRatio": "7863 / 4980",
+          "imageAlt": "PARAVOCA project preview",
+          "title": "<strong>PARAVOCA</strong>: 관광 데이터를 판매 가능한 여행상품으로 전환하는 기획·마케팅 AX 에이전트",
+          "meta": "2026 관광데이터 활용 공모전(생성형 AI 활용 관광 프롬프톤 부문) 우수상",
+          "links": [
+            {
+              "href": "https://api.visitkorea.or.kr/#/cntSearchDetail?no=2",
+              "label": "Contest Page"
+            }
+          ],
+          "summary": "PARAVOCA is a multi-agent workflow built with Ennoia, Wanted Lab’s no-code platform. Users can enter a region, theme, target audience, and duration to generate verified tourist attraction candidates, product structures, draft proposals, marketing copy, operations checklists, and AI-generated posters."
+        },
         {
           "kind": "project",
           "kindLabel": "Development project",

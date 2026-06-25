@@ -1,27 +1,11 @@
-const COPY_PATHS = {
-  en: './content/papers-en.json',
-  ko: './content/papers-ko.json'
-};
-
-const LANG_STORAGE_KEY = 'portfolio-language';
+const COPY_PATH = './content/papers-en.json';
 
 const UI_COPY = {
-  en: {
-    topbarNav: {
-      home: 'Home',
-      papers: 'Paper & Project'
-    },
-    langAria: 'View in Korean',
-    loadError: 'Failed to load paper and project content.'
+  topbarNav: {
+    home: 'Home',
+    papers: 'Paper & Project'
   },
-  ko: {
-    topbarNav: {
-      home: '홈',
-      papers: '논문 & 프로젝트'
-    },
-    langAria: '영어로 보기',
-    loadError: '논문 및 프로젝트 내용을 불러오지 못했습니다.'
-  }
+  loadError: 'Failed to load paper and project content.'
 };
 
 const KIND_ICON_BY_TYPE = {
@@ -30,10 +14,8 @@ const KIND_ICON_BY_TYPE = {
   project: '🧩'
 };
 
-const cache = {};
-let currentLang = 'en';
+let cachedCopy = null;
 
-const langToggle = document.getElementById('lang-toggle');
 const detailEyebrowEl = document.getElementById('detail-eyebrow');
 const detailTitleEl = document.getElementById('detail-title');
 const detailLegendEl = document.getElementById('detail-legend');
@@ -45,29 +27,13 @@ const imageLightboxDialogEl = document.querySelector('.image-lightbox-dialog');
 const imageLightboxDismissEl = document.getElementById('image-lightbox-dismiss');
 const imageLightboxImageEl = document.getElementById('image-lightbox-image');
 
-function getStoredLanguage() {
-  try {
-    return window.localStorage.getItem(LANG_STORAGE_KEY) === 'ko' ? 'ko' : 'en';
-  } catch (_error) {
-    return 'en';
-  }
-}
-
-function persistLanguage(lang) {
-  try {
-    window.localStorage.setItem(LANG_STORAGE_KEY, lang === 'ko' ? 'ko' : 'en');
-  } catch (_error) {
-    // Ignore storage failures and keep the current in-memory state.
-  }
-}
-
 function setText(element, text = '') {
   if (!element) return;
   element.textContent = text ?? '';
 }
 
-function updateTopNavigation(lang) {
-  const navCopy = UI_COPY[lang].topbarNav || {};
+function updateTopNavigation() {
+  const navCopy = UI_COPY.topbarNav || {};
   Object.entries(navCopy).forEach(([key, label]) => {
     const linkEl = document.querySelector(`[data-topnav-key="${key}"]`);
     if (linkEl) {
@@ -141,6 +107,120 @@ function normalizeDetailTitle(item) {
   return `${icon}&nbsp;&nbsp;${rawTitle}`;
 }
 
+function getMediaImages(item) {
+  if (Array.isArray(item.images) && item.images.length > 0) {
+    return item.images
+      .map((image) => (typeof image === 'string' ? { src: image } : image))
+      .filter((image) => image?.src);
+  }
+
+  return item.image ? [{ src: item.image, alt: item.imageAlt || '' }] : [];
+}
+
+function renderImageMedia(item, mediaEl) {
+  const images = getMediaImages(item);
+  let activeIndex = 0;
+
+  const frameEl = document.createElement('div');
+  frameEl.className = 'detail-media-frame';
+
+  const mediaTriggerEl = document.createElement('button');
+  mediaTriggerEl.className = 'detail-media-trigger';
+  mediaTriggerEl.type = 'button';
+
+  if (item.carousel && images.length > 1) {
+    frameEl.classList.add('detail-media-frame--carousel');
+    if (item.mediaAspectRatio) {
+      frameEl.style.setProperty('--media-aspect-ratio', item.mediaAspectRatio);
+    }
+
+    const trackEl = document.createElement('span');
+    trackEl.className = 'detail-media-track';
+
+    images.forEach((image, index) => {
+      const slideEl = document.createElement('span');
+      slideEl.className = index === 0
+        ? 'detail-media-slide detail-media-slide--first'
+        : 'detail-media-slide detail-media-slide--contain';
+      slideEl.style.backgroundImage = `url("${image.src}")`;
+      slideEl.dataset.src = image.src;
+      slideEl.dataset.alt = image.alt || item.imageAlt || '';
+      trackEl.appendChild(slideEl);
+    });
+
+    mediaTriggerEl.appendChild(trackEl);
+
+    const navButtonEl = document.createElement('button');
+    navButtonEl.className = 'detail-media-nav detail-media-nav--next';
+    navButtonEl.type = 'button';
+
+    function updateCarousel(index) {
+      activeIndex = index === 0 ? 0 : 1;
+      const activeImage = images[activeIndex];
+      trackEl.style.transform = `translateX(-${activeIndex * 100}%)`;
+      frameEl.dataset.activeIndex = String(activeIndex);
+      mediaTriggerEl.setAttribute('aria-label', `${activeImage.alt || item.imageAlt || 'Image'} preview`);
+      navButtonEl.className = activeIndex === 0
+        ? 'detail-media-nav detail-media-nav--next'
+        : 'detail-media-nav detail-media-nav--prev';
+      navButtonEl.setAttribute('aria-label', activeIndex === 0 ? 'Show next image' : 'Show previous image');
+      navButtonEl.innerHTML = activeIndex === 0
+        ? '<span aria-hidden="true">›</span>'
+        : '<span aria-hidden="true">‹</span>';
+    }
+
+    mediaTriggerEl.addEventListener('click', () => {
+      const activeSlideEl = trackEl.children[activeIndex];
+      openImageLightbox(activeSlideEl.dataset.src || '', activeSlideEl.dataset.alt || '');
+    });
+
+    navButtonEl.addEventListener('click', (event) => {
+      event.stopPropagation();
+      updateCarousel(activeIndex === 0 ? 1 : 0);
+    });
+
+    frameEl.appendChild(mediaTriggerEl);
+    frameEl.appendChild(navButtonEl);
+    updateCarousel(0);
+    mediaEl.appendChild(frameEl);
+    return;
+  }
+
+  const imageEl = document.createElement('img');
+  imageEl.loading = 'lazy';
+  mediaTriggerEl.appendChild(imageEl);
+
+  function showImage(index) {
+    activeIndex = (index + images.length) % images.length;
+    const activeImage = images[activeIndex];
+    imageEl.src = activeImage.src;
+    imageEl.alt = activeImage.alt || item.imageAlt || '';
+    mediaTriggerEl.setAttribute('aria-label', `${imageEl.alt || 'Image'} preview`);
+  }
+
+  mediaTriggerEl.addEventListener('click', () => {
+    openImageLightbox(imageEl.currentSrc || imageEl.src, imageEl.alt);
+  });
+
+  frameEl.appendChild(mediaTriggerEl);
+
+  if (images.length > 1) {
+    const nextButtonEl = document.createElement('button');
+    nextButtonEl.className = 'detail-media-next';
+    nextButtonEl.type = 'button';
+    nextButtonEl.setAttribute('aria-label', 'Show next image');
+    nextButtonEl.innerHTML = '<span aria-hidden="true">›</span>';
+    nextButtonEl.addEventListener('click', (event) => {
+      event.stopPropagation();
+      showImage(activeIndex + 1);
+    });
+    frameEl.appendChild(nextButtonEl);
+  }
+
+  showImage(0);
+  mediaEl.appendChild(frameEl);
+}
+
 function renderSections(sections = []) {
   if (!detailSectionsEl) return;
   detailSectionsEl.innerHTML = '';
@@ -173,7 +253,7 @@ function renderSections(sections = []) {
       const entryEl = document.createElement('article');
       entryEl.className = 'detail-entry';
 
-      if (item.image || item.video) {
+      if (item.image || item.images || item.video) {
         const mediaEl = document.createElement('figure');
         mediaEl.className = 'detail-media';
         if (item.video) {
@@ -194,21 +274,7 @@ function renderSections(sections = []) {
 
           mediaEl.appendChild(videoEl);
         } else {
-          const imageEl = document.createElement('img');
-          imageEl.src = item.image;
-          imageEl.alt = item.imageAlt || '';
-          imageEl.loading = 'lazy';
-
-          const mediaTriggerEl = document.createElement('button');
-          mediaTriggerEl.className = 'detail-media-trigger';
-          mediaTriggerEl.type = 'button';
-          mediaTriggerEl.setAttribute('aria-label', `${imageEl.alt || 'Image'} preview`);
-          mediaTriggerEl.appendChild(imageEl);
-          mediaTriggerEl.addEventListener('click', () => {
-            openImageLightbox(imageEl.currentSrc || imageEl.src, imageEl.alt);
-          });
-
-          mediaEl.appendChild(mediaTriggerEl);
+          renderImageMedia(item, mediaEl);
         }
         entryEl.appendChild(mediaEl);
       } else {
@@ -250,31 +316,25 @@ function renderSections(sections = []) {
   });
 }
 
-async function loadCopy(lang) {
-  if (cache[lang]) {
-    return cache[lang];
+async function loadCopy() {
+  if (cachedCopy) {
+    return cachedCopy;
   }
 
-  const response = await fetch(COPY_PATHS[lang]);
+  const response = await fetch(COPY_PATH);
   if (!response.ok) {
-    throw new Error(`Failed to fetch ${COPY_PATHS[lang]}`);
+    throw new Error(`Failed to fetch ${COPY_PATH}`);
   }
 
   const data = await response.json();
-  cache[lang] = data;
+  cachedCopy = data;
   return data;
 }
 
 function applyCopy(copy) {
-  currentLang = copy.lang === 'ko' ? 'ko' : 'en';
-  persistLanguage(currentLang);
-  const uiCopy = UI_COPY[currentLang];
-
-  document.documentElement.lang = currentLang;
+  document.documentElement.lang = 'en';
   document.title = copy.meta?.title || 'Yongdeuk Seo | Paper & Project';
-  langToggle.dataset.activeLang = currentLang;
-  langToggle.setAttribute('aria-label', uiCopy.langAria);
-  updateTopNavigation(currentLang);
+  updateTopNavigation();
 
   setText(detailEyebrowEl, copy.hero?.eyebrow || '');
   setText(detailTitleEl, copy.hero?.title || '');
@@ -285,19 +345,15 @@ function applyCopy(copy) {
   setText(footerTextEl, footer.replace('%YEAR%', new Date().getFullYear()));
 }
 
-async function setLanguage(lang) {
+async function initializePapers() {
   try {
-    const copy = await loadCopy(lang);
+    const copy = await loadCopy();
     applyCopy(copy);
   } catch (error) {
-    setText(detailTitleEl, UI_COPY[lang].loadError);
+    setText(detailTitleEl, UI_COPY.loadError);
     console.error(error);
   }
 }
-
-langToggle.addEventListener('click', () => {
-  setLanguage(currentLang === 'en' ? 'ko' : 'en');
-});
 
 if (imageLightboxBackdropEl) {
   imageLightboxBackdropEl.addEventListener('click', closeImageLightbox);
@@ -321,4 +377,4 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-setLanguage(getStoredLanguage());
+initializePapers();

@@ -93,6 +93,19 @@
   max-width: 440px;
 }
 
+.detail-media-frame {
+  position: relative;
+}
+
+.detail-media-frame--carousel {
+  aspect-ratio: var(--media-aspect-ratio, 7863 / 4980);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
 .detail-media-trigger {
   display: block;
   width: 100%;
@@ -102,6 +115,31 @@
   cursor: pointer;
 }
 
+.detail-media-frame--carousel .detail-media-trigger {
+  height: 100%;
+  overflow: hidden;
+}
+
+.detail-media-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.34s ease;
+  will-change: transform;
+}
+
+.detail-media-slide {
+  flex: 0 0 100%;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .detail-media img {
   display: block;
   width: 100%;
@@ -109,6 +147,49 @@
   border-radius: 22px;
   background: #fff;
   box-shadow: var(--shadow);
+}
+
+.detail-media-next,
+.detail-media-nav {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  color: rgba(29, 78, 216, 0.62);
+  font-size: 1.95rem;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.12);
+  transition: background-color 0.16s ease, color 0.16s ease, transform 0.16s ease;
+}
+
+.detail-media-next,
+.detail-media-nav--next {
+  right: 12px;
+}
+
+.detail-media-nav--prev {
+  left: 12px;
+}
+
+.detail-media-next:hover,
+.detail-media-next:focus-visible,
+.detail-media-nav:hover,
+.detail-media-nav:focus-visible {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--accent);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.detail-media-next span,
+.detail-media-nav span {
+  transform: translateY(-1px);
 }
 
 .detail-media-video {

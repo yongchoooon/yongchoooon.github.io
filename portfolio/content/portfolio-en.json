@@ -82,6 +82,21 @@
       ],
       "items": [
         {
+          "date": "2026.05 – 2026.06",
+          "kind": "project",
+          "text": "🧩 <strong>PARAVOCA</strong>: 관광 데이터를 판매 가능한 여행상품으로 전환하는 기획·마케팅 AX 에이전트",
+          "venue": "2026 관광데이터 활용 공모전(생성형 AI 활용 관광 프롬프톤 부문) 우수상",
+          "links": [
+            {
+              "href": "https://api.visitkorea.or.kr/#/cntSearchDetail?no=2",
+              "label": "Contest Page",
+              "icon": "C",
+              "variant": "contest",
+              "srText": "Open contest page in a new tab"
+            }
+          ]
+        },
+        {
           "date": "2025.09 – 2026.02",
           "kind": "paper",
           "text": "💙 “<strong>T-RADAR</strong>: Simulating Trademark Examination as an Interactive Retrieval Interface for Conflict Risk Assessment”",
@@ -150,17 +165,17 @@
         },
         {
           "date": "2025.02 – 2025.08",
-          "kind": "submission",
-          "text": "🩵 “<strong>CABIN</strong>: Controlling Augmentations for Balancing Invariance and Diversification in One-Shot Image Classification”",
+          "kind": "paper",
+          "text": "💙 “<strong>CABIN</strong>: Controlling Augmentations for Balancing Invariance and Diversification in One-Shot Image Classification”",
           "authors": "Jung, K.; <strong>Seo, Y.</strong>; Jung, Y.; Cho, S.; Min, H.S.; Choi, S.; Kim, J.",
-          "venue": "Submitted to Neurocomputing. Under Review.",
+          "venue": "Neurocomputing.",
           "links": [
             {
-              "href": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6300631",
-              "label": "SSRN",
-              "icon": "S",
-              "variant": "ssrn",
-              "srText": "Open preprint in a new tab"
+              "href": "https://doi.org/10.1016/j.neucom.2026.134322",
+              "label": "DOI",
+              "icon": "D",
+              "variant": "doi",
+              "srText": "Open DOI in a new tab"
             },
             {
               "href": "https://github.com/kkyuhun94/CABIN",
@@ -221,12 +236,16 @@
       "title": "Awards",
       "items": [
         {
+          "date": "2026.02",
+          "text": "PARAVOCA: 2026 관광데이터 활용 공모전(생성형 AI 활용 관광 프롬프톤 부문) 우수상 - 주최: 한국관광공사, 원티드랩"
+        },
+        {
           "date": "2025.02",
-          "text": "<strong>KIMCHI</strong>: Best Presentation Award at the Korean CDE Winter Conference"
+          "text": "KIMCHI: 한국CDE학회 동계학술대회 우수발표상"
         },
         {
           "date": "2024.08",
-          "text": "<strong>Gymnius</strong>: Excellence Award at the 1st Hackathon Competition [Service Development Using Upstage Solar API]<br>Hosted by the ICAN Project Groups of Pukyong National University and Sungkyunkwan University, sponsored by Upstage"
+          "text": "Gymnius: 제 1회 해커톤 경진대회 우수상 [Upstage Solar API 활용 서비스 개발] - 주최: 국립부경대학교 성균관대학교 ICAN사업단, 후원: Upstage"
         }
       ]
     },

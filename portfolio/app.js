@@ -1,61 +1,29 @@
-const COPY_PATHS = {
-  en: './content/portfolio-en.json',
-  ko: './content/portfolio-ko.json'
-};
-
-const LANG_STORAGE_KEY = 'portfolio-language';
+const COPY_PATH = './content/portfolio-en.json';
 
 const UI_COPY = {
-  en: {
-    topbarNav: {
-      home: 'Home',
-      papers: 'Paper & Project'
-    },
-    nav: {
-      about: 'About',
-      projects: 'Paper & Project',
-      experience: 'Experience',
-      education: 'Education',
-      awards: 'Awards',
-      patents: 'Patents',
-      skills: 'Skills'
-    },
-    educationTitle: 'Education',
-    langAria: 'View in Korean',
-    title: 'Yongdeuk Seo | Portfolio',
-    emailCopied: 'Email copied',
-    emailCopyFailed: 'Copy failed',
-    loadError: 'Failed to load portfolio content.',
-    projectsLinkCta: 'View details',
-    projectsLinkAria: 'Open Paper and Project page'
+  topbarNav: {
+    home: 'Home',
+    papers: 'Paper & Project'
   },
-  ko: {
-    topbarNav: {
-      home: '홈',
-      papers: '논문 & 프로젝트'
-    },
-    nav: {
-      about: '소개',
-      projects: '논문 & 프로젝트',
-      experience: '경력',
-      education: '학력',
-      awards: '수상',
-      patents: '특허',
-      skills: '기술'
-    },
-    educationTitle: '학력',
-    langAria: '영어로 보기',
-    title: '서용득 | Portfolio',
-    emailCopied: '이메일이 복사되었습니다',
-    emailCopyFailed: '복사하지 못했습니다',
-    loadError: '포트폴리오 내용을 불러오지 못했습니다.',
-    projectsLinkCta: '상세 보기',
-    projectsLinkAria: '논문 및 프로젝트 상세 페이지 열기'
-  }
+  nav: {
+    about: 'About',
+    projects: 'Paper & Project',
+    experience: 'Experience',
+    education: 'Education',
+    awards: 'Awards',
+    patents: 'Patents',
+    skills: 'Skills'
+  },
+  educationTitle: 'Education',
+  title: 'Yongdeuk Seo | Portfolio',
+  emailCopied: 'Email copied',
+  emailCopyFailed: 'Copy failed',
+  loadError: 'Failed to load portfolio content.',
+  projectsLinkCta: 'View details',
+  projectsLinkAria: 'Open Paper and Project page'
 };
 
-const cache = {};
-let currentLang = 'en';
+let cachedCopy = null;
 
 const PROJECT_ICON_BY_KIND = {
   paper: '💙',
@@ -63,7 +31,6 @@ const PROJECT_ICON_BY_KIND = {
   project: '🧩'
 };
 
-const langToggle = document.getElementById('lang-toggle');
 const heroEyebrowEl = document.getElementById('hero-eyebrow');
 const heroTitleEl = document.getElementById('hero-title');
 const heroBulletsEl = document.getElementById('hero-bullets');
@@ -91,22 +58,6 @@ const thumbsPopEl = profilePhotoButton ? profilePhotoButton.querySelector('.thum
 const emailCopyLinkEl = document.getElementById('email-copy-link');
 const copyToastEl = document.getElementById('copy-toast');
 let copyToastTimeoutId = null;
-
-function getStoredLanguage() {
-  try {
-    return window.localStorage.getItem(LANG_STORAGE_KEY) === 'ko' ? 'ko' : 'en';
-  } catch (_error) {
-    return 'en';
-  }
-}
-
-function persistLanguage(lang) {
-  try {
-    window.localStorage.setItem(LANG_STORAGE_KEY, lang === 'ko' ? 'ko' : 'en');
-  } catch (_error) {
-    // Ignore storage failures and keep the current in-memory state.
-  }
-}
 
 function setText(element, text = '') {
   if (!element) return;
@@ -228,13 +179,6 @@ function normalizeProjectText(item) {
 
 function localizePatentMeta(metaText) {
   const rawMeta = metaText || '';
-  if (currentLang === 'ko') {
-    return rawMeta
-      .replace(/Patent Application \(KR\),?/g, '특허 출원 (KR),')
-      .replace(/Patent Publication \(KR\),?/g, '특허 공개 (KR),')
-      .replace(/Application No\./g, '출원번호')
-      .replace(/Publication No\./g, '공개번호');
-  }
   return rawMeta
     .replace(/특허 출원 \(KR\),?/g, 'Patent Application (KR),')
     .replace(/특허 공개 \(KR\),?/g, 'Patent Publication (KR),')
@@ -399,8 +343,8 @@ function renderSkills(groups = []) {
   });
 }
 
-function updateTopNavigation(lang) {
-  const navCopy = UI_COPY[lang].topbarNav || {};
+function updateTopNavigation() {
+  const navCopy = UI_COPY.topbarNav || {};
   Object.entries(navCopy).forEach(([key, label]) => {
     const linkEl = document.querySelector(`[data-topnav-key="${key}"]`);
     if (linkEl) {
@@ -409,44 +353,37 @@ function updateTopNavigation(lang) {
   });
 }
 
-function getSectionTitle(lang, fallbackTitle, navTitle) {
-  if (lang === 'ko') {
-    return navTitle || fallbackTitle || '';
-  }
+function getSectionTitle(fallbackTitle, navTitle) {
   return fallbackTitle || navTitle || '';
 }
 
-async function loadPortfolioCopy(lang) {
-  if (cache[lang]) {
-    return cache[lang];
+async function loadPortfolioCopy() {
+  if (cachedCopy) {
+    return cachedCopy;
   }
 
-  const response = await fetch(COPY_PATHS[lang]);
+  const response = await fetch(COPY_PATH);
   if (!response.ok) {
-    throw new Error(`Failed to fetch ${COPY_PATHS[lang]}`);
+    throw new Error(`Failed to fetch ${COPY_PATH}`);
   }
 
   const data = await response.json();
-  cache[lang] = data;
+  cachedCopy = data;
   return data;
 }
 
 function applyCopy(copy) {
-  currentLang = copy.lang === 'ko' ? 'ko' : 'en';
-  persistLanguage(currentLang);
-  const uiCopy = UI_COPY[currentLang];
+  const uiCopy = UI_COPY;
   const cards = copy.cards || {};
 
-  document.documentElement.lang = currentLang;
+  document.documentElement.lang = 'en';
   document.title = uiCopy.title;
-  langToggle.dataset.activeLang = currentLang;
-  langToggle.setAttribute('aria-label', uiCopy.langAria);
   if (projectsTitleLinkEl) {
     projectsTitleLinkEl.setAttribute('aria-label', uiCopy.projectsLinkAria);
     projectsTitleLinkEl.setAttribute('title', uiCopy.projectsLinkAria);
   }
   setText(projectsTitleLinkCtaEl, uiCopy.projectsLinkCta);
-  updateTopNavigation(currentLang);
+  updateTopNavigation();
 
   setText(heroEyebrowEl, copy.hero?.eyebrow || copy.bannerTitle || 'Portfolio');
   setText(heroTitleEl, copy.hero?.title || 'Yongdeuk Seo');
@@ -455,20 +392,20 @@ function applyCopy(copy) {
 
   setText(
     overviewTitleEl,
-    getSectionTitle(currentLang, copy.overview?.title, uiCopy.nav.about)
+    getSectionTitle(copy.overview?.title, uiCopy.nav.about)
   );
   renderList(overviewListEl, copy.overview?.bullets || []);
 
   setText(
     projectsTitleEl,
-    getSectionTitle(currentLang, cards.projects?.title, uiCopy.nav.projects)
+    getSectionTitle(cards.projects?.title, uiCopy.nav.projects)
   );
   renderProjectLegend(cards.projects?.legend || []);
   renderProjectEntries(projectsListEl, cards.projects?.items || []);
 
   setText(
     experienceTitleEl,
-    getSectionTitle(currentLang, cards.experience?.title, uiCopy.nav.experience)
+    getSectionTitle(cards.experience?.title, uiCopy.nav.experience)
   );
   renderEntries(experienceListEl, cards.experience?.items || [], { stripStrong: true });
 
@@ -477,19 +414,19 @@ function applyCopy(copy) {
 
   setText(
     awardsTitleEl,
-    getSectionTitle(currentLang, cards.awards?.title, uiCopy.nav.awards)
+    getSectionTitle(cards.awards?.title, uiCopy.nav.awards)
   );
   renderEntries(awardsListEl, cards.awards?.items || [], { bullet: true });
 
   setText(
     patentsTitleEl,
-    getSectionTitle(currentLang, cards.patents?.title, uiCopy.nav.patents)
+    getSectionTitle(cards.patents?.title, uiCopy.nav.patents)
   );
   renderPatentEntries(patentsListEl, cards.patents?.items || []);
 
   setText(
     skillsTitleEl,
-    getSectionTitle(currentLang, cards.skills?.title, uiCopy.nav.skills)
+    getSectionTitle(cards.skills?.title, uiCopy.nav.skills)
   );
   renderSkills(cards.skills?.groups || []);
 
@@ -497,19 +434,15 @@ function applyCopy(copy) {
   setText(footerTextEl, footer.replace('%YEAR%', new Date().getFullYear()));
 }
 
-async function setLanguage(lang) {
+async function initializePortfolio() {
   try {
-    const copy = await loadPortfolioCopy(lang);
+    const copy = await loadPortfolioCopy();
     applyCopy(copy);
   } catch (error) {
-    setText(heroTitleEl, UI_COPY[lang].loadError);
+    setText(heroTitleEl, UI_COPY.loadError);
     console.error(error);
   }
 }
-
-langToggle.addEventListener('click', () => {
-  setLanguage(currentLang === 'en' ? 'ko' : 'en');
-});
 
 if (profilePhotoButton && thumbsPopEl) {
   profilePhotoButton.addEventListener('click', () => {
@@ -530,9 +463,8 @@ if (emailCopyLinkEl) {
     event.preventDefault();
     const text = emailCopyLinkEl.dataset.copyText || '';
     const didCopy = await copyTextToClipboard(text);
-    const uiCopy = UI_COPY[currentLang] || UI_COPY.en;
-    showCopyToast(didCopy ? uiCopy.emailCopied : uiCopy.emailCopyFailed);
+    showCopyToast(didCopy ? UI_COPY.emailCopied : UI_COPY.emailCopyFailed);
   });
 }
 
-setLanguage(getStoredLanguage());
+initializePortfolio();

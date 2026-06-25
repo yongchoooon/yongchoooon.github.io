@@ -72,35 +72,6 @@ button {
   font-weight: 700;
 }
 
-.lang-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 14px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--muted);
-  cursor: pointer;
-}
-
-.lang-option {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-.lang-separator {
-  width: 1px;
-  height: 13px;
-  background: var(--line);
-}
-
-.lang-toggle[data-active-lang="en"] [data-lang-option="en"],
-.lang-toggle[data-active-lang="ko"] [data-lang-option="ko"] {
-  color: var(--accent);
-}
-
 .hero-layout {
   display: grid;
   grid-template-columns: 240px minmax(0, 1fr);
@@ -567,10 +538,6 @@ button {
   .topbar {
     display: grid;
     gap: 16px;
-  }
-
-  .lang-toggle {
-    width: fit-content;
   }
 
   .hero-layout {

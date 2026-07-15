@@ -43,6 +43,10 @@
             {
               "href": "https://github.com/yongchoooon/tradar",
               "label": "GitHub"
+            },
+            {
+              "href": "https://dl.acm.org/doi/10.1145/3805712.3808379",
+              "label": "Paper"
             }
           ],
           "summary": "T-RADAR is a multi-source retrieval system for similar trademarks based on trademark images and names. It predicts conflict risk and registrability through an AI agent based simulation of the back-and-forth process between trademark examiners and applicants."
@@ -84,7 +88,7 @@
           "links": [
             {
               "href": "https://doi.org/10.1016/j.neucom.2026.134322",
-              "label": "DOI"
+              "label": "Paper"
             },
             {
               "href": "https://github.com/kkyuhun94/CABIN",

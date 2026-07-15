@@ -123,6 +123,13 @@
               "icon": "G",
               "variant": "github",
               "srText": "Open GitHub repository in a new tab"
+            },
+            {
+              "href": "https://dl.acm.org/doi/10.1145/3805712.3808379",
+              "label": "Paper",
+              "icon": "P",
+              "variant": "paper",
+              "srText": "Open paper in a new tab"
             }
           ]
         },
@@ -172,10 +179,10 @@
           "links": [
             {
               "href": "https://doi.org/10.1016/j.neucom.2026.134322",
-              "label": "DOI",
-              "icon": "D",
+              "label": "Paper",
+              "icon": "P",
               "variant": "doi",
-              "srText": "Open DOI in a new tab"
+              "srText": "Open paper in a new tab"
             },
             {
               "href": "https://github.com/kkyuhun94/CABIN",
